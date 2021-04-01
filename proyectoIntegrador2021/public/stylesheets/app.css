@@ -1,4 +1,4 @@
-/*====== Fonts ======*/
+====== Fonts ======
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
 
 
@@ -17,6 +17,7 @@
 /*====== Basics ======*/
 * {
   box-sizing: border-box;
+  background-color: red;
 }
 
 html,
@@ -527,4 +528,5 @@ textarea.form-input {
     width: 95%;
     margin: auto;
   }
-}
+} 
+

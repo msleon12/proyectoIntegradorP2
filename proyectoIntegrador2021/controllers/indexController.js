@@ -1,8 +1,9 @@
-// const data = require('../data/info')
+const products = require('../data/info')
+
 const indexController = {
     index: function(req,res){
         return res.render('index', {title: 'Index'})
-    },
+    }
 
 }
 
