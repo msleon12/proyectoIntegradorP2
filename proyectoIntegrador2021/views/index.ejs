@@ -15,11 +15,13 @@
 	<link rel="stylesheet" href="/stylesheets/app.css">
 </head>
 <body>
+	<!-- Header -->
 	<%- include('./partials/header') %>
+	<!-- Header -->
 	
 	<!-- Banner -->
 	<div class="banner">
-		<img src="images/img-home-banner.jpg" alt="Banner de ofertas">
+		<img src="/images/img-home-banner.jpg" alt="Banner de ofertas">
 	</div>
 	<!-- /Banner -->
 
@@ -30,26 +32,22 @@
 				<h2 class="products-title">Novedades</h2>
 			</div>
 				<!-- /Novedades -->
-      <% for(let i=0; i<products.length; i++){ %>
-        <div class="col-12 col-sm-6 col-lg-3">
-          <section class="product-box">
-            <a href="/products/id/<%=products[i].id%>">
-              <figure class="product-box_image">
-                <img src="" alt="<%= products[i].nombre%>">
-              </figure>
-              <article class="product-box_data">
-                <h2><%=products[i].nombre%></h2>
-                <p><%=products[i].descipcion %></p>
-                <p>Comentarios: 12</p>
-              </article>
-            </a>
-
-          </section>
-        </div>
-
-     <% } %>
-			
-			</div>
+      		<% for(let i=0; i<4; i++){ %>
+				<div class="col-12 col-sm-6 col-lg-3">
+					<section class="product-box">
+						<a href="/products/id/<%=products[i].id%>">
+						<figure class="product-box_image">
+							<img src="<%= products[i].imagen %> " alt="<%= products[i].nombre%>">
+						</figure>
+						<article class="product-box_data">
+							<h2><%=products[i].nombre%></h2>
+							<p><%=products[i].descipcion %></p>
+							<p>Comentarios: 12</p>
+						</article>
+						</a>
+					</section>
+				</div>
+			<% } %>
 		</div>
 	</div> <!-- Container grande-->
   
@@ -59,16 +57,16 @@
 			<div class="col-12">
 				<h2 class="products-title">Más comentados</h2>
 			</div>
-          <%for(let i=0; i<products2.length; i++){ %>
+          <%for(let i=4; i<8; i++){ %>
             <div class="col-12 col-sm-6 col-lg-3">
               <section class="product-box">
-                <a href="/products/id/<%=products2[i].id%>">
+                <a href="/products/id/<%=products[i].id%>">
                   <figure class="product-box_image">
-                    <img src="" alt="<%= products2[i].nombre%>">
+                    <img src="<%= products[i].imagen %> " alt="<%= products[i].nombre%>">
                   </figure>
                   <article class="product-box_data">
-                    <h2><%=products2[i].nombre%></h2>
-                    <p><%=products2[i].descipcion %></p>
+                    <h2><%=products[i].nombre%></h2>
+                    <p><%=products[i].descipcion %></p>
                     <p>Comentarios: 12</p>
                   </article>
                 </a>
@@ -78,7 +76,8 @@
 	</div>
 	<!-- /Más comentados -->
 
-
+	<!-- Footer -->
 	<%-include('./partials/footer') %>
+	<!-- Footer -->
 </body>	
 </html>
