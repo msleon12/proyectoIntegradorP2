@@ -4,9 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%=title%></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+	<!-- Bootstrap Grid Stylesheet -->
+	<link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css">
+	<!-- Own Stylesheet -->
+	<link rel="stylesheet" href="/stylesheets/app.css">
 </head>
 <body>
-    <h1><%= title %></h1>
+    <% if(title == 'Agregar productos') { %>
+        <%- include('./partials/headerLogueado') %>
+    <% } 
+    else{ %>
+        <%- include('./partials/header') %>
+    <% } %>
+    <h1><%= title%></h1>
+    <section>
+        <form action="" method="GET">
+            <div>
+                <% if(title == "Crea tu cuenta"){ %>
+                    <input type="nombre" placeholder="Nombre">
+                    <input type="apellido" placeholder="Apellido">
+                    <input type="mail" placeholder="Mail">
+                    <input type="contraseña" placeholder="Contraseña">
+                    <input type="repetirContraseña" placeholder="Repetir Contraseña">
+              <%  } 
+               else if(title == 'Inicia Sesión'){ %>
+                    <input type="mail" placeholder="Mail">
+                    <input type="contraseña" placeholder="Contraseña">
+              <% } 
+              else if(title == 'Agregar productos'){ %>
+                    <input type="nombreProducto" placeholder="Nombre del Producto">
+                    <input type="imagenDelProducto" placeholder="Imagen del producto">
+                    <input type="marca" placeholder="Marca">
+                    <input type="anio" placeholder="Año">
+                    <input type="ml" placeholder="Mililitros">
+                <% } %>
+                     
+            </div>
+            <button>
+                Submit
+            </button>
+            
+        </form>
+    </section>
+    <%- include('./partials/footer') %>
 </body>
 </html>

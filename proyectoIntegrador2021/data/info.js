@@ -7,7 +7,7 @@ const products = {
         anio: 2014,
         descripcion: 'eaeaeasasa',
         sexo: 'Masculino',
-        imagen: '/images/212-vip-men.jpg',
+        imagen: '/images/products/212-vip-men.jpg',
     }, 
     {
         id: 2, 
@@ -15,9 +15,9 @@ const products = {
         marca: 'Paco Rabanne',
         ml: 60, 
         anio: 2017,
-        descripcion: 'lorems',
+        descripcion: 'lorrem daddad gdjfdfdn kskssnd ',
         sexo: 'Masculino',
-        imagen: '/images/one-million.jpg',
+        imagen: '/images/products/one-million.jpg',
     },
     {
         id: 3, 
@@ -27,7 +27,7 @@ const products = {
         anio: 2017,
         descripcion: 'hola',
         sexo: 'Femenino',
-        imagen: '/images/good-girl.jpg',
+        imagen: '/images/products/good-girl.jpg',
     },
     {
         id: 4, 
@@ -37,7 +37,7 @@ const products = {
         anio: 2017,
         descripcion: 'hola',
         sexo: 'Masculino',
-        imagen: '/images/invictus.jpg',
+        imagen: '/images/products/invictus.jpg',
     },
     {
         id: 5,
@@ -47,7 +47,7 @@ const products = {
         anio: 2014,
         descripcion: 'dsdsdfs',
         sexo: 'Masculino',
-        imagen: '/images/eros.jpg',
+        imagen: '/images/products/eros.jpg',
     },
     {
         id: 6,
@@ -57,7 +57,7 @@ const products = {
         anio: 2014,
         descripcion: 'dsdsdfs',
         sexo: 'Masculino',
-        imagen: '/images/be.jpg',
+        imagen: '/images/products/be.jpg',
     },
     {
         id: 7,
@@ -67,7 +67,7 @@ const products = {
         anio: 2014,
         descripcion: 'dsdsdfs',
         sexo: 'Femenino',
-        imagen: '/images/lady-million.jpg',
+        imagen: '/images/products/lady-million.jpg',
     },
     {
         id: 8,
@@ -77,7 +77,7 @@ const products = {
         anio: 2014,
         descripcion: 'dsdsdfs',
         sexo: 'Femenino',
-        imagen: '/images/scandal.jpg',
+        imagen: '/images/products/scandal.jpg',
     },
 ]
 
