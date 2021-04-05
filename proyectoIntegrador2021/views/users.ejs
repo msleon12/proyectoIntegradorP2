@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="/stylesheets/app.css">
 </head>
 <body>
-    <% if(title == 'Agregar productos') { %>
+    <% if(title == 'Agregar productos' || title == 'Editar mi perfil') { %>
         <%- include('./partials/headerLogueado') %>
     <% } 
     else{ %>
@@ -22,7 +22,7 @@
     <section>
         <form action="" method="GET">
             <div>
-                <% if(title == "Crea tu cuenta"){ %>
+                <% if(title == "Crea tu cuenta" || title == "Editar mi perfil"){ %>
                     <input type="nombre" placeholder="Nombre">
                     <input type="apellido" placeholder="Apellido">
                     <input type="mail" placeholder="Mail">
