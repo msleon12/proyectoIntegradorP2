@@ -29,7 +29,7 @@ body {
 body {
   font-family: var(--base-font-family);
   font-weight: 300;
-  background-color: var(--light-gray);
+  background-color: #b5b5b8;
 }
 
 ul,
@@ -68,7 +68,7 @@ hr {
 /*====== Main Header ======*/
 .main-header {
   padding: 15px 0;
-  background-color: var(--yellow);
+  background-color: #d8d8db
 }
 
 .main-header_home-link,
@@ -161,6 +161,10 @@ hr {
   height: 100px;
 }
 
+.banner img{
+  height: 320px;
+}
+
 
 /*====== Products ======*/
 .products-wrapper {
@@ -171,7 +175,7 @@ hr {
 .products-title {
   font-size: 2.4em;
   font-weight: 400;
-  color: var(--gray);
+  color: black;
 }
 
 .product-box {
@@ -259,8 +263,7 @@ hr {
 
 /*====== Footer ======*/
 .main-footer {
-  background-color: #ffffff;
-  padding: 20px 0;
+  background-color: #d8d8db;
   margin-top: 80px;
 }
 
@@ -269,7 +272,7 @@ hr {
 }
 
 .footer-data i {
-  color: var(--light-blue);
+  color: black;
   font-size: 3.5em;
 }
 
@@ -286,14 +289,15 @@ hr {
 }
 
 .sub-footer {
-  border-top: 1px solid var(--light-gray);
-  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
 }
 
-.sub-footer p {
-  margin: 0;
-  color: var(--gray);
-  padding: 15px 0;
+.footer-logo{
+  width: 20%;
 }
 
 

@@ -6,8 +6,7 @@ const productsController = {
     },
     addProducts: function(req,res){
         return res.render('users', {title: "Agregar productos"})
-    }, 
-    
+    },
     detail: function(req,res){
         let id = req.params.id
         let resultado = ""
@@ -16,9 +15,7 @@ const productsController = {
                 resultado = products.perfumes[i]
                 return res.render('detail', { title: "Detalle Producto", resultado: resultado})
             }
-        }
-        
-        
+        }  
     }
 } // Objeto literal
 
