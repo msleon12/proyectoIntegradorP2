@@ -16,7 +16,10 @@ const productsController = {
                 return res.render('detail', { title: "Detalle Producto", resultado: resultado})
             }
         }  
-    }
+    },
+    results: function(req,res){
+        return res.render('results', {title: 'Resultados'})
+    },
 } // Objeto literal
 
 module.exports = productsController;
