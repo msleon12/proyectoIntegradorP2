@@ -78,7 +78,29 @@ const products = {
         descripcion: 'Scandal representa un nuevo estilo de fragancia femenina, donde su aura elegante es manchada por el espíritu de Pigalle amado por Jean Paul Gaultier. Hasta la señora ministra se siente tentada por este aroma a escandalo. Es mas que un golpe de aire fresco, es un golpe de libertad. De noche, todos (en Jean Paul Gaultier) tienen permitido ser los dueños de las fiestas, crear escenas y hacer escandalos. ',
         sexo: 'Femenino',
         imagen: '/images/products/img-scandal.jpg',
+    }],
+    comentarios: [{
+        nombreUsuario: "Nicolas Martinez",
+        comentario: "Muy Bueno, lo recomiendo", 
+        imagen: '/images/'
     },
+    {
+        nombreUsuario:"",
+        comentario:"",
+    },
+    {
+        nombreUsuario:"",
+        comentario:"",
+    },
+    {
+        nombreUsuario:"",
+        comentario:"",
+    },
+    {
+        nombreUsuario:"",
+        comentario:"",
+    },
+
 ]
 
 }

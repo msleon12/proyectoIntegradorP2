@@ -80,10 +80,12 @@
 						</article>
 
 					</section>
-					<form class="form" action="" method="POST">
+					<form class="form" action="/products/id/<%=resultado.id%>" method="GET">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
+						<%= console.log(resultado.id)%>
 					</form>
+	
 					<hr>
 				</div>
 			</div>
