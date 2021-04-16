@@ -82,7 +82,7 @@ const products = {
     comentarios: [{
         nombreUsuario: "Nicolas Martinez",
         comentario: "Muy Bueno, lo recomiendo", 
-        imagen: '/images/'
+        imagen: '/images/perfiles/perfil1'
     },
     {
         nombreUsuario:"",
