@@ -6,32 +6,41 @@
     else{ %>
         <%- include('./partials/header') %>
     <% } %>
-    <h1><%= title%></h1>
-    <section>
-        <form action="" method="GET">
-            <div>
-                <% if(title == "Crea tu cuenta" || title == "Editar mi perfil"){ %>
-                    <input type="nombre" placeholder="Nombre">
-                    <input type="apellido" placeholder="Apellido">
-                    <input type="mail" placeholder="Mail">
-                    <input type="contraseña" placeholder="Contraseña">
-                    <input type="repetirContraseña" placeholder="Repetir Contraseña">
+    <h1 class="form-title"><%= title%></h1>
+    <section class="form-section">
+        
+        <form action="/users/myprofile" method="GET">
+            <div class="form-fields">
+                <% if(title == "Creá tu cuenta" || title == "Editar mi perfil"){ %>
+                    <input type="text" placeholder="Nombre">
+                    <input type="text" placeholder="Apellido">
+                    <input type="date" placeholder="Fecha de nacimiento">
+                    <input type="number" placeholder="DNI">
+                    <input type="number" placeholder="Celular">
+                    <input type="email" placeholder="E-mail">
+                    <input type="password" placeholder="Contraseña">
+                    <input type="password" placeholder="Repetir Contraseña">                   
               <%  } 
-               else if(title == 'Inicia Sesión'){ %>
-                    <input type="mail" placeholder="Mail">
-                    <input type="contraseña" placeholder="Contraseña">
+               else if(title == 'Iniciá sesión'){ %>
+                    <input type="email" placeholder="E-mail">
+                    <input type="password" placeholder="Contraseña">
               <% } 
               else if(title == 'Agregar productos'){ %>
-                    <input type="nombreProducto" placeholder="Nombre del Producto">
-                    <input type="imagenDelProducto" placeholder="Imagen del producto">
-                    <input type="marca" placeholder="Marca">
-                    <input type="anio" placeholder="Año">
-                    <input type="ml" placeholder="Mililitros">
+                    <input type="text" placeholder="Nombre del producto">
+                    <div>
+                        <input type="url" placeholder="URL de la imagen">
+                        <input type="file" placeholder="Imagen">
+                    </div>
+                    <input type="text" placeholder="Marca">
+                    <input type="number" placeholder="Año">
+                    <input type="number" placeholder="Mililitros">
+                    <input type="text" placeholder="Descripción">
                 <% } %>
                      
             </div>
-            <button>
-                Submit
+
+            <button type="submit" class="form-button">
+                Enviar
             </button>
             
         </form>

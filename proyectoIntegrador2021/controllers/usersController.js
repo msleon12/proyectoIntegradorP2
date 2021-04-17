@@ -2,10 +2,10 @@ const products = require('../data/info')
 
 const usersController = {
     register: function(req,res){
-        return res.render('users', {title: 'Crea tu cuenta'})
+        return res.render('users', {title: 'Creá tu cuenta'})
     },
     logIn: function(req,res){
-        return res.render ('users', {title: 'Inicia Sesión'})
+        return res.render ('users', {title: 'Iniciá sesión'})
     }, 
     editProfile: function(req,res){
         return res.render('users', {title: 'Editar mi perfil'})

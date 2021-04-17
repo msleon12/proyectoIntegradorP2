@@ -7,8 +7,9 @@
   --yellow: #b0d3d3;
   --dark-blue: #03264C;
   --light-blue: #1259c3;
+  --purple: #A569BD;
   --gray: #666666;
-  --light-gray: #ebebeb;
+  --light-gray: #d8d8db;
   --green: #39b54a;
   --base-font-family: 'Roboto', sans-serif
 }
@@ -68,7 +69,8 @@ hr {
 /*====== Main Header ======*/
 .main-header {
   padding: 15px 0;
-  background-color: #d8d8db
+  background-color: #A569BD;
+  background: linear-gradient(#A569BD, #d8d8db)
 }
 
 .main-header_home-link,
@@ -264,7 +266,10 @@ hr {
 /*====== Footer ======*/
 .main-footer {
   background-color: #d8d8db;
-  margin-top: 80px;
+  margin-top: 40px;
+  position: sticky;
+  height: 120px;
+  top: calc( 100vh - 100px );
 }
 
 .footer-data {
@@ -297,7 +302,7 @@ hr {
 }
 
 .footer-logo{
-  width: 20%;
+  width: 10%;
 }
 
 
@@ -428,6 +433,45 @@ hr {
 }
 
 /*====== Formularios ======*/
+.form-title{
+  font-size: large;
+  text-align: center;
+  margin-top: 0;
+  background: black;
+  color: var(--light-gray);
+  padding: 10px 0;
+}
+
+.form-section{
+  margin: 30px 50px 70px 50px;
+}
+
+.form-fields{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.form-fields input{
+  padding: 10px 10px;
+  margin: 10px 0;
+}
+
+.form-fields div{
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-fields div input{
+  width: 50%;
+}
+
+.form-button{
+  margin-top: 30px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
 .form-label {
   display: inline-block;
   font-size: 1.6em;
@@ -524,7 +568,7 @@ textarea.form-input {
   }
 
   .main-footer {
-    padding: 40px 0;
+    padding: 20px 0;
   }
 
   .footer-data {
@@ -532,4 +576,3 @@ textarea.form-input {
     margin: auto;
   }
 } 
-
