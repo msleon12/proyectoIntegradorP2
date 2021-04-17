@@ -1,3 +1,4 @@
+const { comentarios } = require('../data/info')
 const products = require('../data/info')
 
 const productsController = {
@@ -13,7 +14,7 @@ const productsController = {
         for(let i = 0; i< products.perfumes.length; i++){
             if(products.perfumes[i].id == id){
                 resultado = products.perfumes[i]
-                return res.render('detail', { title: "Detalle Producto", resultado: resultado})
+                return res.render('detail', { title: "Detalle Producto", resultado: resultado, comentarios: comentarios})
             }
         }  
     },

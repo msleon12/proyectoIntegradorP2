@@ -7,11 +7,12 @@
 		<h1><%= title %></h1>
 		<div class="row">
 			<div class="img-container offset-3 col-2">
-				<img src="https://via.placeholder.com/150" alt="foto de perfil" class="foto-perfil">
+				<img src= <%=comentarios[0].imagen %> alt="foto de perfil" class="foto-perfil">
 			</div>
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
-					<h1 class="main-title">Nombre del usuario 
+					<h1 class="main-title"> 
+						<%=comentarios[0].nombreUsuario %>
 						<a href="editprofile">
 							<i class="fas fa-cog"></i>
 						</a>
@@ -20,7 +21,7 @@
 				</div>
 				<div>
 					<ul class="">
-						<li>8 productos</li>
+						<li>4 productos</li>
 						<li>200 seguidores</li>
 						<li>300 comentarios</li>
 					</ul>
@@ -28,7 +29,32 @@
 			</div>
 		</div>
 	</section>
-	<!-- /Datos del usuario -->
+	
+	<!-- Mis productos -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="form-title">Mis productos</h2>
+			</div>
+				<!-- /Novedades -->
+      		<% for(let i=0; i<4; i++){ %>
+				<div class="col-12 col-sm-6 col-lg-3">
+					<section class="product-box">
+						<a href="/products/id/<%=products[i].id%>">
+						<figure class="product-box_image">
+							<img src="<%= products[i].imagen %> " alt="<%= products[i].nombre%>">
+						</figure>
+						<article class="product-box_data">
+							<h2><%=products[i].nombre%></h2>
+							<p><%=products[i].descipcion %></p>
+							<p>Comentarios: 12</p>
+						</article>
+						</a>
+					</section>
+				</div>
+			<% } %>
+		</div>
+	</div> <!-- Container grande-->
     
     <%- include('./partials/footer') %>
     

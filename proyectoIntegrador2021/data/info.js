@@ -80,25 +80,29 @@ const products = {
         imagen: '/images/products/img-scandal.jpg',
     }],
     comentarios: [{
-        nombreUsuario: "Nicolas Martinez",
+        nombreUsuario: "Martín Moragues Hansen",
         comentario: "Muy Bueno, lo recomiendo", 
-        imagen: '/images/perfiles/perfil1'
+        imagen: '/images/perfiles/perfil1.png'
     },
     {
-        nombreUsuario:"",
-        comentario:"",
+        nombreUsuario:"Nicolas Vivone",
+        comentario:"La verdad, me esperaba algo mejor",
+        imagen: '/images/perfiles/perfil2.jpeg',
     },
     {
-        nombreUsuario:"",
-        comentario:"",
+        nombreUsuario:"Agustín Levy",
+        comentario:"Todo muy bien con el perfume, pero en la propaganda mostraban que cuando uno se ponía el perfume de repente estaba rodeado de mujeres, y eso no me pasó.",
+        imagen: '/images/perfiles/perfil3.jpeg',
     },
     {
-        nombreUsuario:"",
-        comentario:"",
+        nombreUsuario:"Milena Rivadavia",
+        comentario:"¡Me encantó!",
+        imagen: '/images/perfiles/perfil4.png'
     },
     {
-        nombreUsuario:"",
-        comentario:"",
+        nombreUsuario:"Matías Gutierrez",
+        comentario:"Medio pelo la verdad. ",
+        imagen: '/images/perfiles/perfil5.png',
     },
 
 ]

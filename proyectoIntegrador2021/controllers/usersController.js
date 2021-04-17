@@ -1,3 +1,4 @@
+const { comentarios, perfumes } = require('../data/info')
 const products = require('../data/info')
 
 const usersController = {
@@ -11,7 +12,7 @@ const usersController = {
         return res.render('users', {title: 'Editar mi perfil'})
     },
     myProfile: function(req,res){
-        return res.render ('myProfile', {title: 'Mi perfil'})
+        return res.render ('myProfile', {title: 'Mi perfil', comentarios: products.comentarios, products: products.perfumes})
     },
 
 }
