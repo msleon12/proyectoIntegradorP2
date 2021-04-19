@@ -268,7 +268,7 @@ hr {
   background-color: #d8d8db;
   margin-top: 40px;
   position: sticky;
-  height: 120px;
+  height: 150px;
   top: calc( 100vh - 100px );
 }
 
@@ -305,6 +305,29 @@ hr {
   width: 10%;
 }
 
+.footer-details{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+
+.footer-details a{
+  margin: 0;
+  margin-left: 10px;
+}
+
+.fa-instagram{
+  font-size: larger;
+}
+
+.footer-desc{
+  display: flex;
+  justify-content: center;
+}
 
 /*====== Product Detail ======*/
 .product-detail {
