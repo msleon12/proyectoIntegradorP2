@@ -18,11 +18,21 @@
 				<article class="col-12 col-lg-8 product-detail-info">
 					<img src="<%=resultado.imagen%>" alt="<%=resultado.nombre%>" class="product-detail-img">
 					<p class="product-detail-description">
-						<%=resultado.descripcion%></p>
+						<%=resultado.descripcion %></p>
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<article>
+						<% for(let i=0; i<comentarios.length; i++) { %>
+							<article>
+								<img src= <%= comentarios[i].imagen %> alt="Foto de Perfil">
+								<div class="data">
+									<p class="user">
+									<strong> <a href="/users/myprofile"><%=comentarios[i].nombreUsuario %> </a> </strong>
+									 <%=comentarios[i].comentario %></p>
+								</div>
+							</article>
+						<% } %>
+						<!-- <article>
 							<img src="https://via.placeholder.com/35" alt="">
 							<div class="data">
 								<p class="user">
@@ -63,7 +73,7 @@
 									Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet consectetur adipisicing elit.
 									Tempora doloribus enim aspernatur fugit corrupti suscipit sit dolore</p>
 							</div>
-						</article>
+						</article> -->
 
 					</section>
 					<form class="form" action="/products/id/<%=resultado.id%>" method="GET">
