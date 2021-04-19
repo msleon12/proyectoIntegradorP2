@@ -173,9 +173,11 @@ hr {
 
 
 /*====== Products ======*/
+
 .products-wrapper {
   margin-top: 30px;
   margin-bottom: 30px;
+
 }
 
 .products-title {
@@ -190,6 +192,7 @@ hr {
   overflow: hidden;
   transition: 300ms;
   margin: 20px 0;
+
 }
 
 .product-box a {
@@ -258,8 +261,8 @@ hr {
 }
 
 .product-box:hover p {
-  height: 36px;
-  margin-top: 15px;
+  height: 20px;
+  margin-top: 0px;
 }
 
 .product-box:hover i {
@@ -339,6 +342,7 @@ hr {
 }
 
 .product-detail-description {
+  font-family: 'Poppins', sans-serif;
   padding: 15px 15px 15px 40px;
   font-size: 1.8em;
   line-height: 1.5;
@@ -386,6 +390,7 @@ hr {
 }
 
 .buy-now-button {
+  font-family: 'Poppins', sans-serif;
   background-color: var(--light-blue);
   font-size: 1.6em;
   color: #ffffff;
@@ -443,6 +448,7 @@ hr {
 /*====== Formularios ======*/
 .form-title{
   font-family: 'Poppins', sans-serif;
+  font-weight: 200;
   font-size: large;
   text-align: center;
   margin-top: 0;
@@ -543,6 +549,21 @@ textarea.form-input {
   border-radius: 4px;
   color: #fff;
 }
+/*====== Resultados ======*/
+.title {
+  font-family:'Poppins', sans-serif ;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  
+}
+.subtitle{
+  font-family:'Poppins', sans-serif ;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+}
+
 
 
 /*====== Media-Queries ======*/

@@ -82,27 +82,27 @@ const products = {
     comentarios: [{
         nombreUsuario: "Martín Moragues Hansen",
         comentario: "Muy Bueno, lo recomiendo", 
-        imagen: '/images/perfiles/perfil1.png'
+        imagen: '/images/perfiles/img-perfil1.png'
     },
     {
         nombreUsuario:"Nicolas Vivone",
         comentario:"La verdad, me esperaba algo mejor",
-        imagen: '/images/perfiles/perfil2.jpeg',
+        imagen: '/images/perfiles/img-perfil2.png',
     },
     {
         nombreUsuario:"Agustín Levy",
         comentario:"Todo muy bien con el perfume, pero en la propaganda mostraban que cuando uno se ponía el perfume de repente estaba rodeado de mujeres, y eso no me pasó.",
-        imagen: '/images/perfiles/perfil3.jpeg',
+        imagen: '/images/perfiles/img-perfil3.png',
     },
     {
         nombreUsuario:"Milena Rivadavia",
         comentario:"¡Me encantó!",
-        imagen: '/images/perfiles/perfil4.png'
+        imagen: '/images/perfiles/img-perfil4.png'
     },
     {
         nombreUsuario:"Matías Gutierrez",
         comentario:"Medio pelo la verdad. ",
-        imagen: '/images/perfiles/perfil5.png',
+        imagen: '/images/perfiles/img-perfil5.png',
     },
 
 ]
