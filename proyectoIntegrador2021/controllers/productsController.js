@@ -1,4 +1,4 @@
-const { comentarios } = require('../data/info')
+const { comentarios, perfumes } = require('../data/info')
 const products = require('../data/info')
 
 const productsController = {
@@ -19,7 +19,7 @@ const productsController = {
         }  
     },
     results: function(req,res){
-        return res.render('results', {title: 'Resultados'})
+        return res.render('results', {title: 'Resultados', products: products.perfumes})
     },
 } // Objeto literal
 

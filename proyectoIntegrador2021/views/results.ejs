@@ -2,9 +2,30 @@
 <body>
     <%- include('./partials/header') %>
 
-    <h1 class="title"><%= title %></h1>
-
-    <h2 class="subtitle">Lo siento, aún no tenemos el buscador operativo </h2>
+    <div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="form-title">RESULTADOS</h2>
+			</div>
+				<!-- /Novedades -->
+      		<% for(let i=0; i<4; i++){ %>
+				<div class="col-12 col-sm-6 col-lg-3">
+					<section class="product-box">
+						<a href="/products/id/<%=products[i].id%>">
+						<figure class="product-box_image">
+							<img src="<%= products[i].imagen %> " alt="<%= products[i].nombre%>">
+						</figure>
+						<article class="product-box_data">
+							<h2><%=products[i].nombre%></h2>
+							<p><%=products[i].descipcion %></p>
+							<p>Comentarios: 5</p>
+						</article>
+						</a>
+					</section>
+				</div>
+			<% } %>
+		</div>
+	</div> <!-- Container grande-->
 
     <%- include('./partials/footer') %>
 </body>
