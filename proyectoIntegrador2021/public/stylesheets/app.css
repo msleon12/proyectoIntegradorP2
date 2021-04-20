@@ -571,6 +571,8 @@ textarea.form-input {
   border-radius: 4px;
   color: #fff;
 }
+
+
 /*====== Resultados ======*/
 .title {
   font-family:'Poppins', sans-serif ;
@@ -584,6 +586,28 @@ textarea.form-input {
   font-weight: 300;
   display: flex;
   justify-content: center;
+}
+
+/*====== Quiénes somos ======*/
+
+.page{
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 70%;
+  margin: 30px 15vw;
+  border-radius: 15px;
+  box-shadow: 2px 5px 10px;
+}
+
+.page p{
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  padding: 10px;
+  text-align: center;
 }
 
 
