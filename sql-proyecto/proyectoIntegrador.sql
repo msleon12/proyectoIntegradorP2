@@ -43,10 +43,6 @@ CREATE TABLE productos(
 	FOREIGN KEY (idUsuario) REFERENCES usuarios(id)
 );
 
-ALTER TABLE products
-DROP  sexo; 
-SELECT * FROM productos;
-
 -- Insertamos valores a la tabla de productos
 INSERT INTO  productos 
 VALUES
@@ -74,17 +70,47 @@ CREATE TABLE comentarios (
     FOREIGN KEY (idUsuario) REFERENCES usuarios(id)
 );
 
-SELECT * FROM comentarios;
-
 INSERT INTO comentarios 
 VALUES
-(DEFAULT, 1, 1, "Muy bueno, toda la facha", "2021-09-09"),
-(DEFAULT, 1, 3, "La verdad, un desastre", "2021-11-03"), 
+(DEFAULT, 1, 1, "Toda la facha", "2021-01-09"),
+(DEFAULT, 1, 3, "La verdad, un desastre", "2021-04-03"), 
 (DEFAULT, 1, 4, "Muy buen producto. Ya lo conocía y por eso no me sorprende su calidad. Lo he usado hace un tiempo y mantiene sus características originales.", "2020-05-07"), 
-(DEFAULT, 1, 5, "Muy buen producto. Ya lo conocía y por eso no me sorprende su calidad. Lo he usado hace un tiempo y mantiene sus características originales.", "2018-03-05"),
+(DEFAULT, 1, 5, "Tremendo, dame mil", "2018-03-05"),
 (DEFAULT, 2, 3, "Lo super recomiendo, excelente producto", "2018-12-06"),
 (DEFAULT, 2, 4, "Me esperaba algo mejor..", "2017-03-05"), 
 (DEFAULT, 2, 1, "No tengo mucho para decir, es un perfume", "2016-03-16"), 
-(DEFAULT, 2, 3, "Lo mejor que use en años", "2014-05-03"), 
+(DEFAULT, 2, 2, "Lo mejor que use en años", "2019-10-03"),
+(DEFAULT, 3, 2, "No me gustó nada", "2017-11-03"),
+(DEFAULT, 3, 3, "Vienen pifiando hace años", "2016-09-03"),
+(DEFAULT, 3, 4, "me encantaaaa", "2018-03-03"),
+(DEFAULT, 3, 5, "Esta bueno", "2019-04-03"),
+(DEFAULT, 4, 1, "mas o menos, no me convencio", "2021-02-03"),
+(DEFAULT, 4, 2, "ME FASCINA", "2018-12-03"),
+(DEFAULT, 4, 5, "Notas muy sutiles, recomendadísimo", "2019-07-03"),
+(DEFAULT, 4, 4, "Completamente distinto a lo que venía usando", "2018-08-03"),
+(DEFAULT, 5, 2, "esta bueno para regalar", "2019-01-03"),
+(DEFAULT, 5, 3, "Gran innovación de la marca", "2020-03-03"),
+(DEFAULT, 5, 4, "tremendooooo", "2020-02-03"),
+(DEFAULT, 5, 1, "mucho humo la publicidad, no me sirve", "2016-05-03"),
+(DEFAULT, 6, 1, "Me encanta el frasco!!!!!", "2017-04-03"),
+(DEFAULT, 6, 4, "...", "2018-06-03"),
+(DEFAULT, 6, 5, "deja que desear", "2019-11-03"),
+(DEFAULT, 6, 3, "No fue lo que esperaba para nada", "2020-10-03"),
+(DEFAULT, 7, 3, "increible este perfume", "2020-08-03"),
+(DEFAULT, 7, 2, "Muy bueno, segunda vez que lo compro", "2021-03-03"),
+(DEFAULT, 7, 1, "muy distinto al resto :)", "2021-02-03"),
+(DEFAULT, 7, 5, "Super recomendado", "2020-01-03"),
+(DEFAULT, 8, 5, "Gran diseño de la marca", "2019-12-03"),
+(DEFAULT, 8, 4, "Muy dulce, como me gustan", "2018-11-03"),
+(DEFAULT, 8, 2, "esta buenisimo", "2019-01-03"),
+(DEFAULT, 8, 1, "la publicidad es real, en el boliche gano gracias a este perfume", "2018-04-03"),
+(DEFAULT, 9, 1, "muy disconforme con el producto", "2017-05-03"),
+(DEFAULT, 9, 3, "INCREIBLEEEEEE", "2019-05-03"),
+(DEFAULT, 9, 2, "Me encantó!", "2020-08-03"),
+(DEFAULT, 9, 4, "Muy bueno", "2019-09-03"),
+(DEFAULT, 10, 3, "La verdad que fue un regalo de mi mamá y no esperaba mucho, pero me sorprendió gratamente. Recomendado.", "2021-01-03"),
+(DEFAULT, 10, 4, "divino este perfume", "2020-05-03"),
+(DEFAULT, 10, 5, "VAMO ARRIBAAAA, TREMENDA FRAGANCIA", "2021-03-03"),
+(DEFAULT, 10, 2, "Muy malo", "2019-05-03");
 
-
+SELECT * FROM comentarios;
