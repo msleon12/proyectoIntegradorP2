@@ -12,7 +12,14 @@ const usersController = {
         return res.render('users', {title: 'Editar mi perfil'})
     },
     myProfile: function(req,res){
-        return res.render ('myProfile', {title: 'Mi perfil', comentarios: products.comentarios, products: products.perfumes})
+        let id = req.params.id
+        let resultado = ""
+        for(let i = 0; i< products.comentarios.length; i++){
+            if(products.comentarios[i].id == id){
+                resultado = products.comentarios[i]
+                return res.render('myProfile', { title: 'Mi Perfil', resultado: resultado, products: products.perfumes})
+            }
+        }  
     },
 
 }

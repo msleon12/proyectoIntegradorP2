@@ -7,12 +7,12 @@
 		<h1><%= title %></h1>
 		<div class="row">
 			<div class="img-container offset-3 col-2">
-				<img src= <%=comentarios[0].imagen %> alt="foto de perfil" class="foto-perfil">
+				<img src= <%= resultado.imagen %> alt="foto de perfil" class="foto-perfil">
 			</div>
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
 					<h1 class="main-title"> 
-						<%=comentarios[0].nombreUsuario %>
+						<%=resultado.nombreUsuario %>
 						<a href="editprofile">
 							<i class="fas fa-cog"></i>
 						</a>
