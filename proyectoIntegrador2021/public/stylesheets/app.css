@@ -45,6 +45,11 @@ a {
   color: inherit;
 }
 
+a:hover, a:focus, a:active{
+  text-decoration: none;
+  color: black;
+}
+
 figure {
   margin: 0;
   padding: 0;
@@ -117,7 +122,10 @@ hr {
   cursor: pointer;
 }
 
-
+.error-id{
+  text-align: center;
+  font-family: 'Poppins', sans-serif;;
+}
 
 /*====== Main Navbar ======*/
 .btn-toggle-navbar {
@@ -166,10 +174,16 @@ hr {
 .banner {
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
-  height: 100px;
+  background-position: center;
 }
 
+.carousel-item{
+  height: 330px;
+}
+
+.d-block{
+  object-fit: cover;
+}
 
 /*====== Products ======*/
 
@@ -464,6 +478,10 @@ hr {
 }
 .comments .user{
   font-size: 1.7em;
+}
+
+.data a{
+  font-weight: bold;
 }
 
 /*====== Formularios ======*/

@@ -4,11 +4,11 @@
 	<%- include('./partials/header') %>
 	<!-- Header -->
 	
-	<!-- Atajo de errore -->
+	<!-- Captar errores -->
 	<% if(title == "error1" ){ %>
-		<h1>Lo siento, no tenemos productos bajo ese id. Proba con números del 1 al 8 inclusive.</h1>
+		<h1 class="error-id">Lo siento, no tenemos productos con ese ID. Probá con números del 1 al 8 inclusive.</h1>
 	<% } else if (title == "error2") { %>
-		<h1>Lo siento, no tenemos perfiles bajo ese id. Proba con números del 1 al 5 inclusive.</h1>
+		<h1 class="error-id">Lo siento, no tenemos perfiles con ese ID. Probá con números del 1 al 5 inclusive.</h1>
 	<% } %>
 
 	<!-- Banner -->
@@ -20,13 +20,13 @@
 		</ol>
 		<div class="carousel-inner">
 		  <div class="carousel-item active">
-			<img class="d-block w-100" src="/images/banner-perfumes3.jpg" alt="First slide">
+			<img class="d-block w-100" src="/images/banner-perfumes2.jpg" alt="First slide">
 		  </div>
 		  <div class="carousel-item">
-			<img class="d-block w-100" src="" alt="Second slide">
+			<img class="d-block w-100" src="/images/banner-perfumes4.jpg" alt="Second slide">
 		  </div>
 		  <div class="carousel-item">
-			<img class="d-block w-100" src="" alt="Third slide">
+			<img class="d-block w-100" src="/images/banner-perfumes1.jpg" alt="Third slide">
 		  </div>
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
