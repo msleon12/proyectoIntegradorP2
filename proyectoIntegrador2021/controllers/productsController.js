@@ -11,12 +11,17 @@ const productsController = {
     detail: function(req,res){
         let id = req.params.id
         let resultado = ""
-        for(let i = 0; i< products.perfumes.length; i++){
-            if(products.perfumes[i].id == id){
-                resultado = products.perfumes[i]
-                return res.render('detail', { title: "Detalle Producto", resultado: resultado, comentarios: comentarios})
-            }
-        }  
+        if (id < 9){
+            for(let i = 0; i< products.perfumes.length; i++){
+                if(products.perfumes[i].id == id){
+                    resultado = products.perfumes[i]
+                    return res.render('detail', { title: "Detalle Producto", resultado: resultado, comentarios: comentarios})
+                }
+            }  
+        } //IF
+        else{
+            return res.render('index', {title: "error1",  products: products.perfumes})
+        }
     },
     results: function(req,res){
         return res.render('results', {title: 'Resultados', products: products.perfumes})

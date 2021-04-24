@@ -24,7 +24,7 @@
 					<section class="comments">
 						<% for(let i=0; i<comentarios.length; i++) { %>
 							<article>
-								<a href="/users/myprofile/ <%=comentarios[i].id%>"><img src= <%= comentarios[i].imagen %> alt="Foto de Perfil"> </a>
+								<a href="/users/myprofile/<%=comentarios[i].id%>"><img src= <%= comentarios[i].imagen %> alt="Foto de Perfil"> </a>
 								<div class="data">
 									<p class="user">
 									<strong> <a href="/users/myprofile/<%=comentarios[i].id%> "><%=comentarios[i].nombreUsuario %> </a> </strong>

@@ -4,6 +4,13 @@
 	<%- include('./partials/header') %>
 	<!-- Header -->
 	
+	<!-- Atajo de errore -->
+	<% if(title == "error1" ){ %>
+		<h1>Lo siento, no tenemos productos bajo ese id. Proba con números del 1 al 8 inclusive.</h1>
+	<% } else if (title == "error2") { %>
+		<h1>Lo siento, no tenemos perfiles bajo ese id. Proba con números del 1 al 5 inclusive.</h1>
+	<% } %>
+
 	<!-- Banner -->
 	<div id="carouselExampleIndicators" class="carousel slide banner" data-ride="carousel">
 		<ol class="carousel-indicators">
@@ -30,7 +37,7 @@
 		  <span class="carousel-control-next-icon" aria-hidden="true"></span>
 		  <span class="sr-only">Next</span>
 		</a>
-	  </div>
+	</div>
 
 	<!-- Novedades -->
 	<div class="container products-wrapper">

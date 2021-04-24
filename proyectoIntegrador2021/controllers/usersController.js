@@ -14,12 +14,18 @@ const usersController = {
     myProfile: function(req,res){
         let id = req.params.id
         let resultado = ""
-        for(let i = 0; i< products.comentarios.length; i++){
-            if(products.comentarios[i].id == id){
-                resultado = products.comentarios[i]
-                return res.render('myProfile', { title: 'Mi Perfil', resultado: resultado, products: products.perfumes})
-            }
-        }  
+        if(id< 9){
+            for(let i = 0; i< products.comentarios.length; i++){
+                if(products.comentarios[i].id == id){
+                    resultado = products.comentarios[i]
+                    return res.render('myProfile', { title: 'Mi Perfil', resultado: resultado, products: products.perfumes})
+                }
+            }  
+        } // IF
+        else{
+            return res.render('index', {title: "error2",  products: products.perfumes})
+        }
+        
     },
 
 }
