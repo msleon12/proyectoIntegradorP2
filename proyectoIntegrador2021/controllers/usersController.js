@@ -1,4 +1,3 @@
-const { comentarios, perfumes } = require('../data/info')
 const products = require('../data/info')
 
 const usersController = {

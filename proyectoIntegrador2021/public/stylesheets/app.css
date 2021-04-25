@@ -178,11 +178,12 @@ hr {
 }
 
 .carousel-item{
-  height: 330px;
+  max-height: 330px;
 }
 
 .d-block{
   object-fit: cover;
+  height: 330px;
 }
 
 /*====== Products ======*/
