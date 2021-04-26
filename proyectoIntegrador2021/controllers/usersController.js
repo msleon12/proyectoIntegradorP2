@@ -13,7 +13,7 @@ const usersController = {
     myProfile: function(req,res){
         let id = req.params.id
         let resultado = ""
-        if(id< 9){
+        if(id< products.comentarios.length || id == products.comentarios.length){
             for(let i = 0; i< products.comentarios.length; i++){
                 if(products.comentarios[i].id == id){
                     resultado = products.comentarios[i]

@@ -10,7 +10,7 @@ const productsController = {
     detail: function(req,res){
         let id = req.params.id
         let resultado = ""
-        if (id < 9){
+        if (id < data.perfumes.length || id == data.perfumes.length){
             for(let i = 0; i< data.perfumes.length; i++){
                 if(data.perfumes[i].id == id){
                     resultado = data.perfumes[i]
