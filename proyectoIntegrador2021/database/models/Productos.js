@@ -1,8 +1,8 @@
 module.exports = function (sequelize,dataTypes){
     // 1) Definir un alias: un nombre al modelo para que sequelize lo pueda identificar internamente al archivo
-    let alias = 'Productos'; 
+    let alias = 'Producto'; 
 
-    // 2) Descibir las configuración de las columnas de la tabla movies. Cada atributo del objeto literal va a ser el nomre de cada columna. Si bien se recomienda, no es necesario que se escriban las columnas en orden. Lo que sí es imporante es que los nombres coincidan con los de la tabal de mysql
+    // 2) Descibir las configuración de las columnas de la tabla productos. Cada atributo del objeto literal va a ser el nomre de cada columna. Si bien se recomienda, no es necesario que se escriban las columnas en orden. Lo que sí es imporante es que los nombres coincidan con los de la tabal de mysql
     let cols = {
         id : {
             autoincrement: true,
@@ -11,7 +11,7 @@ module.exports = function (sequelize,dataTypes){
             
         },    
         idUsuario: {
-            type: dataTypes.STRING
+            type: dataTypes.INTEGER
         },
         nombre: {
             type: dataTypes.STRING
@@ -36,12 +36,12 @@ module.exports = function (sequelize,dataTypes){
         }
     } // ID
     let config = {
-        tables: 'movies',
-        timestamps: true, //Si no tiene timestampes lo ponemos en false y viceversa. Esto suele pasar si la tabla no tiene los campos created_at y updated_at
-        underscored: true, // Le estamos aclarando que tenemos nombres de columnas con guiones bajos en lugar de camelcase 
+        tables: 'productos',
+        timestamps: false, //Usamos timestampes, pero no las columnas createdAt y updatedAt. Entonces lo ponemos en false
+        underscored: false, // No tenemos 
     }
 
-    const Movie = sequelize.define(alias, cols, config) // Estamos ejecutando un callback: una función dentro de otra función
-    return Movie;
+    const Producto = sequelize.define(alias, cols, config) // Estamos ejecutando un callback: una función dentro de otra función
+    return Producto;
 
 } //Module.exports

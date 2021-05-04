@@ -1,9 +1,16 @@
-const data = require('../data/info')
+// const data = require('../data/info')
 const db = require('../database/models')
+const Producto = db.Producto;
 
 const productsController = {
     products: function(req,res){
-        return res.render('index', {title: 'Todos los productos', products: products.perfumes})
+        Producto.findAll()
+            .then (data =>{
+                return res.render('index', {title: 'Index', products: data})
+            }) //Then
+            .catch (error =>{
+                console.log(error)
+            }) // Catch
     },
     addProducts: function(req,res){
         return res.render('users', {title: "Agregar productos"})
@@ -11,17 +18,22 @@ const productsController = {
     detail: function(req,res){
         let id = req.params.id
         let resultado = ""
-        if (id < data.perfumes.length || id == data.perfumes.length){
-            for(let i = 0; i< data.perfumes.length; i++){
-                if(data.perfumes[i].id == id){
-                    resultado = data.perfumes[i]
-                    return res.render('detail', { title: "Detalle Producto", resultado: resultado, comentarios: data.comentarios})
-                }
-            }  
-        } //IF
-        else{
-            return res.render('index',  {title: "error1",  products: data.perfumes})
-        }
+        Producto.findByPk(id)
+        .then(data=>{
+            return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: "" }) //Completar
+        })
+        
+        // if (id < data.perfumes.length || id == data.perfumes.length){
+        //     for(let i = 0; i< data.perfumes.length; i++){
+        //         if(data.perfumes[i].id == id){
+        //             resultado = data.perfumes[i]
+        //             return res.render('detail', { title: "Detalle Producto", resultado: resultado, comentarios: data.comentarios})
+        //         }
+        //     }  
+        // } //IF
+        // else{
+        //     return res.render('index',  {title: "error1",  products: data.perfumes})
+        // }
     },
     results: function(req,res){
         return res.render('results', {title: 'Resultados', products: data.perfumes})
