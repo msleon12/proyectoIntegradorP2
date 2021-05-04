@@ -1,10 +1,10 @@
 module.exports = {
   "development": {
     "username": "root",
-    "password": "root",
-    "database": "proyectoIntegrador",
+    "password": "root", // Para mac
+    "database": "proyectoIntegrador", // Nombre de la base de datos
     "host": "127.0.0.1",
-    "port": "8889",
+    "port": "8889", // Para Mac
     "dialect": "mysql"
   },
   "test": {

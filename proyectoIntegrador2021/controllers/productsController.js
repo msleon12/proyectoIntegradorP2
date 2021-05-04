@@ -1,8 +1,9 @@
 const data = require('../data/info')
+const db = require('../database/models')
 
 const productsController = {
     products: function(req,res){
-        return res.render('index', {title: 'Todos los productos'})
+        return res.render('index', {title: 'Todos los productos', products: products.perfumes})
     },
     addProducts: function(req,res){
         return res.render('users', {title: "Agregar productos"})
