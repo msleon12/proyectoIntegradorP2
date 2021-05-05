@@ -42,6 +42,7 @@ CREATE TABLE productos(
 
 	FOREIGN KEY (idUsuario) REFERENCES usuarios(id)
 );
+SELECT * FROM productos;
 
 -- Insertamos valores a la tabla de productos
 INSERT INTO  productos 
@@ -57,7 +58,9 @@ VALUES
 (DEFAULT, 5, "Bad Boy", "/images/products/img-badboy.jpg", "2021-03-03", "Carolina Herrera", 50, 2021, "Carolina Herrera presenta un nuevo perfume masculino, innovador y explosivo: Bad Boy. Una fascinante fragancia que actualiza el mito del eterno rebelde, aquel que se atreve a romper las normas y a trazar su propio camino. BAD BOY es una oda a los hombres que luchan por sus principios y son fieles a su propia identidad. BAD BOY es una fragancia Oriental Aromática en la que los opuestos se atraen: la luminosidad de la Salvia, la Bergamota Verde y la Pimienta, se entrelaza con la oscuridad sensual del Haba Tonka, el Cacao y la Madera de Ámbar. BAD BOY expresa, de manera consciente, las luces y las sombras de la naturaleza del hombre actual."),
 (DEFAULT, 1, "Blue Label", "/images/products/img-bluelabel.jpg", "2021-01-10", "Givenchy", 100, 2004, "Creado en 2004, Blue Label ofrece un toque fresco de sensualidad moderna para el hombre Givenchy Pour Homme. Una esencia vigorizante, fresca y amaderada que recuerda al perfume original, pero realzada con notas frescas de pomelo. Blue Label es la fragancia ideal para el hombre que acepta la libertad, la elegancia y la sofisticación con un toque de rebeldía.");
 
-SELECT * FROM productos;
+-- Algunos ejemplos de contraints
+SELECT id, nombre FROM usuarios WHERE nombre LIKE "%a%";
+SELECT * FROM productos WHERE id > 5 AND id <10;
 
 CREATE TABLE comentarios (
 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -114,3 +117,16 @@ VALUES
 (DEFAULT, 10, 2, "Muy malo", "2019-05-03");
 
 SELECT * FROM comentarios;
+
+-- Inner Join
+SELECT usuarios.id AS usuario, productos.id
+FROM usuarios
+INNER JOIN productos
+ON usuarios.id = productos.idUsuario;
+
+SELECT usuarios.id AS usuario, productos.id
+FROM usuarios
+LEFT JOIN productos
+ON usuarios.id = productos.idUsuario
+
+
