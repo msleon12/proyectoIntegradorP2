@@ -4,12 +4,12 @@ module.exports = function (sequelize,dataTypes){
 
     // 2) Descibir las configuración de las columnas de la tabla productos. Cada atributo del objeto literal va a ser el nomre de cada columna. Si bien se recomienda, no es necesario que se escriban las columnas en orden. Lo que sí es imporante es que los nombres coincidan con los de la tabal de mysql
     let cols = {
-        id : {
+        id: {
             autoincrement: true,
             primaryKey: true,
             type: dataTypes.INTEGER,
             
-        },    
+        },
         idUsuario: {
             type: dataTypes.INTEGER
         },
