@@ -7,6 +7,7 @@ router.get('/', productsController.products)
 router.get('/add', productsController.addProducts)
 router.get('/id/:id', productsController.detail)
 router.get('/results', productsController.results)
+router.get('/marcas', productsController.marcas)
 
 module.exports = router;
 

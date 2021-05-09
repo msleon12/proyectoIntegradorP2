@@ -22,6 +22,9 @@ const productsController = {
         .then(data=>{
             return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: "" }) //Completar
         })
+        .catch (error =>{
+            console.log(error)
+        }) // Catch
         
         // if (id < data.perfumes.length || id == data.perfumes.length){
         //     for(let i = 0; i< data.perfumes.length; i++){
@@ -36,8 +39,17 @@ const productsController = {
         // }
     },
     results: function(req,res){
-        return res.render('results', {title: 'Resultados', products: data.perfumes})
+        return res.render('results', {title: 'Resultados', resultado: data})
     },
+    marcas: function(req,res){
+        Producto.findAll()
+        .then(data=>{
+            return res.render('results', { title: "Marcas", resultado: data })
+        })
+        .catch (error =>{
+            console.log(error)
+        }) // Catch
+    }
 } // Objeto literal
 
 module.exports = productsController;
