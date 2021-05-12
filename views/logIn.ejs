@@ -1,0 +1,22 @@
+<%- include('./partials/links') %>
+<body>
+    <%- include('./partials/header') %>
+
+    <h1 class="form-title"><%= title%></h1>
+    <section class="form-section">
+        
+        <form action="/users/myprofile/1" method="GET">
+            <div class="form-fields">
+                <input type="email" placeholder="E-mail">
+                <input type="password" placeholder="Contraseña">
+            </div>
+
+            <button type="submit" class="form-button">
+                Enviar
+            </button>
+            
+        </form>
+    </section>
+    <%- include('./partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<%- include('./partials/links') %>
+<body>
+
+    <%- include('./partials/headerLogueado') %>
+
+    <h1 class="form-title"><%= title %></h1>
+    <section class="form-section">
+        
+         <form action="/users/myprofile/1" method="GET"> <!-- Automatizar después -->
+            <div class="form-fields">
+                <input type="text" placeholder="Nombre del producto">
+                <div>
+                    <input type="url" placeholder="URL de la imagen">
+                    <input type="file" placeholder="Imagen">
+                </div>
+                <input type="text" placeholder="Marca">
+                <input type="number" placeholder="Año">
+                <input type="number" placeholder="Mililitros">
+                <input type="text" placeholder="Descripción">
+
+            </div>
+
+            <button type="submit" class="form-button">
+                Enviar
+            </button>
+            
+        </form>
+    </section>
+    <%- include('./partials/footer') %>
+</body>
+</html>

@@ -1,6 +1,7 @@
-// const data = require('../data/info')
 const db = require('../database/models')
 const Producto = db.Producto;
+const Comentario = db.Comentario;
+const Op = db.Sequelize.Op;
 
 const productsController = {
     products: function(req,res){
@@ -17,27 +18,27 @@ const productsController = {
     },
     detail: function(req,res){
         let id = req.params.id
-        let resultado = ""
+        
+        Comentario.findAll({
+            where: [{idProducto: {[Op.like]: id}}]
+        }) //Comentario
+            .then(comentario =>{
+                return comentario
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        
         Producto.findByPk(id)
         .then(data=>{
-            return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: "" }) //Completar
+            return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: comentario }) //Completar
         })
         .catch (error =>{
             console.log(error)
         }) // Catch
+
         
-        // if (id < data.perfumes.length || id == data.perfumes.length){
-        //     for(let i = 0; i< data.perfumes.length; i++){
-        //         if(data.perfumes[i].id == id){
-        //             resultado = data.perfumes[i]
-        //             return res.render('detail', { title: "Detalle Producto", resultado: resultado, comentarios: data.comentarios})
-        //         }
-        //     }  
-        // } //IF
-        // else{
-        //     return res.render('index',  {title: "error1",  products: data.perfumes})
-        // }
-    },
+    }, //DETAIL
     results: function(req,res){
         return res.render('results', {title: 'Resultados', resultado: data})
     },
