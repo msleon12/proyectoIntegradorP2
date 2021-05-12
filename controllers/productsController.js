@@ -16,22 +16,22 @@ const productsController = {
     addProducts: function(req,res){
         return res.render('users', {title: "Agregar productos"})
     },
-    detail: function(req,res){
+    detail: function(req,res){ //Falta saber relacionar tablas. 
         let id = req.params.id
         
-        Comentario.findAll({
-            where: [{idProducto: {[Op.like]: id}}]
-        }) //Comentario
-            .then(comentario =>{
-                return comentario
-            })
-            .catch(error =>{
-                console.log(error)
-            })
+        // Comentario.findAll({
+        //     where: [{idProducto: {[Op.like]: id}}]
+        // }) //Comentario
+        //     .then(comentario =>{
+        //         return comentario
+        //     })
+        //     .catch(error =>{
+        //         console.log(error)
+        //     })
         
         Producto.findByPk(id)
         .then(data=>{
-            return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: comentario }) //Completar
+            return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: "" }) //Completar
         })
         .catch (error =>{
             console.log(error)
