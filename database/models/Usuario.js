@@ -39,6 +39,9 @@ module.exports = function (sequelize,dataTypes){
         comentarios: {
             type: dataTypes.INTEGER
         },
+        imagen: {
+            type:dataTypes.STRING
+        }
     } // ID
     let config = {
         tables: 'usuarios',
