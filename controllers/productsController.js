@@ -40,8 +40,20 @@ const productsController = {
         
     }, //DETAIL
     results: function(req,res){
-        return res.render('results', {title: 'Resultados', resultado: data})
-    },
+        let infoABuscar = req.query.search
+        Producto.findAll({
+            where:[
+                {nombre:{[Op.like]:"%" + infoABuscar + "%"}}
+            ] //Where
+        }) // Find all
+            .then(data =>{
+                return res.render('results', {resultado: data, title: 'Resultados'})
+                // return res.send(data)
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+    }, //Results
     marcas: function(req,res){
         Producto.findAll()
         .then(data=>{
