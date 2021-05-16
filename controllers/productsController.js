@@ -14,7 +14,7 @@ const productsController = {
             }) // Catch
     },
     addProducts: function(req,res){
-        return res.render('users', {title: "Agregar productos"})
+        return res.render('addProducts', {title: "Agregar productos"})
     },
     detail: function(req,res){ //Falta saber relacionar tablas. 
         let id = req.params.id
@@ -62,7 +62,13 @@ const productsController = {
         .catch (error =>{
             console.log(error)
         }) // Catch
+    }, //Marcas
+    store: function(req,res){
+        //Guardar un perfume
+        let data = req.body;
+        return res.send(data)
     }
+
 } // Objeto literal
 
 module.exports = productsController;
