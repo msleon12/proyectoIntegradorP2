@@ -6,14 +6,16 @@
     <h1 class="form-title"><%= title %></h1>
     <section class="form-section">
         
-         <form action="/products" method="POST"> <!-- Automatizar después -->
+         <form action="/products/store" method="POST"> 
             <div class="form-fields">
-                <input type="text" placeholder="Nombre del producto">
-                <input type="file" placeholder="Imagen">
-                <input type="text" placeholder="Marca">
-                <input type="number" placeholder="Año">
-                <input type="number" placeholder="Mililitros">
-                <input type="text" placeholder="Descripción">
+                <input type="number" name="idUsuario" value="" placeholder="Id del usuario">
+                <input type="text" name="nombre" value="" placeholder="Nombre del producto">
+                <input type="text" name="imagen" value="" placeholder="Imagen">
+                <input type="date" name="fechaPublicacion" value="" placeholder="Fecha de Publicación">
+                <input type="text" name="marca" value="" placeholder="Marca">
+                <input type="number" name="anio" value="" placeholder="Año">
+                <input type="number" name="ml" value="" placeholder="Mililitros">
+                <input type="text" name="descripcion" value="" placeholder="Descripción">
 
             </div>
 
@@ -21,7 +23,7 @@
                 Enviar
             </button>
             
-        </form>
+        </form> 
     </section>
     <%- include('./partials/footer') %>
 </body>

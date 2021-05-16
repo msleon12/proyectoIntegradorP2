@@ -9,7 +9,7 @@ router.get('/id/:id', productsController.detail)
 router.get('/results', productsController.results)
 router.get('/marcas', productsController.marcas)
 
-router.post('/products', productsController.store)
+router.post('/store', productsController.store)
 
 module.exports = router;
 

@@ -63,11 +63,35 @@ const productsController = {
             console.log(error)
         }) // Catch
     }, //Marcas
-    store: function(req,res){
-        //Guardar un perfume
+    store: function(req,res){ //Guardar un perfume
+        //1) Obtener datos del formulario
         let data = req.body;
+
+        // 2) Armar perfume
+        let perfume = {
+            idUsuario: data.idUsuario,
+            nombre: data.nombre,
+            imagen: data.imagen,
+            fechaPublicacion: data.fechaPublicacion,
+            marca: data.marca,
+            ml: data.ml,
+            anio: data.anio,
+            descripcion: data.descripcion, 
+        }
+
+        // 3) Guardar perfume
+        db.Producto.create(perfume)
+            .then(producto =>{
+                // 4) redireccionar
+                res.redirect('/')
+            })
+            .error(error =>{
+                console.log(error)
+            })
+
+    
         return res.send(data)
-    }
+    } //Store
 
 } // Objeto literal
 
