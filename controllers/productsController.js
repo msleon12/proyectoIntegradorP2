@@ -95,14 +95,13 @@ const productsController = {
         db.Producto.create(perfume)
             .then(producto =>{
                 // 4) redireccionar
-                res.redirect('/')
+                return res.redirect('/', {products: perfume, title: 'productos'})
             })
             .error(error =>{
                 console.log(error)
             })
 
     
-        return res.send(data)
     } //Store
 
 } // Objeto literal
