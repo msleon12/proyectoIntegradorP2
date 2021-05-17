@@ -41,18 +41,30 @@ const productsController = {
     }, //DETAIL
     results: function(req,res){
         let infoABuscar = req.query.search
-        Producto.findAll({
+        /* Producto.findAll({
             where:[
                 {nombre:{[Op.like]:"%" + infoABuscar + "%"}}
             ] //Where
-        }) // Find all
-            .then(data =>{
-                return res.render('results', {resultado: data, title: 'Resultados'})
-                // return res.send(data)
-            })
-            .catch(error =>{
-                console.log(error)
-            })
+        }) // Find all */
+
+        Producto.findAll({
+            where:{
+                [Op.or]: [
+                    {nombre: {[Op.like]: "%" + infoABuscar + "%"}},
+                    {marca: {[Op.like]: "%" + infoABuscar + "%"}},
+                ]
+            },
+            order: [
+                ['nombre','ASC']
+            ]
+          })
+        .then(data =>{
+            return res.render('results', {resultado: data, title: 'Resultados'})
+            // return res.send(data)
+        })
+        .catch(error =>{
+            console.log(error)
+        })
     }, //Results
     marcas: function(req,res){
         Producto.findAll()
