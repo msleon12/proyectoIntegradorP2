@@ -26,7 +26,8 @@ const usersController = {
             .catch(error =>{
                 console.log(error)
             })
-        
+
+
         // if(id < Usuario.length || id == Usuario.length){
         //     for(let i = 0; i< Usuario.length; i++){
         //         if(Usuario[i].id == id){

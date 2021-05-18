@@ -75,6 +75,7 @@ const productsController = {
             console.log(error)
         }) // Catch
     }, //Marcas
+    
     store: function(req,res){ //Guardar un perfume
         //1) Obtener datos del formulario
         let data = req.body;
