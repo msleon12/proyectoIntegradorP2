@@ -10,6 +10,30 @@ const usersController = {
     register: function(req,res){
         return res.render('register', {title: 'Creá tu cuenta'})
     },
+    store: function(req,res){
+        //1) Obtener datos del formulario
+        let data = req.body;
+
+        // 2) Armar usuario
+        let usuario = {
+            id: data.id,
+            nombre: data.nombre,
+            apellido: data.apellido,
+            mail: data.mail,
+            nacimiento: data.nacimiento,
+            dni: data.dni,
+            celular: data.celular,
+            contrasenia: data.contrasenia,
+            /* imagen: data.imagen,
+            productos: data.productos,
+            seguidores: data.seguidores,
+            comentarios: data.comentarios */
+        }
+
+        // 3) Guardar perfume
+        db.Usuario.create(usuario)
+        return res.redirect('/')
+    },
     logIn: function(req,res){
         return res.render ('logIn', {title: 'Iniciá sesión'})
     }, 

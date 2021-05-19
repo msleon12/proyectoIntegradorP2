@@ -4,16 +4,17 @@
     <h1 class="form-title"><%= title %></h1>
     <section class="form-section">
         
-        <form action="/users/myprofile/1" method="GET">
+        <form action="/users/register/store" method="POST">
             <div class="form-fields">
-                <input type="text" placeholder="Nombre">
-                <input type="text" placeholder="Apellido">
-                <input type="date" placeholder="Fecha de nacimiento">
-                <input type="number" placeholder="DNI">
-                <input type="number" placeholder="Celular">
-                <input type="email" placeholder="E-mail">
-                <input type="password" placeholder="Contraseña">
-                <input type="password" placeholder="Repetir Contraseña">                   
+                <input type="text" placeholder="Nombre" name="nombre" value="">
+                <input type="text" placeholder="Apellido" name="apellido" value="">
+                <input type="date" placeholder="Fecha de nacimiento" name="nacimiento" value="">
+                <input type="number" placeholder="DNI" name="dni" value="">
+                <input type="number" placeholder="Celular" name="celular" value="">
+                <input type="email" placeholder="E-mail" name="mail" value="">
+                <!-- <input type="file" placeholder="Imagen de perfil" name="imagen" value=""> -->
+                <input type="password" placeholder="Contraseña" name="contrasenia" value="">
+                <!-- <input type="password" placeholder="Repetir Contraseña">  -->                  
             </div>
 
             <button type="submit" class="form-button">

@@ -75,7 +75,6 @@ const productsController = {
             console.log(error)
         }) // Catch
     }, //Marcas
-    
     store: function(req,res){ //Guardar un perfume
         //1) Obtener datos del formulario
         let data = req.body;
@@ -84,7 +83,7 @@ const productsController = {
         let perfume = {
             idUsuario: data.idUsuario,
             nombre: data.nombre,
-            imagen: data.imagen,
+            /* imagen: data.imagen, */
             fechaPublicacion: data.fechaPublicacion,
             marca: data.marca,
             ml: data.ml,
@@ -94,17 +93,23 @@ const productsController = {
 
         // 3) Guardar perfume
         db.Producto.create(perfume)
-            .then(producto =>{
-                // 4) redireccionar
-                return res.redirect('/', {products: perfume, title: 'productos'})
-            })
-            .error(error =>{
+        return res.redirect('/', {products: perfume, title: ""})
+
+    }, //Store
+    destroy: function(req,res){
+        Producto.destroy({
+            where: {
+                id: req.query.id
+            }
+        })
+        
+        /* .then( () => {
+            return res.redirect('/');
+        })
+        .catch(error=> {
                 console.log(error)
-            })
-
-    
-    } //Store
-
+        }) */
+    }
 } // Objeto literal
 
 module.exports = productsController;
