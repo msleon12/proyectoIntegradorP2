@@ -40,6 +40,9 @@ const usersController = {
     editProfile: function(req,res){
         return res.render('editProfile', {title: 'Editar mi perfil'})
     },
+    storeEdit: function(req,res){
+        return res.redirect('/')
+    },
     myProfile: function(req,res){
         let id = req.params.id
         let resultado = ""
