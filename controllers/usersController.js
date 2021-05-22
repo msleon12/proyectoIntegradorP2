@@ -37,15 +37,16 @@ const usersController = {
     },
     logInSession: function(req,res){
         // Busco el usuario que se quiere loguear
-        Usuario.findOne({
-            where:[{email: req.body.email}]
-        }) //Find One
-            .then(user =>{
-                return res.send (user)
-            })
-            .catch(error =>{
-                console.log(error)
-            })
+       return res.redirect('/')
+       Usuario.findOne({
+        where:[{email: req.body.email}]
+    }) //Find One
+        .then(user =>{
+            return res.send (user)
+        })
+        .catch(error =>{
+            console.log(error)
+        })
     }, //método 
     editProfile: function(req,res){
         return res.render('editProfile', {title: 'Editar mi perfil'})

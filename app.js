@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session'); //Instalamos session
+
 
 // Importante
 const indexRouter = require('./routes/index');
@@ -20,6 +22,12 @@ app.use(express.json()); //Lineas importantes
 app.use(express.urlencoded({ extended: false })); //Lineas importantes
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session( //Más sobre session
+  { secret:'proyectoIntegrador',
+    resave: false,
+    saveUninitialized: true }
+));
+
 
 // Importante
 app.use('/', indexRouter);
