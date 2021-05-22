@@ -4,8 +4,6 @@ const Comentario = db.Comentario
 const Usuario = db.Usuario
 const Op = db.Sequelize.Op;
 
-
-
 const usersController = {
     register: function(req,res){
         return res.render('register', {title: 'Creá tu cuenta'})
@@ -23,7 +21,7 @@ const usersController = {
             nacimiento: data.nacimiento,
             dni: data.dni,
             celular: data.celular,
-            contrasenia: data.contrasenia,
+            contrasenia: data.contrasenia, //Para que la contraseña aparezca encriptada
             /* imagen: data.imagen,
             productos: data.productos,
             seguidores: data.seguidores,
@@ -32,11 +30,23 @@ const usersController = {
 
         // 3) Guardar perfume
         db.Usuario.create(usuario)
-        return res.redirect('/')
+        return res.redirect('/users/login')
     },
     logIn: function(req,res){
         return res.render ('logIn', {title: 'Iniciá sesión'})
-    }, 
+    },
+    logInSession: function(req,res){
+        // Busco el usuario que se quiere loguear
+        Usuario.findOne({
+            where:[{email: req.body.email}]
+        }) //Find One
+            .then(user =>{
+                return res.send (user)
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+    }, //método 
     editProfile: function(req,res){
         return res.render('editProfile', {title: 'Editar mi perfil'})
     },
