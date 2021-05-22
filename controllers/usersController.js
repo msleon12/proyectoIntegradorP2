@@ -41,7 +41,9 @@ const usersController = {
         where:[{mail: req.body.email}] //Le ponemos "mail" porque así lo tenemos en la tabla, pero en el modelo lo pasamos como "email"
     }) //Find One
         .then(user =>{
-            return res.send (user)
+            req.session.user = user
+            console.log(req.session.user)
+            return res.redirect ('/')
         })
         .catch(error =>{
             console.log(error)

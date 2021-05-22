@@ -28,6 +28,12 @@ app.use(session( //Más sobre session
     saveUninitialized: true }
 ));
 
+app.use(function(req,res,next){
+  if(req.session.user != undefined){
+    res.locals = req.session.user
+  }
+}) // app.use
+
 
 // Importante
 app.use('/', indexRouter);
