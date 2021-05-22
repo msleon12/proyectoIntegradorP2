@@ -37,9 +37,8 @@ const usersController = {
     },
     logInSession: function(req,res){
         // Busco el usuario que se quiere loguear
-       return res.redirect('/')
        Usuario.findOne({
-        where:[{email: req.body.email}]
+        where:[{mail: req.body.email}] //Le ponemos "mail" porque así lo tenemos en la tabla, pero en el modelo lo pasamos como "email"
     }) //Find One
         .then(user =>{
             return res.send (user)
