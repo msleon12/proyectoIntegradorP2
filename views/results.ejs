@@ -9,19 +9,25 @@
 				<div class="col-12">
 					<h2 class="form-title"><%=title%></h2>
 				</div>
-				<% for(let i=0; i<resultado.length; i++){ %>
-					<div class="col-12 col-sm-6 col-lg-3">
-						<section class="product-box">
-							<a href="/products/id/<%=resultado[i].id%>">
-								<figure class="product-box_image">
-									<img src="<%= resultado[i].imagen %> " alt="<%= resultado[i].nombre%>">
-								</figure>
-								<article class="product-box_data">
-									<h2><%=resultado[i].nombre%></h2>
-									<p>Comentarios: 5</p> <!--En un futuro automatizar -->
-								</article>
-							</a>
-						</section>
+				<% if(resultado.length != 0){ %> 
+					<% for(let i=0; i<resultado.length; i++){ %>
+						<div class="col-12 col-sm-6 col-lg-3">
+							<section class="product-box">
+								<a href="/products/id/<%=resultado[i].id%>">
+									<figure class="product-box_image">
+										<img src="<%= resultado[i].imagen %> " alt="<%= resultado[i].nombre%>">
+									</figure>
+									<article class="product-box_data">
+										<h2><%=resultado[i].nombre%></h2>
+										<p>Comentarios: 5</p> <!--En un futuro automatizar -->
+									</article>
+								</a>
+							</section>
+						</div>
+					<% } %>
+				<% } else { %>
+					<div class="page">
+						<p>Lo sentimos, no tenemos resultados compatibles con tu busqueda.</p>
 					</div>
 				<% } %>
 			<% } else if (title=='Marcas'){ %> 

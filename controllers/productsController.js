@@ -39,13 +39,23 @@ const productsController = {
 
         
     }, //DETAIL
+    comment: function(req,res){
+        //1) Obtener datos del formulario
+        let data = req.body;
+
+        // 2) Armar usuario
+        let comentario = {
+            // idUsuario: ?
+            idProducto: req.params.id,
+            descripcion: data.descripcion,
+        }
+
+        // 3) Guardar perfume
+        Comentario.create(comentario)
+        return res.redirect('/')
+    },
     results: function(req,res){
         let infoABuscar = req.query.search
-        /* Producto.findAll({
-            where:[
-                {nombre:{[Op.like]:"%" + infoABuscar + "%"}}
-            ] //Where
-        }) // Find all */
 
         Producto.findAll({
             where:{
@@ -60,7 +70,6 @@ const productsController = {
           })
         .then(data =>{
             return res.render('results', {resultado: data, title: 'Resultados'})
-            // return res.send(data)
         })
         .catch(error =>{
             console.log(error)

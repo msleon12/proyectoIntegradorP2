@@ -6,49 +6,54 @@
     <!-- Header -->
 	
 	<!-- product detail -->
-	<div class="container products-wrapper">
-		<div class="d-flex align-items-center">
-			<h2 class="products-title"><%= resultado.nombre%></h2> 
-			<p class="product-detail-description">
-				<a href="/products/add">Agregar productos</a> <!--Completar-->
-			</p>
-		</div>
-		<div class="product-detail">
-			<div class="row">
-				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="<%=resultado.imagen%>" alt="<%=resultado.nombre%>" class="product-detail-img">
-					<p class="product-detail-description">
-						<%=resultado.descripcion %></p>
-				</article>
-				<div class="col-12 col-lg-4">
-					<section class="comments">
-						<% for(let i=0; i<comentarios.length; i++) { %>
-							<article>
-								<a href="/users/myprofile/<%=comentarios[i].id%>"><img src= <%= comentarios[i].imagen %> alt="Foto de Perfil"> </a>
-								<div class="data">
-									<p class="user">
-									<strong> <a href="/users/myprofile/<%=comentarios[i].id%> "><%=comentarios[i].nombreUsuario %> </a> </strong>
-									 <%=comentarios[i].comentario %></p>
-								</div>
-							</article>
-						<% } %>
+	<% if(resultado.id = null){ %> 
+		<p>No pudimos encontrar el producto que buscás.</p>
+	<% } else { %>
+		<div class="container products-wrapper">
+			<div class="d-flex align-items-center">
+				<h2 class="products-title"><%= resultado.nombre%></h2>
+				<p class="product-detail-description">
+					<a href="/products/add">Agregar productos</a> <!--Completar-->
+				</p>
+			</div>
+			<div class="product-detail">
+				<div class="row">
+					<article class="col-12 col-lg-8 product-detail-info">
+						<img src="<%=resultado.imagen%>" alt="<%=resultado.nombre%>" class="product-detail-img">
+						<p class="product-detail-description">
+							<%=resultado.descripcion %></p>
+					</article>
+					<div class="col-12 col-lg-4">
+						<section class="comments">
+							<% for(let i=0; i<comentarios.length; i++) { %>
+								<article>
+									<a href="/users/myprofile/<%=comentarios[i].id%>"><img src= <%= comentarios[i].imagen %> alt="Foto de Perfil"> </a>
+									<div class="data">
+										<p class="user">
+										<strong> <a href="/users/myprofile/<%=comentarios[i].id%> "><%=comentarios[i].nombreUsuario %> </a> </strong>
+										<%=comentarios[i].comentario %></p>
+									</div>
+								</article>
+							<% } %>
 
-					</section>
-					<form class="form" action="/products/id/<%=resultado.id%>" method="GET">
-						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
-						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
-						<%= console.log(resultado.id)%>
-					</form>
-	
-					<hr>
+						</section>
+						<form class="form" action="/products/id/<%=resultado.id%>/comment" method="POST">
+							<input class="form-input" type="text" name="descripcion" value="" placeholder="Escribí tu comentario...">
+							<button type="submit" class="buy-now-button">
+								COMENTAR
+							</button>
+						</form>
+		
+						<hr>
 
-					<form action="/products/add/destroy" method="POST">
-						<button type="submit">Borrar producto</button>
-					</form>
+						<form action="/products/add/destroy" method="POST">
+							<button type="submit">Borrar producto</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	<% } %>  
 	<!-- /product detail -->
 
 	<!-- footer -->

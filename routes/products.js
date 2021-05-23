@@ -10,6 +10,8 @@ router.post('/add/store', productsController.store)
 router.post('/add/destroy', productsController.destroy)
 
 router.get('/id/:id', productsController.detail)
+router.post('/id/:id/comment', productsController.comment)
+
 router.get('/results', productsController.results)
 router.get('/marcas', productsController.marcas)
 

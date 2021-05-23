@@ -14,7 +14,6 @@ const usersController = {
 
         // 2) Armar usuario
         let usuario = {
-            id: data.id,
             nombre: data.nombre,
             apellido: data.apellido,
             mail: data.mail,
