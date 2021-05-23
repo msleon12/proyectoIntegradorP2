@@ -39,7 +39,7 @@ const usersController = {
         // Busco el usuario que se quiere loguear
        Usuario.findOne({
         where:[{mail: req.body.email}] //Le ponemos "mail" porque así lo tenemos en la tabla, pero en el modelo lo pasamos como "email"
-    }) //Find One
+        }) //Find One
         .then(user =>{
             req.session.user = user
             console.log(req.session.user)
@@ -49,6 +49,14 @@ const usersController = {
             console.log(error)
         })
     }, //método 
+    logout: function(req,res){
+        //Destruir la sessión
+        req.session.destroy()
+        //Si hay cookie, anularla
+
+        //Redireccionar
+        res.redirect('/')
+    },
     editProfile: function(req,res){
         return res.render('editProfile', {title: 'Editar mi perfil'})
     },

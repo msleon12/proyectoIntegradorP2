@@ -8,6 +8,7 @@ router.post('/register/store', usersController.store)
 
 router.get('/login', usersController.logIn)
 router.post('/login/new', usersController.logInSession)
+router.post('/logout', usersController.logout)
 
 router.get('/editprofile', usersController.editProfile)
 router.post('/editprofile/storeEdit', usersController.storeEdit)

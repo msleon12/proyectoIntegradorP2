@@ -49,10 +49,15 @@
 				<% } %>
 				<% if(locals.nombre){ %>
 					<li>
-						<a href="/users/logout">
-							<i class="fas fa-sign-in-alt"></i>
-							Cerrar sesión
-						</a>
+						<form action="/users/logout" method="POST">
+							
+							<button type="submit">
+								<i class="fas fa-sign-in-alt"></i>
+								Cerrar sesión
+
+							</button>
+						</form>
+							
 					</li>
 				<% } else{ %>
 					<li>
