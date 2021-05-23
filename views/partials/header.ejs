@@ -38,23 +38,37 @@
 			<ul class="left-navbar">
 				<li><a href="/">Todos los productos</a></li>
 				<li><a href="/products/marcas">Marcas</a></li>
-				<!-- solo logueado <li><a href="">Cargar productos</a></li> -->
+				<% if(locals.nombre){ %>
+					<li><a href="/products/add">Cargar productos</a></li>
+				<% } %>
 			</ul>
 
 			<ul class="right-navbar">
+				<% if(locals.nombre) { %> 
+					<li> Hola <%= locals.nombre %> ! <li>
+				<% } %>
+				<% if(locals.nombre){ %>
+					<li>
+						<a href="/users/logout">
+							<i class="fas fa-sign-in-alt"></i>
+							Cerrar sesión
+						</a>
+					</li>
+				<% } else{ %>
+					<li>
+						<a href="/users/register">
+							<i class="far fa-address-card"></i>
+							Crear cuenta
+						</a>
+					</li>
+					<li>
+						<a href="/users/login">
+							<i class="fas fa-sign-in-alt"></i>
+							Iniciar sesión
+						</a>
+					</li>
+				<% } %>
 				
-				<li>
-					<a href="/users/register">
-						<i class="far fa-address-card"></i>
-						Crear cuenta
-					</a>
-				</li>
-				<li>
-					<a href="/users/login">
-						<i class="fas fa-sign-in-alt"></i>
-						Iniciar sesión
-					</a>
-				</li>
 				<li>
 					<a href="/quienessomos">
 						<i class="fas fa-users"></i>

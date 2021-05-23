@@ -31,7 +31,10 @@ app.use(session( //Más sobre session
 app.use(function(req,res,next){
   if(req.session.user != undefined){
     res.locals = req.session.user
+    console.log(res.locals)
   }
+
+  return next() //Es la clave para que el proceso siga adelante
 }) // app.use
 
 
