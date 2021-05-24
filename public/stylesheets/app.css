@@ -295,6 +295,8 @@ hr {
   box-shadow: 0 0 5px var(--green);
 }
 
+
+
 /*====== Footer ======*/
 .main-footer {
   background-color: #d8d8db;
@@ -495,6 +497,15 @@ hr {
 .data a{
   font-weight: bold;
 }
+.botondelete {
+  background-color: #a5a5a5;
+  padding: 10px 20px;
+  border-radius: 9px;
+  color: #fff;
+  font-family:'Poppins', sans-serif ;
+  border: 0em;
+  
+}
 
 /*====== Formularios ======*/
 .form-title{
@@ -599,6 +610,10 @@ textarea.form-input {
   padding: 10px 20px;
   border-radius: 4px;
   color: #fff;
+}
+
+.info-usuario{
+  margin-bottom: 2em;
 }
 
 
