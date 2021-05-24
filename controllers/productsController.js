@@ -106,18 +106,21 @@ const productsController = {
 
     }, //Store
     destroy: function(req,res){
-        Producto.destroy({
-            where: {
-                id: req.query.id
-            }
+        let productoABorrar = req.params.id;
+       // return res.send (productoABorrar) // Deberia devolverme un numero
+
+        db.Producto.destroy({
+            where: [
+                {id: productoABorrar}
+            ]
         })
-        
-        /* .then( () => {
-            return res.redirect('/');
+        .then ( () => {
+            return res.redirect ('/');
         })
+    
         .catch(error=> {
                 console.log(error)
-        }) */
+        }) 
     }
 } // Objeto literal
 

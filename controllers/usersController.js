@@ -94,7 +94,25 @@ const usersController = {
         // }
         
     },
+destroy: function (req,res){
+    let usuarioABorrar = req.params.id;
+    //return res.send (usuarioABorrar);
 
+    db.Usuario.destroy({
+        where: [
+            {id:usuarioABorrar}
+        ]
+    })
+
+    .then ( () => {
+        return res.redirect ('/');
+    })
+    .catch(error => {
+        console.log(error);
+    })
+
+
+}
 } //Users controller
 
 module.exports = usersController

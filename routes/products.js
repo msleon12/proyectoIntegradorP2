@@ -7,7 +7,7 @@ router.get('/', productsController.products)
 
 router.get('/add', productsController.addProducts)
 router.post('/add/store', productsController.store)
-router.post('/add/destroy', productsController.destroy)
+router.post('/add/destroy/:id', productsController.destroy)
 
 router.get('/id/:id', productsController.detail)
 router.post('/id/:id/comment', productsController.comment)
