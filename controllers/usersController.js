@@ -41,7 +41,13 @@ const usersController = {
         }) //Find One
         .then(user =>{
             req.session.user = user
-            console.log(req.session.user)
+
+            //Si tildo recordame, creamos la cookie
+            if (req.body.rememberme != undefined){
+                res.cookie('userId', user.id, {
+                    maxAge: 1000 * 60 * 5
+                })
+            } // If
             return res.redirect ('/')
         })
         .catch(error =>{
@@ -51,8 +57,10 @@ const usersController = {
     logout: function(req,res){
         //Destruir la sessión
         req.session.destroy()
-        //Si hay cookie, anularla
 
+        //Si hay cookie, anularla
+        res.clearCookie('userId')
+        
         //Redireccionar
         res.redirect('/')
     },

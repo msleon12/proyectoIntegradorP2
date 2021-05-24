@@ -5,11 +5,15 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session'); //Instalamos session
 
-
 // Importante
 const indexRouter = require('./routes/index');
 const productsRouter = require('./routes/products');
 const usersRouter = require('./routes/users');
+const db = require('./database/models');
+const Producto = db.Producto;
+const Comentario = db.Comentario;
+const Usuario = db.Usuario
+const Op = db.Sequelize.Op;
 
 var app = express();
 
@@ -27,6 +31,29 @@ app.use(session( //Más sobre session
     resave: false,
     saveUninitialized: true }
 ));
+
+// Gestionar la cookie
+app.use(function(req,res,next){
+  let idDeLaCookie = req.cookies.userId
+
+  if (idDeLaCookie != undefined && req.session.user == undefined){
+    Usuario.findByPk(idDeLaCookie)
+    .then(user =>{
+      req.session.user = user;
+      res.locals = user;
+
+    })
+    .catch(error =>{
+      console.log(error)
+    }) // Catch
+  } // IF
+  else{ // Su no tengo una cookie, que el programa continue
+
+    return next()
+  } 
+  
+
+}) // app.use
 
 app.use(function(req,res,next){
   if(req.session.user != undefined){
