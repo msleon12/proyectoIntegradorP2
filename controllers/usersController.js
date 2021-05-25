@@ -65,9 +65,29 @@ const usersController = {
         res.redirect('/')
     },
     editProfile: function(req,res){
-        return res.render('editProfile', {title: 'Editar mi perfil'})
+        return res.render('editProfile', {title: 'Editar mi perfil', usuario: Usuario})
     },
     storeEdit: function(req,res){
+        //1) Obtener datos del formulario
+        let data = req.body;
+
+        db.Usuario.update({
+            nombre: data.nombre,
+            apellido: data.apellido,
+            mail: data.mail,
+            nacimiento: data.nacimiento,
+            dni: data.dni,
+            celular: data.celular,
+            contrasenia: data.contrasenia, //Para que la contraseña aparezca encriptada
+            /* imagen: data.imagen,
+            productos: data.productos,
+            seguidores: data.seguidores,
+            comentarios: data.comentarios */
+        },{
+            where: {
+                id: Usuario.id
+            }
+        })
         return res.redirect('/')
     },
     myProfile: function(req,res){
