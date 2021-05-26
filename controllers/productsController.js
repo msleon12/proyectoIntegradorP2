@@ -17,7 +17,7 @@ const productsController = {
         return res.render('addProducts', {title: "Agregar productos"})
     },
     detail: function(req,res){ //Falta saber relacionar tablas. 
-        let id = req.params.id
+        let idRuta = req.params.id
         
         // Comentario.findAll({
         //     where: [{idProducto: {[Op.like]: id}}]
@@ -29,7 +29,9 @@ const productsController = {
         //         console.log(error)
         //     })
         
-        Producto.findByPk(id)
+        // if (Producto[idRuta].id == idRuta) Para atajar errores
+        
+        Producto.findByPk(idRuta)
         .then(data=>{
             return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: "" }) //Completar
         })
