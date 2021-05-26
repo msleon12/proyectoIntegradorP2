@@ -116,13 +116,9 @@ const productsController = {
                 {id: productoABorrar}
             ]
         })
-        .then ( () => {
-            return res.redirect ('/');
-        })
+
+        return res.redirect ('/');
     
-        .catch(error=> {
-                console.log(error)
-        }) 
     }
 } // Objeto literal
 

@@ -114,25 +114,26 @@ const usersController = {
         // }
         
     },
-destroy: function (req,res){
-    let usuarioABorrar = req.params.id;
-    //return res.send (usuarioABorrar);
+    destroy: function (req,res){
+        let usuarioABorrar = req.params.id;
+        //return res.redirect ('/');
 
-    db.Usuario.destroy({
-        where: [
-            {id:usuarioABorrar}
-        ]
-    })
+        db.Usuario.destroy({
+            where: [
+                {id:usuarioABorrar}
+            ]
+        })
 
-    .then ( () => {
+        //Destruir la sessión
+        req.session.destroy()
+
+        //Si hay cookie, anularla
+        res.clearCookie('userId')
+
         return res.redirect ('/');
-    })
-    .catch(error => {
-        console.log(error);
-    })
+       
 
-
-}
+    }
 } //Users controller
 
 module.exports = usersController
