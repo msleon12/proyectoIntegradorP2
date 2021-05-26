@@ -12,7 +12,6 @@ const indexController = {
             .catch (error =>{
                 console.log(error)
             }) // Catch
-        
     }, //Index
     quienesSomos: function(req,res){
         return res.render('quienesSomos', {title: 'Quienes Somos'})

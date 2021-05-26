@@ -14,7 +14,13 @@ const productsController = {
             }) // Catch
     },
     addProducts: function(req,res){
-        return res.render('addProducts', {title: "Agregar productos"})
+        Producto.findAll()
+            .then(data =>{
+                return res.render('addProducts', {title: "Agregar productos", producto: data})
+            })
+            .catch(error =>{
+                console.log(error)
+            })
     },
     detail: function(req,res){ //Falta saber relacionar tablas. 
         let idRuta = req.params.id
@@ -30,7 +36,7 @@ const productsController = {
         //     })
         
         // if (Producto[idRuta].id == idRuta) Para atajar errores
-        
+
         Producto.findByPk(idRuta)
         .then(data=>{
             return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: "" }) //Completar
@@ -104,7 +110,7 @@ const productsController = {
 
         // 3) Guardar perfume
         db.Producto.create(perfume)
-        return res.redirect('/', {products: perfume, title: ""})
+        return res.redirect('/')
 
     }, //Store
     destroy: function(req,res){
