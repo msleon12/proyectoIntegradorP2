@@ -9,6 +9,8 @@ router.get('/add', productsController.addProducts)
 router.post('/add/store', productsController.store)
 router.post('/destroy/:id', productsController.destroy)
 
+router.get('/edit', productsController.editProducts)
+
 router.get('/id/:id', productsController.detail)
 router.post('/id/:id/comment', productsController.comment)
 

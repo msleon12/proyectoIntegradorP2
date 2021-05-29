@@ -4,7 +4,10 @@
 
     <!-- Datos del usuario -->
 	<section class="info-usuario container products-wrapper">
-		<h1><%= title %></h1>
+		<div class="profile-title">
+			<h1><%= title %></h1>
+			<a href="/users/editprofile"><i class="fas fa-user-edit"></i></a>
+		</div>
 		<div class="row">
 			<div class="img-container offset-3 col-2">
 				<img src= <%=resultado.imagen%> alt="Foto de " <%=resultado.nombre %>>
@@ -15,12 +18,7 @@
 					<h1 class="main-title"> 
 						<%= resultado.nombre %>
 						<%= resultado.apellido %>
-						<a href="/users/editprofile">
-							<i class="fas fa-cog"></i>
-						</a>
 					</h1>
-					<a class="btn mt-3 ml-4" href="">SEGUIR</a>
-					
 				</div>
 				<div>
 					<ul class="info-usuario">
@@ -29,11 +27,20 @@
 						<li>300 comentarios</li>
 					</ul>
 				</div>
-				<div>
-					<form action="/users/destroy/<%= resultado.id %> " method="POST">
-						<button class= 'btn' type="submit">Borrar usuario</button>
-					</form>
-				</div>
+				<% if (locals.name==resultado.nombre & locals.apellido==resultado.apellido){ %> 
+					<div>
+						<form action="/users/destroy/<%= resultado.id %> " method="POST">
+							<button class= 'btn' type="submit">BORRAR USUARIO</button>
+						</form>
+					</div>
+				<% } else { %> 
+					<div>
+						<form action="" method="POST">
+							<button class= 'btn' type="submit">SEGUIR</button>
+						</form>
+					</div>
+				<% } %> 
+				
 			</div>
 		</div>
 	</section>

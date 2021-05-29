@@ -19,18 +19,19 @@
 									</figure>
 									<article class="product-box_data">
 										<h2><%=resultado[i].nombre%></h2>
+										<h3>Nombre del usuario</h3> <!-- automatizar -->
 										<p>Comentarios: 5</p> <!--En un futuro automatizar -->
 									</article>
 								</a>
 							</section>
 						</div>
-					<% } %>
+					<% } %> <!-- for -->
 				<% } else { %>
 					<div class="page">
-						<p>Lo sentimos, no tenemos resultados compatibles con tu busqueda.</p>
-					</div>
-				<% } %>
-			<% } else if (title=='Marcas'){ %> 
+						<p>No hay resultados para su criterio de búsqueda.</p>
+					</div> 
+					<% } %><!-- if(resultado.length...) -->
+			<% } else if (title=='Marcas'){ %> <!-- if (title=...) -->
 					<div class="col-12">
 						<h2 class="form-title"><%=title%></h2>
 					</div>
@@ -43,6 +44,8 @@
 									</figure>
 									<article class="product-box_data">
 										<h2><%=resultado[i].marca%></h2>
+										<h3>Nombre del usuario</h3> <!-- automatizar -->
+										<p>Comentarios: 5</p> <!-- automatizar -->
 									</article>
 								</a>
 							</section>

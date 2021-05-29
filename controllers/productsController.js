@@ -1,4 +1,5 @@
 const db = require('../database/models')
+const Usuario =db.Usuario
 const Producto = db.Producto;
 const Comentario = db.Comentario;
 const Op = db.Sequelize.Op;
@@ -14,7 +15,10 @@ const productsController = {
             }) // Catch
     },
     addProducts: function(req,res){
-        return res.render('addProducts', {title: "Agregar productos"})
+        return res.render('addProducts', {title: "Agregar producto"})
+    },
+    editProducts: function(req,res){
+        return res.render('editProducts', {title: "Editar producto"})
     },
     detail: function(req,res){ //Falta saber relacionar tablas. 
         let idRuta = req.params.id
@@ -58,24 +62,79 @@ const productsController = {
     },
     results: function(req,res){
         let infoABuscar = req.query.search
-
-        Producto.findAll({
-            where:{
-                [Op.or]: [
-                    {nombre: {[Op.like]: "%" + infoABuscar + "%"}},
-                    {marca: {[Op.like]: "%" + infoABuscar + "%"}},
+        let filtro = req.query.filtro
+        
+        if(filtro=="todos"){
+            Producto.findAll({
+                where:{
+                    [Op.or]: [
+                        {nombre: {[Op.like]: "%" + infoABuscar + "%"}},
+                        {marca: {[Op.like]: "%" + infoABuscar + "%"}},
+                        {descripcion: {[Op.like]: "%" + infoABuscar + "%"}},
+                    ]
+                },
+                order: [
+                    ['nombre','ASC']
                 ]
-            },
-            order: [
-                ['nombre','ASC']
-            ]
-          })
-        .then(data =>{
-            return res.render('results', {resultado: data, title: 'Resultados'})
-        })
-        .catch(error =>{
-            console.log(error)
-        })
+            })
+            .then(data =>{
+                return res.render('results', {resultado: data, title: 'Resultados'})
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+       } else if(filtro=="productos"){
+            Producto.findAll({
+                where:{
+                    [Op.or]: [
+                        {nombre: {[Op.like]: "%" + infoABuscar + "%"}},
+                    ]
+                },
+                order: [
+                    ['nombre','ASC']
+                ]
+            })
+            .then(data =>{
+                return res.render('results', {resultado: data, title: 'Resultados'})
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        } else if(filtro=="marcas"){
+            Producto.findAll({
+                where:{
+                    [Op.or]: [
+                        {marca: {[Op.like]: "%" + infoABuscar + "%"}},
+                    ]
+                },
+                order: [
+                    ['nombre','ASC']
+                ]
+            })
+            .then(data =>{
+                return res.render('results', {resultado: data, title: 'Resultados'})
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+       } else if(filtro=="descripcion"){
+            Producto.findAll({
+                where:{
+                    [Op.or]: [
+                        {descripcion: {[Op.like]: "%" + infoABuscar + "%"}},
+                    ]
+                },
+                order: [
+                    ['nombre','ASC']
+                ]
+            })
+            .then(data =>{
+                return res.render('results', {resultado: data, title: 'Resultados'})
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        }
     }, //Results
     marcas: function(req,res){
         Producto.findAll()
