@@ -27,7 +27,6 @@ const productsController = {
         return res.render('editProducts', {title: "Editar producto"})
     },
     detail: function(req,res){ //Falta saber relacionar tablas. 
-        let idRuta = req.params.id
         
         // Comentario.findAll({
         //     where: [{idProducto: {[Op.like]: id}}]
@@ -39,16 +38,22 @@ const productsController = {
         //         console.log(error)
         //     })
         
-        // if (Producto[idRuta].id == idRuta) Para atajar errores
-
-        Producto.findByPk(idRuta)
-        .then(data=>{
-            return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: "" }) //Completar
-        })
-        .catch (error =>{
+        let idRuta = req.params.id
+        
+        if(idRuta == Producto[idRuta].id){
+            Producto.findByPk(idRuta)
+                .then(data =>{
+                console.log(Producto)
+                return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: "" }) //Completar comentarios
+                
+            })
+                .catch (error =>{
             console.log(error)
-        }) // Catch
-
+                }) // Catch
+        } // IF
+        else{
+            return res.send('Error')
+        }
         
     }, //DETAIL
     comment: function(req,res){
