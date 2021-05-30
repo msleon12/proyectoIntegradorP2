@@ -6,11 +6,12 @@
 	<section class="info-usuario container products-wrapper">
 		<div class="profile-title">
 			<h1><%= title %></h1>
+			<h2>Editar perfil</h2>
 			<a href="/users/editprofile"><i class="fas fa-user-edit"></i></a>
 		</div>
 		<div class="row">
 			<div class="img-container offset-3 col-2">
-				<img src= <%=resultado.imagen%> alt="Foto de " <%=resultado.nombre %>>
+				<img src= <%=resultado.imagen %> alt="Foto de " <%=resultado.nombre %>>
 				<%= console.log(resultado.imagen) %>
 			</div>
 			<div class="data-container col-6">
@@ -27,12 +28,13 @@
 						<li>300 comentarios</li>
 					</ul>
 				</div>
-				<% if (locals.name==resultado.nombre & locals.apellido==resultado.apellido){ %> 
+				<% if (locals.name== resultado.nombre && locals.apellido==resultado.apellido){ %> 
 					<div>
 						<form action="/users/destroy/<%= resultado.id %> " method="POST">
 							<button class= 'btn' type="submit">BORRAR USUARIO</button>
 						</form>
 					</div>
+					
 				<% } else { %> 
 					<div>
 						<form action="" method="POST">

@@ -37,23 +37,31 @@ const productsController = {
         //     .catch(error =>{
         //         console.log(error)
         //     })
-        
+
         let idRuta = req.params.id
-        
-        if(idRuta == Producto[idRuta].id){
-            Producto.findByPk(idRuta)
-                .then(data =>{
-                console.log(Producto)
-                return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: "" }) //Completar comentarios
+
+        // Producto.findAll({
+        //     where: [{
+        //         id: idRuta
+        //     }] //where
+        // }) // Find all
+        //     .then (data =>{
+        //         return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: "" })
                 
+        //     })
+        //     .catch(error =>{
+        //         console.log(error)
+        //     })
+        
+        Producto.findByPk(idRuta)
+         
+            .then(data =>{
+                return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: "" }) //Completar comentarios   
             })
-                .catch (error =>{
-            console.log(error)
-                }) // Catch
-        } // IF
-        else{
-            return res.send('Error')
-        }
+            .catch (error =>{
+                console.log(error)
+            }) // Catch
+      
         
     }, //DETAIL
     comment: function(req,res){
@@ -166,6 +174,7 @@ const productsController = {
             nombre: data.nombre,
             /* imagen: data.imagen, */
             fechaPublicacion: data.fechaPublicacion,
+            // updatedAt: data.updatedAt,
             marca: data.marca,
             ml: data.ml,
             anio: data.anio,

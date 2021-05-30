@@ -1,3 +1,4 @@
+
 module.exports = function (sequelize,dataTypes){
     // 1) Definir un alias: un nombre al modelo para que sequelize lo pueda identificar internamente al archivo
     let alias = 'Producto'; 
@@ -20,8 +21,11 @@ module.exports = function (sequelize,dataTypes){
             type: dataTypes.STRING
         } ,
         fechaPublicacion:{
-            type: dataTypes.DATE // Es un timestamp, ¿Es  "DATE" igual?
+            type: dataTypes.DATE 
         } ,
+        // updatedAt: {
+        //     type: dataTypes.DATE
+        // },
         marca: {
             type: dataTypes.STRING
         },
