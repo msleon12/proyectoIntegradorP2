@@ -23,9 +23,9 @@ module.exports = function (sequelize,dataTypes){
         fechaPublicacion:{
             type: dataTypes.DATE 
         } ,
-        // updatedAt: {
-        //     type: dataTypes.DATE
-        // },
+        updatedAt: {
+            type: dataTypes.DATE
+        },
         marca: {
             type: dataTypes.STRING
         },

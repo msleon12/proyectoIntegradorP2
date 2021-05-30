@@ -21,6 +21,9 @@ module.exports = function (sequelize,dataTypes){
         fecha:{
             type: dataTypes.DATE // Es un timestamp, ¿Es  "DATE" igual?
         },
+        updatedAt: {
+            type:dataTypes.DATE
+        }
     } // ID
     let config = {
         tables: 'comentarios',

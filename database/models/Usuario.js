@@ -41,6 +41,12 @@ module.exports = function (sequelize,dataTypes){
         },
         imagen: {
             type:dataTypes.STRING
+        }, 
+        createdAt: {
+            type: dataTypes.DATE
+        },
+        updatedAt: {
+            type: dataTypes.DATE
         }
     } // ID
     let config = {
