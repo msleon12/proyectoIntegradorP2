@@ -32,6 +32,13 @@ module.exports = function (sequelize,dataTypes){
     }
 
     const Comentario = sequelize.define(alias, cols, config) // Estamos ejecutando un callback: una función dentro de otra función
+
+    Comentario.associate = function (models){
+        Comentario.belongsTo(models.Producto,{
+            as: 'producto',
+            foreignKey: 'idProducto'
+        }) //
+    } // Associate
     return Comentario;
 
 } //Module.exports

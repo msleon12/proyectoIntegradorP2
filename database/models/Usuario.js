@@ -15,7 +15,7 @@ module.exports = function (sequelize,dataTypes){
         apellido: {
             type: dataTypes.STRING
         },
-        mail: {
+        email: {
             type: dataTypes.STRING
         },
         contrasenia: {
