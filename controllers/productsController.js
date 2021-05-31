@@ -1,5 +1,5 @@
 const db = require('../database/models')
-const Usuario =db.Usuario
+const Usuario = db.Usuario
 const Producto = db.Producto;
 const Comentario = db.Comentario;
 const Op = db.Sequelize.Op;
@@ -15,28 +15,25 @@ const productsController = {
             }) // Catch
     },
     addProducts: function(req,res){
-        Producto.findAll()
+        // Control de acceso 
+        if (req.session.user == undefined){
+            return res.redirect('/users/register')
+        }
+        else{
+            Producto.findAll()
             .then(data =>{
                 return res.render('addProducts', {title: "Agregar productos", producto: data})
             })
             .catch(error =>{
                 console.log(error)
             })
+        }
+        
     },
     editProducts: function(req,res){
         return res.render('editProducts', {title: "Editar producto"})
     },
     detail: function(req,res){ //Falta saber relacionar tablas. 
-        
-        // Comentario.findAll({
-        //     where: [{idProducto: {[Op.like]: id}}]
-        // }) //Comentario
-        //     .then(comentario =>{
-        //         return comentario
-        //     })
-        //     .catch(error =>{
-        //         console.log(error)
-        //     })
 
         let idRuta = req.params.id
 

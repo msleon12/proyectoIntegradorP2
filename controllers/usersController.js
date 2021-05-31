@@ -1,4 +1,5 @@
 const db = require('../database/models')
+const bcrypt = require('bcryptjs')
 const Producto = db.Producto
 const Comentario = db.Comentario
 const Usuario = db.Usuario
@@ -6,50 +7,121 @@ const Op = db.Sequelize.Op;
 
 const usersController = {
     register: function(req,res){
-        return res.render('register', {title: 'Creá tu cuenta'})
+        if(req.session.user != undefined){
+            return res.redirect('/')
+        }
+        else{
+            return res.render('register', {title: 'Creá tu cuenta'})
+        }
+        
     },
     store: function(req,res){
-        //1) Obtener datos del formulario
-        let data = req.body;
 
-        // 2) Armar usuario
-        let usuario = {
-            nombre: data.nombre,
-            apellido: data.apellido,
-            mail: data.mail,
-            nacimiento: data.nacimiento,
-            dni: data.dni,
-            celular: data.celular,
-            contrasenia: data.contrasenia, //Para que la contraseña aparezca encriptada
-            /* imagen: data.imagen,
-            productos: data.productos,
-            seguidores: data.seguidores,
-            comentarios: data.comentarios */
-        }
+        let errors = {}
 
-        // 3) Guardar perfume
-        db.Usuario.create(usuario)
-        return res.redirect('/users/login')
+        // Chequear que email venga con datos
+        if(req.body.email == ""){
+            errors.message = "El email es obligatorio";
+            res.locals.errors = errors;
+            return res.render('register')
+
+        } else if (req.body.password == "") {
+            errors.message = "La contraseña es obligatoria";
+            res.locals.errors = errors;
+            return res.render('register')
+        } else{
+
+            // Busco el usuario para hacer validaciones
+            Usuario.findOne({
+                where: [{email:req.body.email}]
+            })
+                .then(function(user){
+                // Si el find encontró un usuario significa que esta en uno ese email. Entonces, devolver un error
+                    if(user != null){
+                        errors.message = "El email ya esta registrado. por favor elija otro."
+                        res.locals.error = errors
+                        return res.render ('register')
+                    } else{
+                        //1) Obtener datos del formulario
+                        let data = req.body;
+
+                        // 2) Armar usuario
+                        let usuario = {
+                            nombre: data.nombre,
+                            apellido: data.apellido,
+                            email: data.email,
+                            nacimiento: data.nacimiento,
+                            dni: data.dni,
+                            celular: data.celular,
+                            contrasenia: data.contrasenia, //Para que la contraseña aparezca encriptada
+                            /* imagen: data.imagen,
+                            productos: data.productos,
+                            seguidores: data.seguidores,
+                            comentarios: data.comentarios */
+                        } // USUARIO
+
+                         // 3) Guardar perfume
+                            Usuario.create(usuario)
+                            return res.redirect('/users/login')
+                    } //Else
+                }) // THEN
+                .catch(error =>{
+                    console.log(error)
+                })
+            
+
+           
+        } // ELSE
+       
     },
     logIn: function(req,res){
-        return res.render ('logIn', {title: 'Iniciá sesión'})
+        // Validacion
+        if(req.session.user != undefined){
+            return res.redirect('/')
+        }
+        else{
+            return res.render ('logIn', {title: 'Iniciá sesión'})
+        }
+        
     },
     logInSession: function(req,res){
         // Busco el usuario que se quiere loguear
        Usuario.findOne({
-        where:[{mail: req.body.email}] //Le ponemos "mail" porque así lo tenemos en la tabla, pero en el modelo lo pasamos como "email"
+        where:[{email: req.body.email}] 
         }) //Find One
         .then(user =>{
-            req.session.user = user
+            let errors = {};
 
-            //Si tildo recordame, creamos la cookie
-            if (req.body.rememberme != undefined){
-                res.cookie('userId', user.id, {
-                    maxAge: 1000 * 60 * 5
-                })
-            } // If
-            return res.redirect ('/')
-        })
+            // Esta el email en la base de datos?
+            if (user == null){
+                //Crear un mensaje de error 
+                errors.message = "El email no existe"
+
+                // Pasar el mensaje a la vista
+                res.locals.errors = errors
+
+                // Renderizar vista
+                return res.render('login')
+            } else if (bcrypt.compareSync(req.body.password, user.password) ==false ){ //Estoy comparando la contraseña, devuelve true o false
+                errors.message = "la contraseña es incorrecta"
+
+                res.locals.errors = errors
+
+                return res.render('login')
+            } // Else if
+            else{
+                req.session.user = user
+
+                //Si tildo recordame, creamos la cookie
+                if (req.body.rememberme != undefined){
+                    res.cookie('userId', user.id, {
+                        maxAge: 1000 * 60 * 5
+                    })
+                } // If
+                return res.redirect ('/')
+            }
+            
+        }) //.then 
         .catch(error =>{
             console.log(error)
         })
@@ -74,7 +146,7 @@ const usersController = {
         db.Usuario.update({
             nombre: data.nombre,
             apellido: data.apellido,
-            mail: data.mail,
+            email: data.email,
             nacimiento: data.nacimiento,
             dni: data.dni,
             celular: data.celular,
