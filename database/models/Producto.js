@@ -46,6 +46,14 @@ module.exports = function (sequelize,dataTypes){
     }
 
     const Producto = sequelize.define(alias, cols, config) // Estamos ejecutando un callback: una función dentro de otra función
+
+    Producto.associate = function(models){
+        Producto.belongsTo(models.Usuario,{
+            as: 'usuario',
+            foreignKey: 'idUsuario'
+        })
+    } //Associate
+
     return Producto;
 
 } //Module.exports

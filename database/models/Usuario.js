@@ -51,11 +51,18 @@ module.exports = function (sequelize,dataTypes){
     } // ID
     let config = {
         tables: 'usuarios',
-        timestamps: false,
+        timestamps: true,
         underscored: false, 
     }
 
     const Usuario = sequelize.define(alias, cols, config) // Estamos ejecutando un callback: una función dentro de otra función
+
+    Usuario.associate = function(models){
+        Usuario.hasMany(models.Producto,{
+            as: 'perfumes',
+            foreignKey: 'idUsuario'
+        })
+    }
     return Usuario;
 
 } //Module.exports

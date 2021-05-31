@@ -53,8 +53,11 @@ const productsController = {
         //         console.log(error)
         //     })
         
-        Producto.findByPk(idRuta)
-         
+        Producto.findByPk(idRuta,{
+            include: [{
+                association: 'usuario'
+            }] //Include
+        }) // Find by pk
             .then(data =>{
                 return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: "" }) //Completar comentarios   
             })
@@ -174,7 +177,6 @@ const productsController = {
             nombre: data.nombre,
             /* imagen: data.imagen, */
             fechaPublicacion: data.fechaPublicacion,
-            // updatedAt: data.updatedAt,
             marca: data.marca,
             ml: data.ml,
             anio: data.anio,

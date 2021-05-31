@@ -12,7 +12,7 @@
 		<div class="container products-wrapper">
 			<div class="d-flex align-items-center">
 				<h2 class="product-detail-title"><%= resultado.nombre%></h2>
-				<a href="/users/myprofile/1"><h3 class="product-detail-description">Nombre del usuario</h3></a> <!-- automatizar -->
+				<a href="/users/myprofile/1"><h3 class="product-detail-description"> <%=resultado.usuario.nombre %> <%= resultado.usuario.apellido %></h3></a> <!-- automatizar -->
 				<% if (locals.nombre){ %> 
 					<div class="icono">
 						<a href="/products/edit"><i class="fas fa-edit fa-2x"></i></a>
