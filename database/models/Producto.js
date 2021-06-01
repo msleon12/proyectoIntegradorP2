@@ -51,11 +51,11 @@ module.exports = function (sequelize,dataTypes){
         Producto.belongsTo(models.Usuario,{
             as: 'usuario',
             foreignKey: 'idUsuario'
-        })
+        }) //Usuario
         Producto.hasMany(models.Comentario,{
            as: 'comentarios',
            foreignKey: 'idProducto' 
-        })
+        }) // Comentario
     } //Associate
 
     return Producto;

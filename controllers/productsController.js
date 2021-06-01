@@ -36,16 +36,18 @@ const productsController = {
     detail: function(req,res){  
         let idRuta = req.params.id    
         Producto.findByPk(idRuta,{
-            include: [{
-                association: 'usuario'
-            }] //Include
+            include: [
+                {association: 'usuario'}, 
+                {association:'comentarios'}
+            ] //Include
         }) // Find by pk
             .then(data =>{
                 //Si no hay producto que coincida con el id, redirecciona a home.
                 if(data == null){
                     return res.redirect('/')
                 } else {
-                    return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: "" }) //Completar comentarios   
+                    return res.send(data)
+                    return res.render('detail', { title: "Detalle Producto", resultado: data }) 
                 }
             })
             .catch (error =>{
