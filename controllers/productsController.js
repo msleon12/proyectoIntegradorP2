@@ -36,9 +36,12 @@ const productsController = {
     detail: function(req,res){  
         let idRuta = req.params.id    
         Producto.findByPk(idRuta,{
+            order: [
+                ['nombre','DESC']
+            ],
             include: [
                 {association: 'usuario'}, 
-                {association:'comentarios'}
+                {association:'comentario'}
             ] //Include
         }) // Find by pk
             .then(data =>{
@@ -46,7 +49,7 @@ const productsController = {
                 if(data == null){
                     return res.redirect('/')
                 } else {
-                    return res.send(data)
+                    //return res.send (data)
                     return res.render('detail', { title: "Detalle Producto", resultado: data }) 
                 }
             })

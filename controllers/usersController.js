@@ -98,7 +98,7 @@ const usersController = {
             // Esta el email en la base de datos?
             if (user == null){
                 //Crear un mensaje de error 
-                errors.message = "El email no existe"
+                errors.message = "El email no existe."
 
                 // Pasar el mensaje a la vista
                 res.locals.errors = errors
@@ -106,7 +106,7 @@ const usersController = {
                 // Renderizar vista
                 return res.render('login')
             } else if (bcrypt.compareSync(req.body.password, user.password) ==false ){ //Estoy comparando la contraseña, devuelve true o false
-                errors.message = "la contraseña es incorrecta"
+                errors.message = "La contraseña es incorrecta."
 
                 res.locals.errors = errors
 
