@@ -33,36 +33,26 @@ const productsController = {
     editProducts: function(req,res){
         return res.render('editProducts', {title: "Editar producto"})
     },
-    detail: function(req,res){ //Falta saber relacionar tablas. 
-
-        let idRuta = req.params.id
-
-        // Producto.findAll({
-        //     where: [{
-        //         id: idRuta
-        //     }] //where
-        // }) // Find all
-        //     .then (data =>{
-        //         return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: "" })
-                
-        //     })
-        //     .catch(error =>{
-        //         console.log(error)
-        //     })
-        
+    detail: function(req,res){  
+        let idRuta = req.params.id    
         Producto.findByPk(idRuta,{
-            include: [{
-                association: 'usuario'
-            }] //Include
+            include: [
+                {association: 'usuario'}, 
+                {association:'comentarios'}
+            ] //Include
         }) // Find by pk
             .then(data =>{
-                return res.render('detail', { title: "Detalle Producto", resultado: data, comentarios: "" }) //Completar comentarios   
+                //Si no hay producto que coincida con el id, redirecciona a home.
+                if(data == null){
+                    return res.redirect('/')
+                } else {
+                    return res.send(data)
+                    return res.render('detail', { title: "Detalle Producto", resultado: data }) 
+                }
             })
             .catch (error =>{
                 console.log(error)
             }) // Catch
-      
-        
     }, //DETAIL
     comment: function(req,res){
         //1) Obtener datos del formulario

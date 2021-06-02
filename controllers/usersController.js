@@ -45,6 +45,9 @@ const usersController = {
                         //1) Obtener datos del formulario
                         let data = req.body;
 
+                        // 1.1 Hashear contraseña
+                        let passEncriptada = bcrypt.hashSync(data.contrasenia, 10)
+
                         // 2) Armar usuario
                         let usuario = {
                             nombre: data.nombre,
@@ -53,7 +56,7 @@ const usersController = {
                             nacimiento: data.nacimiento,
                             dni: data.dni,
                             celular: data.celular,
-                            contrasenia: data.contrasenia, //Para que la contraseña aparezca encriptada
+                            contrasenia: passEncriptada, //Para que la contraseña aparezca encriptada
                             /* imagen: data.imagen,
                             productos: data.productos,
                             seguidores: data.seguidores,
@@ -164,28 +167,19 @@ const usersController = {
     },
     myProfile: function(req,res){
         let id = req.params.id
-        let resultado = ""
         Usuario.findByPk(id)
             .then(data =>{
-                return res.render('myProfile', { title: 'Mi Perfil', resultado: data}) 
+                if(data == null){
+                    return res.redirect('/')
+                } else{
+                    return res.render('myProfile', { title: 'Mi Perfil', resultado: data}) 
+                }
+                
             }) //Then
             .catch(error =>{
                 console.log(error)
-            })
-
-
-        // if(id < Usuario.length || id == Usuario.length){
-        //     for(let i = 0; i< Usuario.length; i++){
-        //         if(Usuario[i].id == id){
-        //             resultado = Usuario[i]
-        //         }
-        //     }  
-        // } // IF
-        // else{
-        //     return res.render('index', {title: "error2",  products: Producto})
-        // }
-        
-    },
+            })      
+    }, //MYPROFILE
     destroy: function (req,res){
         let usuarioABorrar = req.params.id;
         //return res.redirect ('/');

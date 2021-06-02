@@ -27,7 +27,7 @@ module.exports = function (sequelize,dataTypes){
     } // ID
     let config = {
         tables: 'comentarios',
-        timestamps: true, 
+        timestamps: false, 
         underscored: false, // No tenemos 
     }
 
@@ -37,7 +37,11 @@ module.exports = function (sequelize,dataTypes){
         Comentario.belongsTo(models.Producto,{
             as: 'producto',
             foreignKey: 'idProducto'
-        }) //
+        }) // Producto
+        Comentario.belongsTo(models.Usuario,{
+            as:'usuario',
+            foreignKey: 'idUsuario'
+        }) // Usuario
     } // Associate
     return Comentario;
 
