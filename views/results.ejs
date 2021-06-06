@@ -19,8 +19,8 @@
 									</figure>
 									<article class="product-box_data">
 										<h2><%=resultado[i].nombre%></h2>
-										<h3>Nombre del usuario</h3> <!-- automatizar -->
-										<p>Comentarios: 5</p> <!--En un futuro automatizar -->
+										<h3><%=resultado[i].usuario.nombre%> <%=resultado[i].usuario.apellido%></h3> <!-- automatizar -->
+										<p>Comentarios: <%=resultado[i].usuario.comentarios%></p> <!--En un futuro automatizar -->
 									</article>
 								</a>
 							</section>

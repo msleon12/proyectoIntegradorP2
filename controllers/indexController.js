@@ -5,7 +5,12 @@ const Op = db.Sequelize.Op;
 
 const indexController = {
     index: function(req,res){
-        Producto.findAll()
+        Producto.findAll({
+            include: [
+                {association: 'usuario'}, 
+                {association:'comentario'}
+            ] //Include
+        })
             .then (data =>{
                 return res.render('index', {title: 'Index', products: data})
             }) //Then

@@ -50,8 +50,8 @@
                         </figure>
                         <article class="product-box_data">
                             <h2><%=products[i].nombre%></h2>
-                            <h3>Nombre del usuario</h3> <!-- automatizar -->
-                            <p>Comentarios: 5</p> <!-- automatizar -->
+                            <h3><%=products[i].usuario.nombre%> <%=products[i].usuario.apellido%></h3> <!-- automatizar -->
+                            <p>Comentarios: <%=products[i].usuario.comentarios%></p> <!-- automatizar -->
                         </article>
                         </a>
                     </section>

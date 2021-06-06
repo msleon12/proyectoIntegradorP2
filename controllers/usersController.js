@@ -57,7 +57,7 @@ const usersController = {
                             dni: data.dni,
                             celular: data.celular,
                             contrasenia: passEncriptada, //Para que la contraseña aparezca encriptada
-                            /* imagen: data.imagen,
+                            /* imagen: data.imagen, 
                             productos: data.productos,
                             seguidores: data.seguidores,
                             comentarios: data.comentarios */
@@ -93,7 +93,7 @@ const usersController = {
         where:[{email: req.body.email}] 
         }) //Find One
         .then(user =>{
-            let errors = {};
+            /* let errors = {};
 
             // Esta el email en la base de datos?
             if (user == null){
@@ -112,7 +112,7 @@ const usersController = {
 
                 return res.render('login')
             } // Else if
-            else{
+            else{ */
                 req.session.user = user
 
                 //Si tildo recordame, creamos la cookie
@@ -122,7 +122,7 @@ const usersController = {
                     })
                 } // If
                 return res.redirect ('/')
-            }
+            //}
             
         }) //.then 
         .catch(error =>{

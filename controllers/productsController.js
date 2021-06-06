@@ -87,7 +87,11 @@ const productsController = {
                 },
                 order: [
                     ['nombre','ASC']
-                ]
+                ],
+                include: [
+                    {association: 'usuario'}, 
+                    {association:'comentario'}
+                ] //Include
             })
             .then(data =>{
                 return res.render('results', {resultado: data, title: 'Resultados'})
@@ -104,7 +108,11 @@ const productsController = {
                 },
                 order: [
                     ['nombre','ASC']
-                ]
+                ],
+                include: [
+                    {association: 'usuario'}, 
+                    {association:'comentario'}
+                ] //Include
             })
             .then(data =>{
                 return res.render('results', {resultado: data, title: 'Resultados'})
@@ -121,7 +129,11 @@ const productsController = {
                 },
                 order: [
                     ['nombre','ASC']
-                ]
+                ],
+                include: [
+                    {association: 'usuario'}, 
+                    {association:'comentario'}
+                ] //Include
             })
             .then(data =>{
                 return res.render('results', {resultado: data, title: 'Resultados'})
@@ -138,7 +150,11 @@ const productsController = {
                 },
                 order: [
                     ['nombre','ASC']
-                ]
+                ],
+                include: [
+                    {association: 'usuario'}, 
+                    {association:'comentario'}
+                ] //Include
             })
             .then(data =>{
                 return res.render('results', {resultado: data, title: 'Resultados'})
