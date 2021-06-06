@@ -12,7 +12,7 @@
 		<div class="container products-wrapper">
 			<div class="d-flex align-items-center">
 				<h2 class="product-detail-title"><%= resultado.nombre%></h2>
-				<a href="/users/myprofile/1"><h3 class="product-detail-description"> <%=resultado.usuario.nombre %> <%= resultado.usuario.apellido %></h3></a> <!-- automatizar -->
+				<a href="/users/myprofile/<%=resultado.usuario.id%>"><h3 class="product-detail-description"> <%=resultado.usuario.nombre %> <%= resultado.usuario.apellido %></h3></a> <!-- automatizar -->
 				<% if (locals.nombre){ %> 
 					<div class="icono">
 						<a href="/products/edit"><i class="fas fa-edit fa-2x"></i></a>
@@ -31,10 +31,10 @@
 						<section class="comments">
 							<% for(let i=0; i<resultado.comentario.length; i++) { %>
 									<article>
-									<a href="/users/myprofile/<%#=resultado.usuario[j].id%>"><img src= <%#= resultado.usuario[j].imagen %> alt="Foto de Perfil"> </a>
+									<a href="/users/myprofile/<%=resultado.usuario.id%>"><img src= "<%= resultado.usuario.imagen %>" alt="Foto de Perfil"> </a>
 										<div class="data">
 											<p><strong>
-												<a href="/users/myprofile/<%=resultado.comentario[i].idUsuario%> "><%=resultado.comentario[i].nombreUsuario %> </a>
+												<a href="/users/myprofile/<%=resultado.comentario[i].idUsuario%> "> id del usuario: <%=resultado.comentario[i].idUsuario %> </a> 
 											</strong></p>
 											<p class="user">
 												<%= resultado.comentario[i].descripcion %>

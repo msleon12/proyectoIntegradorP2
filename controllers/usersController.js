@@ -86,45 +86,74 @@ const usersController = {
             return res.render ('logIn', {title: 'Iniciá sesión'})
         }
         
-    },
+    }, //Login
     logInSession: function(req,res){
         // Busco el usuario que se quiere loguear
        Usuario.findOne({
         where:[{email: req.body.email}] 
         }) //Find One
-        .then(user =>{
-            /* let errors = {};
+        .then(user=>{
 
-            // Esta el email en la base de datos?
+            let errors = {};
+
             if (user == null){
-                //Crear un mensaje de error 
-                errors.message = "El email no existe."
+                // Creo el mensaje de error
+                errors.message = "El email no existe" 
 
-                // Pasar el mensaje a la vista
+                // Paso el mensaje a la vista
                 res.locals.errors = errors
 
-                // Renderizar vista
-                return res.render('login')
-            } else if (bcrypt.compareSync(req.body.password, user.password) ==false ){ //Estoy comparando la contraseña, devuelve true o false
-                errors.message = "La contraseña es incorrecta."
+                // Renderizo 
+                return res.render('logIn')
+            } 
+            else{
+                req.session.user = user 
 
-                res.locals.errors = errors
-
-                return res.render('login')
-            } // Else if
-            else{ */
-                req.session.user = user
-
-                //Si tildo recordame, creamos la cookie
+                // Si tildo recordame creamos la cookie
                 if (req.body.rememberme != undefined){
-                    res.cookie('userId', user.id, {
-                        maxAge: 1000 * 60 * 5
-                    })
+                        res.cookie('userId', user.id, {maxAge: 1000 * 60 * 5})
                 } // If
-                return res.redirect ('/')
-            //}
+
+                return res.redirect('/')
+
+            } //ELSE
+        }) //THEN
+        .catch(error =>{
+            console.log(error)
+        })
+        // .then(user =>{
+        //     let errors = {};
+
+        //     // Esta el email en la base de datos?
+        //     if (user == null){
+        //         //Crear un mensaje de error 
+        //         errors.message = "El email no existe."
+
+        //         // Pasar el mensaje a la vista
+        //         res.locals.errors = errors
+
+        //         // Renderizar vista
+        //         return res.render('login')
+        //     } else if (bcrypt.compareSync(req.body.password, user.password) == false ){ //Estoy comparando la contraseña, devuelve true o false
+        //         errors.message = "La contraseña es incorrecta."
+
+        //         res.locals.errors = errors
+
+        //         return res.render('login')
+        //     } // Else if
+        //     else{ 
+        //         req.session.user = user
+
+        //         //Si tildo recordame, creamos la cookie
+        //         if (req.body.rememberme != undefined){
+        //             res.cookie('userId', user.id, {
+        //                 maxAge: 1000 * 60 * 5
+        //             })
+        //         } // If
+        //         return res.redirect ('/')
+        //     //}
             
-        }) //.then 
+        // }) //.then 
         .catch(error =>{
             console.log(error)
         })
