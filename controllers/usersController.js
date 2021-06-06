@@ -93,7 +93,6 @@ const usersController = {
         where:[{email: req.body.email}] 
         }) //Find One
         .then(user=>{
-
             let errors = {};
 
             if (user == null){
@@ -105,7 +104,19 @@ const usersController = {
 
                 // Renderizo 
                 return res.render('logIn')
-            } 
+            } // IF
+            else if(bcrypt.compareSync(req.body.password, user.contrasenia)== false){
+                
+
+                // Creo el mensaje de error
+                errors.message = "Contraseña incorrecta" 
+
+                // Paso el mensaje a la vista
+                res.locals.errors = errors
+
+                // Renderizo 
+                return res.render('logIn')
+            } //ELSE IF
             else{
                 req.session.user = user 
 
@@ -121,43 +132,8 @@ const usersController = {
         .catch(error =>{
             console.log(error)
         })
-        // .then(user =>{
-        //     let errors = {};
-
-        //     // Esta el email en la base de datos?
-        //     if (user == null){
-        //         //Crear un mensaje de error 
-        //         errors.message = "El email no existe."
-
-        //         // Pasar el mensaje a la vista
-        //         res.locals.errors = errors
-
-        //         // Renderizar vista
-        //         return res.render('login')
-        //     } else if (bcrypt.compareSync(req.body.password, user.password) == false ){ //Estoy comparando la contraseña, devuelve true o false
-        //         errors.message = "La contraseña es incorrecta."
-
-        //         res.locals.errors = errors
-
-        //         return res.render('login')
-        //     } // Else if
-        //     else{ 
-        //         req.session.user = user
-
-        //         //Si tildo recordame, creamos la cookie
-        //         if (req.body.rememberme != undefined){
-        //             res.cookie('userId', user.id, {
-        //                 maxAge: 1000 * 60 * 5
-        //             })
-        //         } // If
-        //         return res.redirect ('/')
-        //     //}
-            
-        // }) //.then 
-        .catch(error =>{
-            console.log(error)
-        })
-    }, //método 
+     
+    }, //Loginsession 
     logout: function(req,res){
         //Destruir la sessión
         req.session.destroy()

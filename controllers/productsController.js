@@ -39,17 +39,19 @@ const productsController = {
             order: [
                 ['nombre','DESC']
             ],
-            include: [
-                {association: 'usuario'}, 
-                {association:'comentario'}
-            ] //Include
+            include: [  //relación comentario producto.
+                { association:'comentario',
+                  include:{ association: 'usuario'}
+                },
+               // relación producto usuario                                
+                { association: 'usuario' }
+            ] //
         }) // Find by pk
             .then(data =>{
                 //Si no hay producto que coincida con el id, redirecciona a home.
                 if(data == null){
                     return res.redirect('/')
                 } else {
-                    //return res.send (data)
                     return res.render('detail', { title: "Detalle Producto", resultado: data }) 
                 }
             })
