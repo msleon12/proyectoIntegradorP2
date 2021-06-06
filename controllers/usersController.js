@@ -20,27 +20,42 @@ const usersController = {
         let errors = {}
 
         // Chequear que email venga con datos
-        if(req.body.email == ""){
-            errors.message = "El email es obligatorio";
+        if(req.body.nombre == ""){
+            errors.message = "El nombre es obligatorio.";
             res.locals.errors = errors;
-            return res.render('register')
+            return res.render('register', {title: 'Creá tu cuenta'})
 
-        } else if (req.body.password == "") {
-            errors.message = "La contraseña es obligatoria";
+        } else if(req.body.apellido == ""){
+            errors.message = "El apellido es obligatorio.";
             res.locals.errors = errors;
-            return res.render('register')
+            return res.render('register', {title: 'Creá tu cuenta'})
+
+        } else if(req.body.nacimiento == ""){
+            errors.message = "La fecha de nacimiento es obligatoria.";
+            res.locals.errors = errors;
+            return res.render('register', {title: 'Creá tu cuenta'})
+
+        } else if(req.body.email == ""){
+            errors.message = "El email es obligatorio.";
+            res.locals.errors = errors;
+            return res.render('register', {title: 'Creá tu cuenta'})
+
+        } else if (req.body.contrasenia == "") {
+            errors.message = "La contraseña es obligatoria.";
+            res.locals.errors = errors;
+            return res.render('register', {title: 'Creá tu cuenta'})
         } else{
 
             // Busco el usuario para hacer validaciones
             Usuario.findOne({
-                where: [{email:req.body.email}]
+                where: {email: req.body.email}
             })
                 .then(function(user){
                 // Si el find encontró un usuario significa que esta en uno ese email. Entonces, devolver un error
                     if(user != null){
-                        errors.message = "El email ya esta registrado. por favor elija otro."
-                        res.locals.error = errors
-                        return res.render ('register')
+                        errors.message = "El email ya está registrado. Por favor, elija otro."
+                        res.locals.errors = errors
+                        return res.render ('register', {title: 'Creá tu cuenta'})
                     } else{
                         //1) Obtener datos del formulario
                         let data = req.body;
@@ -63,7 +78,7 @@ const usersController = {
                             comentarios: data.comentarios */
                         } // USUARIO
 
-                         // 3) Guardar perfume
+                         // 3) Guardar usuario
                             Usuario.create(usuario)
                             return res.redirect('/users/login')
                     } //Else
@@ -89,36 +104,35 @@ const usersController = {
     }, //Login
     logInSession: function(req,res){
         // Busco el usuario que se quiere loguear
-       Usuario.findOne({
-        where:[{email: req.body.email}] 
+        Usuario.findOne({
+            where:[{email: req.body.email}] 
         }) //Find One
         .then(user=>{
             let errors = {};
 
             if (user == null){
                 // Creo el mensaje de error
-                errors.message = "El email no existe" 
+                errors.message = "El email no existe." 
 
                 // Paso el mensaje a la vista
                 res.locals.errors = errors
 
                 // Renderizo 
-                return res.render('logIn')
+                return res.render('logIn', {title: 'Iniciá sesión'})
             } // IF
             else if(bcrypt.compareSync(req.body.password, user.contrasenia)== false){
-                
 
                 // Creo el mensaje de error
-                errors.message = "Contraseña incorrecta" 
+                errors.message = "La contraseña es incorrecta." 
 
                 // Paso el mensaje a la vista
                 res.locals.errors = errors
 
                 // Renderizo 
-                return res.render('logIn')
+                return res.render('logIn', {title: 'Iniciá sesión'})
             } //ELSE IF
             else{
-                req.session.user = user 
+                req.session.user = user
 
                 // Si tildo recordame creamos la cookie
                 if (req.body.rememberme != undefined){
@@ -144,8 +158,64 @@ const usersController = {
         //Redireccionar
         res.redirect('/')
     },
+    myProfile: function(req,res){
+        let id = req.params.id
+
+        if(req.session.user){
+            if(req.session.user.id = id){
+                Usuario.findByPk(id, {include: [
+                        //relación comentario producto.
+                        { association:'comentario'},
+                    // relación producto usuario                                
+                        { association: 'producto' }
+                    ]
+                })
+                    .then(data =>{
+                        if(data == null){
+                            return res.redirect('/')
+                        } else{
+                            return res.render('myProfile', { title: 'Mi perfil', resultado: data}) 
+                        }
+                        
+                    }) //Then
+                    .catch(error =>{
+                        console.log(error)
+                    })
+            } /* if */
+        } /* if */ else{
+            return res.redirect('/users/login')
+        }
+    }, //MYPROFILE
     editProfile: function(req,res){
-        return res.render('editProfile', {title: 'Editar mi perfil', usuario: Usuario})
+        let id = req.params.id
+
+        if(req.session.user){
+            if(req.session.user.id = id){
+                Usuario.findByPk(id, {include: [
+                        //relación comentario producto.
+                        { association:'comentario'},
+                    // relación producto usuario                                
+                        { association: 'producto' }
+                    ]
+                })
+                    .then(data =>{
+                        if(data == null){
+                            return res.redirect('/')
+                        } else{
+                            return res.render('editProfile', { title: 'Editar mi perfil', resultado: data, usuario: Usuario}) 
+                        }
+                        
+                    }) //Then
+                    .catch(error =>{
+                        console.log(error)
+                    })
+            } /* if */
+        } /* if */ else {
+            return res.redirect('/users/login')
+        }
+
+
+        /* return res.render('editProfile', {title: 'Editar mi perfil', usuario: Usuario}) */
     },
     storeEdit: function(req,res){
         //1) Obtener datos del formulario
@@ -170,21 +240,6 @@ const usersController = {
         })
         return res.redirect('/')
     },
-    myProfile: function(req,res){
-        let id = req.params.id
-        Usuario.findByPk(id)
-            .then(data =>{
-                if(data == null){
-                    return res.redirect('/')
-                } else{
-                    return res.render('myProfile', { title: 'Mi Perfil', resultado: data}) 
-                }
-                
-            }) //Then
-            .catch(error =>{
-                console.log(error)
-            })      
-    }, //MYPROFILE
     destroy: function (req,res){
         let usuarioABorrar = req.params.id;
         //return res.redirect ('/');

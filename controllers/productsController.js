@@ -1,3 +1,4 @@
+const { localsName } = require('ejs');
 const db = require('../database/models')
 const Usuario = db.Usuario
 const Producto = db.Producto;
@@ -17,7 +18,7 @@ const productsController = {
     addProducts: function(req,res){
         // Control de acceso 
         if (req.session.user == undefined){
-            return res.redirect('/users/register')
+            return res.redirect('/users/login')
         }
         else{
             Producto.findAll()
@@ -36,16 +37,13 @@ const productsController = {
     detail: function(req,res){  
         let idRuta = req.params.id    
         Producto.findByPk(idRuta,{
-            order: [
-                ['nombre','DESC']
-            ],
             include: [  //relación comentario producto.
                 { association:'comentario',
                   include:{ association: 'usuario'}
                 },
                // relación producto usuario                                
                 { association: 'usuario' }
-            ] //
+            ]
         }) // Find by pk
             .then(data =>{
                 //Si no hay producto que coincida con el id, redirecciona a home.
@@ -60,19 +58,26 @@ const productsController = {
             }) // Catch
     }, //DETAIL
     comment: function(req,res){
-        //1) Obtener datos del formulario
-        let data = req.body;
 
-        // 2) Armar usuario
-        let comentario = {
-            // idUsuario: ?
-            idProducto: req.params.id,
-            descripcion: data.descripcion,
+        if(req.session.user){
+            /* return res.send (req.session.user) */
+
+            //1) Obtener datos del formulario
+            let data = req.body;
+
+            // 2) Armar usuario
+            let comentario = {
+                idUsuario: req.session.user.id,
+                idProducto: req.params.id,
+                descripcion: data.descripcion,
+            }
+
+            // 3) Guardar perfume
+            Comentario.create(comentario)
+            return res.redirect('/')
+        } else {
+            return res.redirect('/users/login')
         }
-
-        // 3) Guardar perfume
-        Comentario.create(comentario)
-        return res.redirect('/')
     },
     results: function(req,res){
         let infoABuscar = req.query.search
@@ -176,37 +181,64 @@ const productsController = {
         }) // Catch
     }, //Marcas
     store: function(req,res){ //Guardar un perfume
-        //1) Obtener datos del formulario
-        let data = req.body;
 
-        // 2) Armar perfume
-        let perfume = {
-            idUsuario: data.idUsuario,
-            nombre: data.nombre,
-            /* imagen: data.imagen, */
-            fechaPublicacion: data.fechaPublicacion,
-            marca: data.marca,
-            ml: data.ml,
-            anio: data.anio,
-            descripcion: data.descripcion, 
+        let errors = {}
+
+        if(req.body.nombre == ""){
+            errors.message = "El nombre es obligatorio.";
+            res.locals.errors = errors;
+            return res.render('addProducts', {title: 'Agregar productos'})
+
+        } else if(req.body.marca == ""){
+            errors.message = "La marca es obligatoria.";
+            res.locals.errors = errors;
+            return res.render('addProducts', {title: 'Agregar productos'})
+
+        } else if(req.body.ml == ""){
+            errors.message = "La cantidad de mililitros es obligatoria.";
+            res.locals.errors = errors;
+            return res.render('addProducts', {title: 'Agregar productos'})
+
+        } else {
+            //1) Obtener datos del formulario
+            let data = req.body;
+
+            // 2) Armar perfume
+            let perfume = {
+                idUsuario: req.session.user.id,
+                nombre: data.nombre,
+                /* imagen: data.imagen, */
+                fechaPublicacion: data.fechaPublicacion,
+                marca: data.marca,
+                ml: data.ml,
+                anio: data.anio,
+                descripcion: data.descripcion, 
+            }
+
+            // 3) Guardar perfume
+            db.Producto.create(perfume)
+            return res.redirect('/')
         }
-
-        // 3) Guardar perfume
-        db.Producto.create(perfume)
-        return res.redirect('/')
 
     }, //Store
     destroy: function(req,res){
         let productoABorrar = req.params.id;
-       // return res.send (productoABorrar) // Deberia devolverme un numero
 
-        db.Producto.destroy({
-            where: [
-                {id: productoABorrar}
-            ]
-        })
+        /* return res.send (Producto.idUsuario) */
 
-        return res.redirect ('/');
+        if(req.session.user){
+            /* if(req.session.user.id = Producto.idUsuario){ */
+                db.Producto.destroy({
+                    where: [
+                        {id: productoABorrar},
+                        {idUsuario: req.session.user}
+                    ]
+                })
+                return res.redirect ('/');
+            //} 
+        } /* if */ else{
+            return res.redirect('/users/login')
+        }
     
     }
 } // Objeto literal

@@ -2,13 +2,13 @@
 <body>
     <%- include('./partials/header') %>
 
-    <h1 class="form-title"> Inicia Sesión </h1>
-
-    <% if (locals.errors){ %>
-        <h4><%= locals.errors.message %></h4>
-    <% } %>
+    <h1 class="form-title"> Inicia Sesión </h1> 
 
         <section class="form-section">
+
+            <% if (locals.errors){ %>
+                <h4 class="error"><%= locals.errors.message %></h4>
+            <% } %>
             
             <form action="/users/login/new" method="POST">
                 <div class="form-fields">

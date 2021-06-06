@@ -5,21 +5,23 @@
 
     <h1 class="form-title"><%= title %></h1>
     <section class="form-section">
+
+        <% if (locals.errors){ %> 
+            <h4 class="error"><%= errors.message %> </h4>
+        <% } %> 
         
-         <form action="/products/add/store" method="POST"> 
+        <form action="/products/add/store" method="POST"> 
             <div class="form-fields">
-                <input type="number" name="idUsuario" value="" placeholder="Id del usuario">
-                <input type="text" name="nombre" value="" placeholder="Nombre del producto">
+                <input type="text" name="nombre" value="" placeholder="Nombre del producto *">
                 <!-- <input type="file" name="imagen" value="" placeholder="Imagen"> -->
-                <input type="date" name="fechaPublicacion" value="" placeholder="Fecha de Publicación">
                 <!-- <div>
                     <select name="marca" >
                        
                     </select>
                 </div> -->
-                <input type="text" name="marca" value="" placeholder="Marca"> 
+                <input type="text" name="marca" value="" placeholder="Marca *"> 
                 <input type="number" name="anio" value="" placeholder="Año">
-                <input type="number" name="ml" value="" placeholder="Mililitros">
+                <input type="number" name="ml" value="" placeholder="Mililitros *">
                 <input type="text" name="descripcion" value="" placeholder="Descripción">
 
             </div>

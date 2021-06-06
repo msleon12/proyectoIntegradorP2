@@ -47,7 +47,7 @@ app.use(function(req,res,next){
       console.log(error)
     }) // Catch
   } // IF
-  else{ // Su no tengo una cookie, que el programa continue
+  else{ // Si no tengo una cookie, que el programa continue
 
     return next()
   } 
