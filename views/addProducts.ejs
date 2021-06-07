@@ -10,10 +10,10 @@
             <h4 class="error"><%= errors.message %> </h4>
         <% } %> 
         
-        <form action="/products/add/store" method="POST"> 
+        <form action="/products/add/store" method="POST" enctype="multipart/form-data"> 
             <div class="form-fields">
                 <input type="text" name="nombre" value="" placeholder="Nombre del producto *">
-                <!-- <input type="file" name="imagen" value="" placeholder="Imagen"> -->
+                <input type="file" name="img-producto" value="" placeholder="Imagen">
                 <!-- <div>
                     <select name="marca" >
                        

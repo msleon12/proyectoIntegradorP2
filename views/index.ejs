@@ -46,17 +46,17 @@
                     <div class="item">
                       <% for(let i=0; i<1; i++){ %>
                         <div class="col-12 col-sm-6 col-lg-3">
-                            <section class="slider-box">
-                                <a href="/products/id/<%=products[i].id%>">
+                            <section class="slider-box product-box">
+                              <a href="/products/id/<%=products[i].id%>">
                                 <figure class="product-box_image">
-                                    <img src="<%= products[i].imagen %> " alt="<%= products[i].nombre%>">
+                                    <img src="/images/products/<%= products[i].imagen %>" alt="<%= products[i].nombre%>">
                                 </figure>
                                 <article class="product-box_data">
                                     <h2><%=products[i].nombre%></h2>
-                                    <h3><%=products[i].usuario.nombre%> <%=products[i].usuario.apellido%></h3> <!-- automatizar -->
-                                    <p>Comentarios: <%=products[i].usuario.comentarios%></p> <!-- automatizar -->
+                                    <a href="/users/myprofile/<%=products[i].usuario.id%>"><h3><%=products[i].usuario.nombre%> <%=products[i].usuario.apellido%></h3></a>
+                                    <p>Comentarios: <%=products[i].usuario.comentarios%></p> 
                                 </article>
-                                </a>
+                              </a>
                              
                             </section>
                         </div>
@@ -77,15 +77,15 @@
             </div>
           <%for(let i=4; i<8; i++){ %>
             <div class="col-12 col-sm-6 col-lg-3">
-              <section class="slider-box">
+              <section class="slider-box product-box">
                 <a href="/products/id/<%=products[i].id%>">
                   <figure class="product-box_image">
-                    <img src="<%= products[i].imagen %> " alt="<%= products[i].nombre%>">
+                    <img src="/images/products/<%= products[i].imagen %>" alt="<%= products[i].nombre%>">
                   </figure>
                   <article class="product-box_data">
                     <h2><%=products[i].nombre%></h2>
-                    <h3>Nombre del usuario</h3> <!-- automatizar -->
-                    <p>Comentarios: 5</p> <!-- automatizar -->
+                    <a href="/users/myprofile/<%=products[i].usuario.id%>"><h3><%=products[i].usuario.nombre%> <%=products[i].usuario.apellido%></h3></a>
+                    <p>Comentarios: <%=products[i].usuario.comentarios%></p>
                   </article>
                 </a>
               </section>

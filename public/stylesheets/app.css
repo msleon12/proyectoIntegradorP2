@@ -262,15 +262,15 @@ hr {
 }
 
 .product-box_data h2 {
-  font-size: 2.4em;
+  font-size: 25px;
   font-weight: 400;
   margin: 0;
   text-transform: uppercase;
 }
 
 .product-box_data h3 {
-  font-size: 1.5em;
-  font-weight: lighter;
+  font-size: 15px;
+  font-weight: 200;
   margin: 5px 0;
 }
 
@@ -656,7 +656,9 @@ textarea.form-input {
   font-size: 16px;
 }
 
-.foto-perfil{
+.imagen-perfil{
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
 }
 

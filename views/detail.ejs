@@ -23,7 +23,7 @@
 			<div class="product-detail">
 				<div class="row">
 					<article class="col-12 col-lg-8 product-detail-info">
-						<img src="<%=resultado.imagen%>" alt="<%=resultado.nombre%>" class="product-detail-img">
+						<img src="/images/products/<%=resultado.imagen%>" alt="<%=resultado.nombre%>" class="product-detail-img">
 						<p class="product-detail-description">
 							<%=resultado.descripcion %></p>
 					</article>
@@ -53,11 +53,11 @@
 						</form>
 		
 						<hr>
-						<!-- <% if ( res.locals == resultado.idUsuario) { %> -->
+						<% if ( locals.id == resultado.idUsuario) { %>
 							<form action="/products/destroy/<%= resultado.id %> " method="POST">
-							<button class='botondelete' type="submit">Borrar producto</button>
+								<button class='botondelete' type="submit">Borrar producto</button>
 							</form>
-						<!-- <% } %> -->
+						<% } %>
 						
 					</div>
 				</div>

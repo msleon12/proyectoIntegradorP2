@@ -4,27 +4,24 @@
 
     <!-- Datos del usuario -->
 	<section class="info-usuario container products-wrapper">
-		<div class="profile-title">
-			<h1><%= title %></h1>
-			<h2>Editar perfil</h2>
-			<a href="/users/editprofile/<%= resultado.id %> "><i class="fas fa-user-edit"></i></a>
+		<div class="page">
+			<p>
+				<%= resultado.nombre %>
+				<%= resultado.apellido %>
+				<a href="/users/editprofile/<%= resultado.id %> "
+					><i class="fas fa-cog 5x"></i>
+				</a>
+			</p>
 		</div>
 		<div class="row">
 			<div class="img-container offset-3 col-2">
-				<img src= "/images/perfiles<%=resultado.imagen %>" alt="Foto de " <%=resultado.nombre %>>
-				<%= console.log(resultado.imagen) %>
+				<img class="imagen-perfil" src= "/images/perfiles/<%=resultado.imagen %>" alt="Foto de <%=resultado.nombre%> <%=resultado.apellido%>">
 			</div>
 			<div class="data-container col-6">
-				<div class="d-flex align-items-center ">
-					<h1 class="main-title"> 
-						<%= resultado.nombre %>
-						<%= resultado.apellido %>
-					</h1>
-				</div>
 				<div>
 					<ul class="info-usuario">
 						<a href="/products/productosUsuario/<%= resultado.id %>"><li> <%=resultado.producto.length %> productos</li></a>
-						<li> 22 seguidores </li>
+						<li> <%= resultado.seguidores %> seguidores </li>
 						<li> <%= resultado.comentario.length %> comentarios</li>
 					</ul>
 				</div>
@@ -45,7 +42,31 @@
 				
 			</div>
 		</div>
+		<div class="container products-wrapper">
+			<div class="row">
+				<div class="col-12">
+					<h2 class="form-title">PRODUCTOS</h2>
+				</div>
+				<% for(let i=0; i<resultado.producto.length; i++){ %>
+						<div class="col-12 col-sm-6 col-lg-3">
+							<section class="slider-box product-box">
+								<a href="/products/id/<%=resultado.producto[i].id%>">
+									<figure class="product-box_image">
+										<img src="/images/products/<%= resultado.producto[i].imagen %> " alt="<%= resultado.producto[i].nombre%>">
+									</figure>
+									<article class="product-box_data">
+										<h2><%=resultado.producto[i].nombre%></h2>
+										<h3><%= resultado.nombre %> <%= resultado.apellido %></h3> 
+										<p>Comentarios: <%= resultado.comentarios %></p>
+									</article>
+								</a>
+							</section>
+						</div>
+				<% } %>
+			</div>
+		</div>
 	</section>
+
 	
 	<!-- Mis productos -->
 	

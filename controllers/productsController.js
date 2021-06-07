@@ -214,6 +214,16 @@ const productsController = {
             res.locals.errors = errors;
             return res.render('addProducts', {title: 'Agregar productos'})
 
+        } else if(req.file == undefined){
+            errors.message = "La imagen es obligatoria.";
+            res.locals.errors = errors;
+            return res.render('addProducts', {title: 'Agregar productos'})
+
+        } else if(req.file.mimetype !== 'image/png' && req.file.mimetype !== 'image/jpg' && req.file.mimetype !== 'image/jpeg'){
+            errors.message = "Debe subir una imagen en formato jpg, jpeg o png.";
+            res.locals.errors = errors;
+            return res.render('register', {title: 'Agregar productos'})
+
         } else if(req.body.marca == ""){
             errors.message = "La marca es obligatoria.";
             res.locals.errors = errors;
@@ -232,7 +242,7 @@ const productsController = {
             let perfume = {
                 idUsuario: req.session.user.id,
                 nombre: data.nombre,
-                /* imagen: data.imagen, */
+                imagen: req.file.filename,
                 fechaPublicacion: data.fechaPublicacion,
                 marca: data.marca,
                 ml: data.ml,

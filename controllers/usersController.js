@@ -30,6 +30,11 @@ const usersController = {
             res.locals.errors = errors;
             return res.render('register', {title: 'Creá tu cuenta'})
 
+        } else if(req.file != undefined && req.file.mimetype !== 'image/png' && req.file.mimetype !== 'image/jpg' && req.file.mimetype !== 'image/jpeg'){
+            errors.message = "Debe subir una imagen en formato jpg, jpeg o png.";
+            res.locals.errors = errors;
+            return res.render('register', {title: 'Creá tu cuenta'})
+
         } else if(req.body.nacimiento == ""){
             errors.message = "La fecha de nacimiento es obligatoria.";
             res.locals.errors = errors;
@@ -40,52 +45,57 @@ const usersController = {
             res.locals.errors = errors;
             return res.render('register', {title: 'Creá tu cuenta'})
 
-        } else if (req.body.contrasenia == "") {
-            errors.message = "La contraseña es obligatoria.";
+        } else if (req.body.contrasenia == "" || req.body.contrasenia.length < 3) {
+            errors.message = "La contraseña es obligatoria y debe tener como mínimo 3 caracteres.";
             res.locals.errors = errors;
             return res.render('register', {title: 'Creá tu cuenta'})
-        } else{
 
+        } else if (req.body.contrasenia != req.body.repetirContrasenia) {
+            errors.message = "Repita la misma contraseña.";
+            res.locals.errors = errors;
+            return res.render('register', {title: 'Creá tu cuenta'})
+
+        } else{
             // Busco el usuario para hacer validaciones
             Usuario.findOne({
                 where: {email: req.body.email}
             })
-                .then(function(user){
-                // Si el find encontró un usuario significa que esta en uno ese email. Entonces, devolver un error
-                    if(user != null){
-                        errors.message = "El email ya está registrado. Por favor, elija otro."
-                        res.locals.errors = errors
-                        return res.render ('register', {title: 'Creá tu cuenta'})
-                    } else{
-                        //1) Obtener datos del formulario
-                        let data = req.body;
+            .then(function(user){
+            // Si el find encontró un usuario significa que esta en uno ese email. Entonces, devolver un error
+                if(user != null){
+                    errors.message = "El email ya está registrado. Por favor, elija otro."
+                    res.locals.errors = errors
+                    return res.render ('register', {title: 'Creá tu cuenta'})
+                } else{
+                    //1) Obtener datos del formulario
+                    let data = req.body;
 
-                        // 1.1 Hashear contraseña
-                        let passEncriptada = bcrypt.hashSync(data.contrasenia, 10)
+                    // 1.1 Hashear contraseña
+                    let passEncriptada = bcrypt.hashSync(data.contrasenia, 10)
 
-                        // 2) Armar usuario
-                        let usuario = {
-                            nombre: data.nombre,
-                            apellido: data.apellido,
-                            email: data.email,
-                            nacimiento: data.nacimiento,
-                            dni: data.dni,
-                            celular: data.celular,
-                            contrasenia: passEncriptada, //Para que la contraseña aparezca encriptada
-                            /* imagen: data.imagen, 
-                            productos: data.productos,
-                            seguidores: data.seguidores,
-                            comentarios: data.comentarios */
-                        } // USUARIO
+                    // 2) Armar usuario
+                    let usuario = {
+                        nombre: data.nombre,
+                        apellido: data.apellido,
+                        email: data.email,
+                        nacimiento: data.nacimiento,
+                        dni: data.dni,
+                        celular: data.celular,
+                        contrasenia: passEncriptada, //Para que la contraseña aparezca encriptada
+                        /* imagen: req.file.filename, */
+                        productos: data.productos,
+                        seguidores: data.seguidores,
+                        comentarios: data.comentarios
+                    } // USUARIO
 
-                         // 3) Guardar usuario
-                            Usuario.create(usuario)
-                            return res.redirect('/users/login')
-                    } //Else
-                }) // THEN
-                .catch(error =>{
-                    console.log(error)
-                })
+                    // 3) Guardar usuario
+                        Usuario.create(usuario)
+                        return res.redirect('/users/login')
+                } //Else
+            }) // THEN
+            .catch(error =>{
+                console.log(error)
+            })
             
 
            
