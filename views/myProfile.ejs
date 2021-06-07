@@ -23,12 +23,12 @@
 				</div>
 				<div>
 					<ul class="info-usuario">
-						<li>4 productos</li>
-						<li>200 seguidores</li>
-						<li>300 comentarios</li>
+						<a href="/products/productosUsuario/<%= resultado.id %>"><li> <%=resultado.producto.length %> productos</li></a>
+						<li> 22 seguidores </li>
+						<li> <%= resultado.comentario.length %> comentarios</li>
 					</ul>
 				</div>
-				<% if (locals.name== resultado.nombre && locals.apellido==resultado.apellido){ %> 
+				<% if (locals.nombre== resultado.nombre && locals.apellido==resultado.apellido){ %> 
 					<div>
 						<form action="/users/destroy/<%= resultado.id %> " method="POST">
 							<button class= 'btn' type="submit">BORRAR USUARIO</button>
@@ -37,7 +37,7 @@
 					
 				<% } else { %> 
 					<div>
-						<form action="" method="POST">
+						<form action="/" method="POST">
 							<button class= 'btn' type="submit">SEGUIR</button>
 						</form>
 					</div>

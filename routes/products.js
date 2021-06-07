@@ -17,6 +17,8 @@ router.post('/id/:id/comment', productsController.comment)
 router.get('/results', productsController.results)
 router.get('/marcas', productsController.marcas)
 
+router.get('/productosUsuario/:id', productsController.productosUsuario)
+
 module.exports = router;
 
 

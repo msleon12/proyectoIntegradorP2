@@ -34,6 +34,26 @@ const productsController = {
     editProducts: function(req,res){
         return res.render('editProducts', {title: "Editar producto"})
     },
+    productosUsuario: function(req,res){
+        if(req.session.user == undefined){
+            return res.redirect('/')
+        } //IF
+        else{
+            Usuario.findByPk(req.params.id , 
+                {include: [
+                    // relación producto usuario                                
+                    { association: 'producto' }
+                ]
+            }) //Usuario
+            .then(data => {
+                return res.render('productosUsuario', {resultado: data})
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        } //ELSE
+        
+    }, //Productos Usuario
     detail: function(req,res){  
         let idRuta = req.params.id    
         Producto.findByPk(idRuta,{
@@ -172,7 +192,12 @@ const productsController = {
         }
     }, //Results
     marcas: function(req,res){
-        Producto.findAll()
+        Producto.findAll({
+            include: [
+                {association: 'usuario'}, 
+                {association:'comentario'}
+            ] //Include
+        }) //Find All
         .then(data=>{
             return res.render('results', { title: "Marcas", resultado: data })
         })

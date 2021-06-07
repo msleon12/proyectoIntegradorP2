@@ -19,8 +19,8 @@
 									</figure>
 									<article class="product-box_data">
 										<h2><%=resultado[i].nombre%></h2>
-										<h3><%=resultado[i].usuario.nombre%> <%=resultado[i].usuario.apellido%></h3> <!-- automatizar -->
-										<p>Comentarios: <%=resultado[i].usuario.comentarios%></p> <!--En un futuro automatizar -->
+										<h3><%=resultado[i].usuario.nombre%> <%=resultado[i].usuario.apellido%></h3>
+										<p>Comentarios: <%=resultado[i].usuario.comentarios%></p> 
 									</article>
 								</a>
 							</section>
@@ -38,14 +38,14 @@
 					<% for(let i=0; i<resultado.length; i++){ %>
 						<div class="col-12 col-sm-6 col-lg-3">
 							<section class="product-box">
-								<a href="/products/">
+								<a href="/products/id/<%=resultado[i].id%>">
 									<figure class="product-box_image">
 										<img src="<%= resultado[i].imagen %>" alt="<%= resultado[i].marca%>">
 									</figure>
 									<article class="product-box_data">
 										<h2><%=resultado[i].marca%></h2>
-										<h3>Nombre del usuario: </h3> <!-- automatizar -->
-										<p>Comentarios: 5</p> <!-- automatizar -->
+										<h3><%= resultado[i].usuario.nombre%> <%=resultado[i].usuario.apellido %> </h3> <!-- automatizar -->
+										<p>Comentarios: <%=resultado[i].usuario.comentarios%></p> <!-- automatizar -->
 									</article>
 								</a>
 							</section>

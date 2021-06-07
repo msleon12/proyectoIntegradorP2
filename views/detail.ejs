@@ -53,10 +53,12 @@
 						</form>
 		
 						<hr>
-
-						<form action="/products/destroy/<%= resultado.id %> " method="POST">
+						<!-- <% if ( res.locals == resultado.idUsuario) { %> -->
+							<form action="/products/destroy/<%= resultado.id %> " method="POST">
 							<button class='botondelete' type="submit">Borrar producto</button>
-						</form>
+							</form>
+						<!-- <% } %> -->
+						
 					</div>
 				</div>
 			</div>

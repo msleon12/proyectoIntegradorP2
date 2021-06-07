@@ -163,13 +163,15 @@ const usersController = {
 
         if(req.session.user){
             if(req.session.user.id = id){
-                Usuario.findByPk(id, {include: [
-                        //relación comentario producto.
-                        { association:'comentario'},
-                    // relación producto usuario                                
+                Usuario.findByPk(id, {
+                    include: [  //relación comentario producto.
+                        { association:'comentario',
+                          include:{ association: 'usuario'}
+                        },
+                       // relación producto usuario                                
                         { association: 'producto' }
-                    ]
-                })
+                    ] // Include
+                }) //Find by Pk
                     .then(data =>{
                         if(data == null){
                             return res.redirect('/')
