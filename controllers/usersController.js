@@ -202,25 +202,31 @@ const usersController = {
         let id = req.params.id
 
         if(req.session.user){
-            if(req.session.user.id = id){
-                Usuario.findByPk(id, {include: [
-                        //relación comentario producto.
-                        { association:'comentario'},
-                    // relación producto usuario                                
-                        { association: 'producto' }
-                    ]
-                })
-                    .then(data =>{
-                        if(data == null){
-                            return res.redirect('/')
-                        } else{
-                            return res.render('editProfile', { title: 'Editar mi perfil', resultado: data, usuario: Usuario}) 
-                        }
-                        
-                    }) //Then
-                    .catch(error =>{
-                        console.log(error)
-                    })
+           
+                    if (id != req.session.user.id){
+                        return res.redirect (`/users/editProfile/${req.session.user.id}`)
+                    }
+                    else{
+                        if(req.session.user.id = id){
+                            Usuario.findByPk(id, {include: [
+                                    //relación comentario producto.
+                                    { association:'comentario'},
+                                // relación producto usuario                                
+                                    { association: 'producto' }
+                                ]
+                            })
+                                .then(data =>{
+                                    if(data == null){
+                                        return res.redirect('/')
+                                    } else{
+                                        return res.render('editProfile', { title: 'Editar mi perfil', resultado: data, usuario: Usuario}) 
+                                    }
+                                    
+                                }) //Then
+                                .catch(error =>{
+                                    console.log(error)
+                                })
+                    }
             } /* if */
         } /* if */ else {
             return res.redirect('/users/login')
@@ -229,49 +235,71 @@ const usersController = {
 
         /* return res.render('editProfile', {title: 'Editar mi perfil', usuario: Usuario}) */
     },
+    
+
+
+
+
     storeEdit: function(req,res){
         //1) Obtener datos del formulario
-        let data = req.body;
-
-        db.Usuario.update({
-            nombre: data.nombre,
-            apellido: data.apellido,
-            email: data.email,
-            nacimiento: data.nacimiento,
-            dni: data.dni,
-            celular: data.celular,
-            contrasenia: data.contrasenia, //Para que la contraseña aparezca encriptada
-            /* imagen: data.imagen,
+        let user = {
+            nombre: req.body.nombre,
+            apellido: req.body.apellido,
+            email: req.body.email,
+            nacimiento: req.body.nacimiento,
+            dni: req.body.dni,
+            celular: req.body.celular,
+            contrasenia: '', //Para que la contraseña aparezca encriptada
+             imagen: '',
+             /*
             productos: data.productos,
             seguidores: data.seguidores,
             comentarios: data.comentarios */
-        },{
+        }
+if (req.body.contrasenia == ''){
+            user.contrasenia = req.session.user.contrasenia;
+        }
+        else {
+            user.contrasenia = req.body.password;
+        }
+return res.send (user);
+        // if (data.imagen == undefined){
+        //     Usuario.imagen = req.session.Usuario.imagen;
+        // }
+        // else{
+        //     Usuario.imagen = req.file.filename;
+        // }
+        db.Usuario.update(user,{
             where: {
-                id: Usuario.id
+                id: req.session.user.id
             }
-        })
-        return res.redirect('/')
-    },
-    destroy: function (req,res){
-        let usuarioABorrar = req.params.id;
-        //return res.redirect ('/');
-
-        db.Usuario.destroy({
-            where: [
-                {id:usuarioABorrar}
-            ]
-        })
-
-        //Destruir la sessión
-        req.session.destroy()
-
-        //Si hay cookie, anularla
-        res.clearCookie('userId')
-
-        return res.redirect ('/');
-       
-
-    }
+        }
+    //.then ()
+        //.catch (e => {console.log (e)})
+            
+        ) },
+        
+        destroy: function (req,res){
+            let usuarioABorrar = req.params.id;
+            //return res.redirect ('/');
+    
+            db.Usuario.destroy({
+                where: [
+                    {id:usuarioABorrar}
+                ]
+            })
+    
+            //Destruir la sessión
+            req.session.destroy()
+    
+            //Si hay cookie, anularla
+            res.clearCookie('userId')
+    
+            return res.redirect ('/');
+           
+    
+        },
+        
 } //Users controller
 
 module.exports = usersController
