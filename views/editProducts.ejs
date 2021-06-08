@@ -6,9 +6,9 @@
     <h1 class="form-title"><%= title %></h1>
     <section class="form-section">
         
-         <form action="/products/add/store" method="POST"> 
+         <form action="/products/edit" method="POST"> 
             <div class="form-fields">
-                <input type="number" name="idUsuario" value="" placeholder="Id del usuario">
+                <input type="number" name="idUsuario" value="" placeholder="Id del usuario" disabled >
                 <input type="text" name="nombre" value="" placeholder="Nombre del producto">
                 <!-- <input type="file" name="imagen" value="" placeholder="Imagen"> -->
                 <input type="date" name="fechaPublicacion" value="" placeholder="Fecha de Publicación">
@@ -20,7 +20,7 @@
             </div>
 
             <button type="submit" class="form-button">
-                Enviar
+                Actualizar Datos
             </button>
             
         </form> 

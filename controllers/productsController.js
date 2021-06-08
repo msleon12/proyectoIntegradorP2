@@ -32,7 +32,43 @@ const productsController = {
         
     },
     editProducts: function(req,res){
-        return res.render('editProducts', {title: "Editar producto"})
+        let productId = req.params.id;
+        //Evitar que el usuario cambie el id en la URL
+        // if (productId != req.session.idProducto){
+        //     return res.redirect(`/index`)
+        // }
+        // else {
+            Producto.findByPk (productId)
+            .then (function(Producto){
+                return res.render('editProducts', {title: "Editar producto"})
+            })
+            .catch (e => {console.log(e)})
+       // }
+       
+      
+    },
+    update: function (req, res) {
+// Actualizar un producto
+let product = {
+    //idUsuario: req.session.user.id,
+    nombre: req.body.nombre,
+    //imagen: req.file.filename,
+    fechaPublicacion: req.body.fechaPublicacion,
+    marca: req.body.marca,
+    ml: req.body.ml,
+    anio: req.body.anio,
+    descripcion: req.body.descripcion, 
+
+}
+return res.send (product);
+
+// db.Producto.update(product, {
+//     where:{
+        
+//     }
+// })
+//.then ()
+//.catch(e => )
     },
     productosUsuario: function(req,res){
         if(req.session.user == undefined){
@@ -275,7 +311,7 @@ const productsController = {
             return res.redirect('/users/login')
         }
     
-    }
+    },
 } // Objeto literal
 
 module.exports = productsController;

@@ -15,7 +15,7 @@
 				<a href="/users/myprofile/<%=resultado.usuario.id%>"><h3 class="product-detail-description"> <%=resultado.usuario.nombre %> <%= resultado.usuario.apellido %></h3></a> <!-- automatizar -->
 				<% if (locals.nombre){ %> 
 					<div class="icono">
-						<a href="/products/edit"><i class="fas fa-edit fa-2x"></i></a>
+						<a href="/products/edit/<%= resultado.id %>"><i class="fas fa-edit fa-2x"></i></a>
 						<a href="/products/add"><i class="fas fa-plus fa-2x"></i></a>
 					</div>
 				<% } %> 
