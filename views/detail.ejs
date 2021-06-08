@@ -13,7 +13,7 @@
 			<div class="d-flex align-items-center">
 				<h2 class="product-detail-title"><%= resultado.nombre%></h2>
 				<a href="/users/myprofile/<%=resultado.usuario.id%>"><h3 class="product-detail-description"> <%=resultado.usuario.nombre %> <%= resultado.usuario.apellido %></h3></a> <!-- automatizar -->
-				<% if (locals.nombre){ %> 
+				<% if (locals.id == resultado.isUsuario){ %> 
 					<div class="icono">
 						<a href="/products/edit/<%= resultado.id %>"><i class="fas fa-edit fa-2x"></i></a>
 						<a href="/products/add"><i class="fas fa-plus fa-2x"></i></a>

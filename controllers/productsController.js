@@ -1,4 +1,3 @@
-const { localsName } = require('ejs');
 const db = require('../database/models')
 const Usuario = db.Usuario
 const Producto = db.Producto;
@@ -34,16 +33,16 @@ const productsController = {
     editProducts: function(req,res){
         let productId = req.params.id;
         //Evitar que el usuario cambie el id en la URL
-        // if (productId != req.session.idProducto){
-        //     return res.redirect(`/index`)
-        // }
-        // else {
+        if (productId != locals.idProducto){
+            return res.redirect(`/`)
+        }
+        else {
             Producto.findByPk (productId)
             .then (function(Producto){
                 return res.render('editProducts', {title: "Editar producto"})
             })
             .catch (e => {console.log(e)})
-       // }
+       }
        
       
     },
@@ -82,8 +81,13 @@ return res.send (product);
                 ]
             }) //Usuario
             .then(data => {
-                return res.render('productosUsuario', {resultado: data})
-            })
+                if (data == null){
+                    return res.redirect('/')
+                }
+                else{
+                    return res.render('productosUsuario', {resultado: data})
+                }
+            }) // Then
             .catch(error =>{
                 console.log(error)
             })
@@ -146,6 +150,7 @@ return res.send (product);
                         {nombre: {[Op.like]: "%" + infoABuscar + "%"}},
                         {marca: {[Op.like]: "%" + infoABuscar + "%"}},
                         {descripcion: {[Op.like]: "%" + infoABuscar + "%"}},
+                        {idUsuario: {[Op.like]: "%" + infoABuscar + "%"}},
                     ]
                 },
                 order: [
@@ -225,7 +230,32 @@ return res.send (product);
             .catch(error =>{
                 console.log(error)
             })
-        }
+        } 
+        // else if (filtro == "users"){
+        //     Usuario.findAll({
+        //         where: {
+        //             [Op.or]: [
+        //                 {idUsuario: {[Op.like]: "%" + infoABuscar + "%"}},
+        //             ]
+        //         },
+        //         order: [
+        //             ['nombre','ASC']
+        //         ],
+        //         include: [  //relación comentario producto.
+        //             { association:'comentario',
+        //               include:{ association: 'usuario'}
+        //             },
+        //            // relación producto usuario                                
+        //             { association: 'usuario' }
+        //         ] // Include
+        //     }) // Find All
+        //     .then(data =>{
+        //         return res.render('results', {resultado: data, title: 'Resultados'})
+        //     })
+        //     .catch(error =>{
+        //         console.log(error)
+        //     })
+        // } //else if
     }, //Results
     marcas: function(req,res){
         Producto.findAll({

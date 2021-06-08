@@ -18,6 +18,8 @@
 							<li><label for="productos"><input type="radio" id="productos" name="filtro" value="productos">Productos</label></li>
 							<li><label for="marcas"><input type="radio" id="marcas" name="filtro" value="marcas">Marcas</label></li>
 							<li><label for="descripcion"><input type="radio" id="descripcion" name="filtro" value="descripcion">Descripción</label></li>
+							<li><label for="users"><input type="radio" id="users" name="filtro" value="users">Usuario</label></li>
+
 						</ul>
 					</button>
 					<input type="text" name="search" value="" placeholder="Buscar productos, marcas y más" class="search-form_input">
@@ -42,6 +44,7 @@
 				<li><a href="/products/marcas">Marcas</a></li>
 				<% if(locals.nombre){ %>
 					<li><a href="/products/add">Agregar producto</a></li>
+					<li><a href="/products/productosUsuario/<%=locals.id%>">Mis productos</a></li>
 				<% } %>
 			</ul>
 

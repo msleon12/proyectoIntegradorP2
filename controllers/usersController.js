@@ -172,7 +172,7 @@ const usersController = {
         let id = req.params.id
 
         if(req.session.user){
-            if(req.session.user.id = id){
+            if(req.session.user.id == id){
                 Usuario.findByPk(id, {
                     include: [  //relación comentario producto.
                         { association:'comentario',
@@ -193,7 +193,10 @@ const usersController = {
                     .catch(error =>{
                         console.log(error)
                     })
-            } /* if */
+            } /* if */ else{
+                return res.redirect('/')
+            }
+
         } /* if */ else{
             return res.redirect('/users/login')
         }

@@ -8,9 +8,11 @@
 			<p>
 				<%= resultado.nombre %>
 				<%= resultado.apellido %>
-				<a href="/users/editprofile/<%= resultado.id %> "
+				<% if (locals.id == resultado.id){ %>
+					<a href="/users/editprofile/<%= resultado.id %> "
 					><i class="fas fa-cog 5x"></i>
 				</a>
+				<% } %>
 			</p>
 		</div>
 		<div class="row">
