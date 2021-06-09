@@ -248,23 +248,23 @@ const usersController = {
         let user = {
             nombre: req.body.nombre,
             apellido: req.body.apellido,
-            email: req.body.email,
-            nacimiento: req.body.nacimiento,
-            dni: req.body.dni,
+            //email: req.body.email,
+            //nacimiento: req.body.nacimiento,
+            //dni: req.body.dni,
             celular: req.body.celular,
-            contrasenia: '', //Para que la contraseña aparezca encriptada
-             imagen: '',
+            //contrasenia: '', //Para que la contraseña aparezca encriptada
+            //imagen: '',
              /*
             productos: data.productos,
             seguidores: data.seguidores,
             comentarios: data.comentarios */
         }
-if (req.body.contrasenia == ''){
-            user.contrasenia = req.session.user.contrasenia;
-        }
-        else {
-            user.contrasenia = req.body.password;
-        }
+//if (req.body.contrasenia == ''){
+//            user.contrasenia = req.session.user.contrasenia;
+ //       }
+ //       else {
+ //           user.contrasenia = bcrypt.hashSync(req.body.password);
+ //       }
 return res.send (user);
         // if (data.imagen == undefined){
         //     Usuario.imagen = req.session.Usuario.imagen;
