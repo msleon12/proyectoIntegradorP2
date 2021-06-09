@@ -25,14 +25,11 @@ router.post('/destroy/:id', productsController.destroy)
 router.get('/edit/:id', productsController.editProducts)
 router.post('/edit', productsController.update);
 
-
 router.get('/id/:id', productsController.detail)
 router.post('/id/:id/comment', productsController.comment)
 
 router.get('/results', productsController.results)
 router.get('/marcas', productsController.marcas)
-
-router.get('/productosUsuario/:id', productsController.productosUsuario)
 
 module.exports = router;
 

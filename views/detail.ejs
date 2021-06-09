@@ -13,9 +13,10 @@
 			<div class="d-flex align-items-center">
 				<h2 class="product-detail-title"><%= resultado.nombre%></h2>
 				<a href="/users/myprofile/<%=resultado.usuario.id%>"><h3 class="product-detail-description"> <%=resultado.usuario.nombre %> <%= resultado.usuario.apellido %></h3></a> <!-- automatizar -->
-				<% if (locals.id == resultado.isUsuario){ %> 
+				<% if (locals.id == resultado.idUsuario){ %> 
 					<div class="icono">
 						<a href="/products/edit/<%= resultado.id %>"><i class="fas fa-edit fa-2x"></i></a>
+						<a href="/products/destroy/<%= resultado.id %>"><i class="fas fa-trash fa-2x"></i></a>
 						<a href="/products/add"><i class="fas fa-plus fa-2x"></i></a>
 					</div>
 				<% } %> 
@@ -31,10 +32,10 @@
 						<section class="comments">
 							<% for(let i=0; i<resultado.comentario.length; i++) { %>
 									<article>
-									<a href="/users/myprofile/<%=resultado.usuario.id%>"><img src= "/images/perfiles/<%= resultado.comentario[i].usuario.imagen %>" alt="Foto de Perfil"> </a>
+									<a href="/users/myprofile/<%=resultado.comentario[i].usuario.id%>"><img src= "/images/perfiles/<%= resultado.comentario[i].usuario.imagen %>" alt="Foto de Perfil"> </a>
 										<div class="data">
 											<p><strong>
-												<a href="/users/myprofile/<%=resultado.comentario[i].idUsuario%> "> <%=resultado.comentario[i].usuario.nombre %> <%=resultado.comentario[i].usuario.apellido %> </a> 
+												<a href="/users/myprofile/<%=resultado.comentario[i].usuario.id%> "> <%=resultado.comentario[i].usuario.nombre %> <%=resultado.comentario[i].usuario.apellido %> </a> 
 											</strong></p>
 											<p class="user">
 												<%= resultado.comentario[i].descripcion %>
@@ -52,12 +53,6 @@
 							</button>
 						</form>
 		
-						<hr>
-						<% if ( locals.id == resultado.idUsuario) { %>
-							<form action="/products/destroy/<%= resultado.id %> " method="POST">
-								<button class='botondelete' type="submit">Borrar producto</button>
-							</form>
-						<% } %>
 						
 					</div>
 				</div>

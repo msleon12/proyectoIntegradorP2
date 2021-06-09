@@ -40,12 +40,10 @@
 							<section class="slider-box">
 								<a href="/products/id/<%=resultado[i].id%>">
 									<figure class="product-box_image">
-										<img src="<%= resultado[i].imagen %>" alt="<%= resultado[i].marca%>">
+										<img src="/images/products/<%= resultado[i].imagen %>" alt="<%= resultado[i].marca%>">
 									</figure>
 									<article class="product-box_data">
 										<h2><%=resultado[i].marca%></h2>
-										<h3><%= resultado[i].usuario.nombre%> <%=resultado[i].usuario.apellido %> </h3> <!-- automatizar -->
-										<p>Comentarios: <%=resultado[i].usuario.comentarios%></p> <!-- automatizar -->
 									</article>
 								</a>
 							</section>

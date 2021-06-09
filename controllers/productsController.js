@@ -47,53 +47,28 @@ const productsController = {
       
     },
     update: function (req, res) {
-// Actualizar un producto
-let product = {
-    //idUsuario: req.session.user.id,
-    nombre: req.body.nombre,
-    //imagen: req.file.filename,
-    fechaPublicacion: req.body.fechaPublicacion,
-    marca: req.body.marca,
-    ml: req.body.ml,
-    anio: req.body.anio,
-    descripcion: req.body.descripcion, 
+        // Actualizar un producto
+        let product = {
+            //idUsuario: req.session.user.id,
+            nombre: req.body.nombre,
+            //imagen: req.file.filename,
+            fechaPublicacion: req.body.fechaPublicacion,
+            marca: req.body.marca,
+            ml: req.body.ml,
+            anio: req.body.anio,
+            descripcion: req.body.descripcion, 
 
-}
-return res.send (product);
+        }
+        return res.send (product);
 
-// db.Producto.update(product, {
-//     where:{
-        
-//     }
-// })
-//.then ()
-//.catch(e => )
+        // db.Producto.update(product, {
+        //     where:{
+                
+        //     }
+        // })
+        //.then ()
+        //.catch(e => )
     },
-    productosUsuario: function(req,res){
-        if(req.session.user == undefined){
-            return res.redirect('/')
-        } //IF
-        else{
-            Usuario.findByPk(req.params.id , 
-                {include: [
-                    // relación producto usuario                                
-                    { association: 'producto' }
-                ]
-            }) //Usuario
-            .then(data => {
-                if (data == null){
-                    return res.redirect('/')
-                }
-                else{
-                    return res.render('productosUsuario', {resultado: data})
-                }
-            }) // Then
-            .catch(error =>{
-                console.log(error)
-            })
-        } //ELSE
-        
-    }, //Productos Usuario
     detail: function(req,res){  
         let idRuta = req.params.id    
         Producto.findByPk(idRuta,{
