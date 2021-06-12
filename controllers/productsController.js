@@ -206,31 +206,31 @@ const productsController = {
                 console.log(error)
             })
         } 
-        // else if (filtro == "users"){
-        //     Usuario.findAll({
-        //         where: {
-        //             [Op.or]: [
-        //                 {idUsuario: {[Op.like]: "%" + infoABuscar + "%"}},
-        //             ]
-        //         },
-        //         order: [
-        //             ['nombre','ASC']
-        //         ],
-        //         include: [  //relación comentario producto.
-        //             { association:'comentario',
-        //               include:{ association: 'usuario'}
-        //             },
-        //            // relación producto usuario                                
-        //             { association: 'usuario' }
-        //         ] // Include
-        //     }) // Find All
-        //     .then(data =>{
-        //         return res.render('results', {resultado: data, title: 'Resultados'})
-        //     })
-        //     .catch(error =>{
-        //         console.log(error)
-        //     })
-        // } //else if
+        else if (filtro == "users"){
+            Usuario.findAll({
+                where: {
+                    [Op.or]: [
+                        {nombre: {[Op.like]: "%" + infoABuscar + "%"}},
+                    ]
+                },
+                order: [
+                    ['nombre','ASC']
+                ],
+                include: [  //relación comentario producto.
+                    { association:'comentario',
+                      include:{ association: 'usuario'}
+                    },
+                   // relación producto usuario                                
+                    { association: 'producto' }
+                ] // Include
+            }) // Find All
+            .then(data =>{
+                return res.render('results', {resultado: data, title: 'Resultados'})
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        } //else if
     }, //Results
     marcas: function(req,res){
         Producto.findAll({
