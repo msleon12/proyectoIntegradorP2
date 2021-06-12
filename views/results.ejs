@@ -5,10 +5,6 @@
 
     <div class="container products-wrapper">
 		<div class="row">
-			<% if (title=='Resultados'){ %> 
-				<div class="col-12">
-					<h2 class="form-title"><%=title%></h2>
-				</div>
 				<% if(resultado.length != 0){ %> 
 					<% for(let i=0; i<resultado.length; i++){ %>
 						<div class="col-12 col-sm-6 col-lg-3">
@@ -31,25 +27,6 @@
 						<p>No hay resultados para su criterio de búsqueda.</p>
 					</div> 
 					<% } %><!-- if(resultado.length...) -->
-			<% } else if (title=='Marcas'){ %> <!-- if (title=...) -->
-					<div class="col-12">
-						<h2 class="form-title"><%=title%></h2>
-					</div>
-					<% for(let i=0; i<resultado.length; i++){ %>
-						<div class="col-12 col-sm-6 col-lg-3">
-							<section class="slider-box">
-								<a href="/products/id/<%=resultado[i].id%>">
-									<figure class="product-box_image">
-										<img src="/images/products/<%= resultado[i].imagen %>" alt="<%= resultado[i].marca%>">
-									</figure>
-									<article class="product-box_data">
-										<h2><%=resultado[i].marca%></h2>
-									</article>
-								</a>
-							</section>
-						</div>
-					<% } %>
-			<% } %>
 		</div>
 	</div> <!-- Container grande-->
 

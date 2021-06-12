@@ -30,13 +30,7 @@ module.exports = function (sequelize,dataTypes){
         dni: {
             type: dataTypes.INTEGER
         },     
-        productos: {
-            type: dataTypes.INTEGER
-        } ,
         seguidores: {
-            type: dataTypes.INTEGER
-        },
-        comentarios: {
             type: dataTypes.INTEGER
         },
         imagen: {

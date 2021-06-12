@@ -240,7 +240,7 @@ const productsController = {
             ] //Include
         }) //Find All
         .then(data=>{
-            return res.render('results', { title: "Marcas", resultado: data })
+            return res.render('marcas', { title: "Marcas", resultado: data })
         })
         .catch (error =>{
             console.log(error)

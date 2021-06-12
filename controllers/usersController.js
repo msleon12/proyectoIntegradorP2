@@ -83,9 +83,8 @@ const usersController = {
                         celular: data.celular,
                         contrasenia: passEncriptada, //Para que la contraseña aparezca encriptada
                         /* imagen: req.file.filename, */
-                        productos: data.productos,
                         seguidores: data.seguidores,
-                        comentarios: data.comentarios
+                       
                     } // USUARIO
 
                     // 3) Guardar usuario
