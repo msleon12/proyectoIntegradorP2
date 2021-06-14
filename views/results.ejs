@@ -5,7 +5,7 @@
 
     <div class="container products-wrapper">
 		<div class="row">
-			<% if(req.query.filtro=="users"){ %>
+			 <% if(locals.filtro == "users"){ %> 
 				
 				<% if(resultado.length != 0){ %> 
 					<% for(let i=0; i<resultado.length; i++){ %>
@@ -17,13 +17,15 @@
 									</figure>
 									<article class="product-box_data">
 										<h2><%=resultado[i].nombre%> <%=resultado[i].apellido%></h2>
-										<a href="/users/myprofile/<%=resultado[i].usuario.id%>"><h3><%=resultado[i].usuario.nombre%> <%=resultado[i].usuario.apellido%></h3></a>
-										<p>Productos: </p> 
+										<a href="/users/myprofile/<%=resultado[i].id%>"><h3><%=resultado[i].nombre%> <%=resultado[i].apellido%></h3></a>
+								
 									</article>
 								</a>
 							</section>
 						</div>
-					<% }} else{%> <%#for e if%> 
+					<% } %>  <!-- for-->
+				<% } %> <!--if chico-->
+			<% } else {%>  <!-- If grande-->
 						<% if(resultado.length != 0){ %> 
 							<% for(let i=0; i<resultado.length; i++){ %>
 								<div class="col-12 col-sm-6 col-lg-3">
@@ -40,13 +42,13 @@
 										</a>
 									</section>
 								</div>
-					<% } %> 
-				<% } else { %>
-					<div class="page">
-						<p>No hay resultados para su criterio de búsqueda.</p>
-					</div> 
-					<% } %> <%#if(resultado.length...)%>
-			<% } %> 
+						<% } %>  <!-- for-->
+					<% } else { %> <!-- If chico-->
+						<div class="page">
+							<p>No hay resultados para su criterio de búsqueda.</p>
+						</div> 
+					<% } %> <!-- Else chico-->>
+			<% } %> <!-- Else grande-->
 		</div>
 	</div> <!-- Container grande-->
 

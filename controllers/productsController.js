@@ -207,6 +207,7 @@ const productsController = {
                 ] //Include
             })
                 .then(data => {
+                    // return res.send(data)
                     return res.render('results', { resultado: data, title: 'Resultados' })
                 })
                 .catch(error => {
@@ -286,16 +287,16 @@ const productsController = {
                 order: [
                     ['nombre', 'ASC']
                 ],
-                include: [  //relación comentario producto.
+                include: [  //relación usuario producto.
                     {
-                        association: 'comentario',
+                        association: 'producto',
                         include: { association: 'usuario' }
                     },
-                    // relación producto usuario                                
-                    { association: 'producto' }
+                 
                 ] // Include
             }) // Find All
                 .then(data => {
+                    // return res.send(data)
                     return res.render('results', { resultado: data, title: 'Resultados' })
                 })
                 .catch(error => {
