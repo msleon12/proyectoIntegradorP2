@@ -40,7 +40,6 @@ app.use(function(req,res,next){
     Usuario.findByPk(idDeLaCookie)
     .then(user =>{
       req.session.user = user;
-      res.locals = user;
 
     })
     .catch(error =>{
@@ -52,13 +51,12 @@ app.use(function(req,res,next){
     return next()
   } 
   
-
 }) // app.use
 
 app.use(function(req,res,next){
   if(req.session.user != undefined){
-    res.locals = req.session.user
-    console.log(res.locals)
+    res.locals.user = req.session.user
+    console.log('Estoy en sesión')
   }
 
   return next() //Es la clave para que el proceso siga adelante

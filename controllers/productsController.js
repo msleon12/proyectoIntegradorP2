@@ -83,19 +83,38 @@ const productsController = {
     }, //Store
     destroy: function (req, res) {
         let productoABorrar = req.params.id;
-        /* return res.render(productoABorrar) */
       
-        /* if(req.session.user.id = Producto.idUsuario){ */
-            Producto.destroy({
-                where: [
-                    { id: productoABorrar },
-                ]
-            })
-            return res.redirect('/');
-            
-        /* } else {
-            return res.redirect('/users/login')
-        } */
+        Producto.findByPk(productoABorrar)
+        .then(data =>{
+            if(req.session.user.id == data.idUsuario){ 
+                Comentario.destroy({
+                    where: [
+                        {idProducto: productoABorrar}
+                    ] //where
+                })
+                .then( function(){
+                    Producto.destroy({
+                        where: [
+                            { id: productoABorrar },
+                        ],
+                        include: [{association: 'comentario'}]
+                    }) //Destroy
+                }) // Then
+                .then(function(){
+                    return res.redirect('/');
+                })
+                .catch(error =>{
+                    console.log(error)
+                })
+                
+             } else {
+                return res.redirect('/users/login')
+            } // Else 
+        }) // Then grande
+        .catch(error =>{
+            console.log(error)
+        })
+       
 
     },
     editProducts: function (req, res) {
@@ -297,7 +316,7 @@ const productsController = {
             }) // Find All
                 .then(data => {
                     // return res.send(data)
-                    return res.render('results', { resultado: data, title: 'Resultados' })
+                    return res.render('resultsUsuarios', { resultado: data, title: 'Resultados' })
                 })
                 .catch(error => {
                     console.log(error)

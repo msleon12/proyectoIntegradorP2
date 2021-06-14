@@ -4,30 +4,9 @@
 
 
     <div class="container products-wrapper">
-		<div class="row">
-			 <% if(locals.filtro == "users"){ %> 
-				
+		<div class="row">	
 				<% if(resultado.length != 0){ %> 
-					<% for(let i=0; i<resultado.length; i++){ %>
-						<div class="col-12 col-sm-6 col-lg-3">
-							<section class="slider-box">
-								<a href="/users/myprofile/<%=resultado[i].id%>">
-									<figure class="product-box_image">
-										<img src="/images/perfiles/<%= resultado[i].imagen %>" alt="<%= resultado[i].nombre%>">
-									</figure>
-									<article class="product-box_data">
-										<h2><%=resultado[i].nombre%> <%=resultado[i].apellido%></h2>
-										<a href="/users/myprofile/<%=resultado[i].id%>"><h3><%=resultado[i].nombre%> <%=resultado[i].apellido%></h3></a>
-								
-									</article>
-								</a>
-							</section>
-						</div>
-					<% } %>  <!-- for-->
-				<% } %> <!--if chico-->
-			<% } else {%>  <!-- If grande-->
-						<% if(resultado.length != 0){ %> 
-							<% for(let i=0; i<resultado.length; i++){ %>
+						<% for(let i=0; i<resultado.length; i++){ %>
 								<div class="col-12 col-sm-6 col-lg-3">
 									<section class="slider-box">
 										<a href="/products/id/<%=resultado[i].id%>">
@@ -48,7 +27,6 @@
 							<p>No hay resultados para su criterio de búsqueda.</p>
 						</div> 
 					<% } %> <!-- Else chico-->>
-			<% } %> <!-- Else grande-->
 		</div>
 	</div> <!-- Container grande-->
 

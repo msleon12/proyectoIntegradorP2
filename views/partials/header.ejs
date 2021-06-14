@@ -42,15 +42,15 @@
 			<ul class="left-navbar">
 				<li><a href="/">Todos los productos</a></li>
 				<li><a href="/products/marcas">Marcas</a></li>
-				<% if(locals.nombre){ %>
+				<% if(locals.user){ %>
 					<li><a href="/products/add">Agregar producto</a></li>
 				<% } %>
 			</ul>
 
 			<ul class="right-navbar">
-				<% if(locals.nombre) { %> 
-					<a href="/users/myprofile/<%=locals.id%>"><li style="text-transform: uppercase;">
-						Hola <%= locals.nombre %>!
+				<% if(locals.user) { %> 
+					<a href="/users/myprofile/<%=locals.user.id%>"><li style="text-transform: uppercase;">
+						Hola <%= locals.user.nombre %>!
 					<li></a>
 					<li>
 						<form action="/users/logout" method="POST">

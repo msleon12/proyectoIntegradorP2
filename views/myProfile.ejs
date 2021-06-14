@@ -8,7 +8,7 @@
 			<p>
 				<%= resultado.nombre %>
 				<%= resultado.apellido %>
-				<% if (locals.id == resultado.id){ %>
+				<% if (locals.user.id == resultado.id){ %>
 					<a href="/users/editprofile/<%= resultado.id %> "
 					><i class="fas fa-cog 5x"></i>
 				</a>
@@ -27,7 +27,7 @@
 						<li> <%= resultado.comentario.length %> comentarios</li>
 					</ul>
 				</div>
-				<% if (locals.email== resultado.email){ %> 
+				<% if (locals.user.email== resultado.email){ %> 
 					<div>
 						<form action="/users/destroy/<%= resultado.id %> " method="POST">
 							<button class= 'btn' type="submit">BORRAR USUARIO</button>
