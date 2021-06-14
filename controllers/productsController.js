@@ -121,9 +121,9 @@ const productsController = {
         let productId = req.params.id;
 
         Producto.findByPk(productId)
-            .then(function (Producto) {
-                if(req.session.user.id == Producto.idUsuario){
-                    return res.render('editProducts', { title: "Editar producto" })
+            .then(data=>{
+                if(req.session.user.id == data.idUsuario){
+                    return res.render('editProducts', { title: "Editar producto", resultado: data })
                 } else{
                     return res.redirect('/users/login')
                 }
@@ -133,11 +133,10 @@ const productsController = {
     },
     update: function (req, res) {
         // Actualizar un producto
-        let product = {
-            //idUsuario: req.session.user.id,
+        let perfume = {
             nombre: req.body.nombre,
-            //imagen: req.file.filename,
-            fechaPublicacion: req.body.fechaPublicacion,
+            imagen: '',
+            // fechaPublicacion: req.body.fechaPublicacion,
             marca: req.body.marca,
             ml: req.body.ml,
             anio: req.body.anio,
@@ -145,26 +144,37 @@ const productsController = {
 
         }
 
-        Producto.findByPk(req.params.id)
-        .then(data =>{
-            Producto.update(product, {
-                where:{
-                    id: data.id
-                }
-            }) // Update
-        }) // Then
-        .catch(error =>{
-            console.log(error)
-        })
-        return res.send(product);
+        return res.send(perfume)
 
-        // db.Producto.update(product, {
-        //     where:{
+        // Producto.findByPk(req.params.id)
+        //     .then(data =>{
+        //         if(req.file == undefined){
+        //             console.log(data)
+        //             // product.imagen = data.imagen
+        //         } else{
+        //             product.imagen = req.file.filename
+        //         } //Else
 
-        //     }
-        // })
-        //.then ()
-        //.catch(e => )
+        //         Producto.update(product, {
+        //             where: [{id : req.params.id}] //where
+        //         }) //update
+        //             .then(function(){
+        //                 product.id = req.params.id,
+        //                 product.idUsuario = req.session.user.id
+        //                 return res.send(product)
+        
+        //                 return res.redirect('/')
+        //             }) //Then chico
+        //             .catch(error =>{
+        //                 console.log(error)
+        //             })
+
+        //     }) // Then grande
+        //     .catch(error =>{
+        //         console.log(error)
+        //     }) // Catch
+
+        
     },
     detail: function (req, res) {
         let idRuta = req.params.id
@@ -335,20 +345,20 @@ const productsController = {
                 })
         } //else if
     }, //Results
-    marcas: function (req, res) {
-        Producto.findAll({
-            include: [
-                { association: 'usuario' },
-                { association: 'comentario' }
-            ] //Include
-        }) //Find All
-            .then(data => {
-                return res.render('marcas', { title: "Marcas", resultado: data })
-            })
-            .catch(error => {
-                console.log(error)
-            }) // Catch
-    }, //Marcas
+    // marcas: function (req, res) {
+    //     Producto.findAll({
+    //         include: [
+    //             { association: 'usuario' },
+    //             { association: 'comentario' }
+    //         ] //Include
+    //     }) //Find All
+    //         .then(data => {
+    //             return res.render('marcas', { title: "Marcas", resultado: data })
+    //         })
+    //         .catch(error => {
+    //             console.log(error)
+    //         }) // Catch
+    // }, //Marcas
 } // Objeto literal
 
 module.exports = productsController;

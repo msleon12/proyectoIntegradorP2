@@ -235,20 +235,20 @@ const usersController = {
         let user = {
             nombre: req.body.nombre,
             apellido: req.body.apellido,
-            email: req.body.email,
             nacimiento: req.body.nacimiento,
             dni: req.body.dni,
             celular: req.body.celular,
             contrasenia: '', //Para que la contraseña aparezca encriptada
             imagen: ''
         }
+        
         if (req.body.contrasenia == ''){
                    user.contrasenia = req.session.user.contrasenia;
             } else {
                   user.contrasenia = bcrypt.hashSync(req.body.contrasenia, 10);
         }
 
-        if (req.file == undefined || req.file == ""){
+        if (req.file == undefined ){
             user.imagen = req.session.user.imagen ;
         } else{
             user.imagen = req.file.filename;
@@ -261,6 +261,7 @@ const usersController = {
         }) //update
             .then (function(){
                 user.id = req.session.user.id
+                user.email = req.session.user.email
                 req.session.user = user 
                 return res.redirect('/')
             })
