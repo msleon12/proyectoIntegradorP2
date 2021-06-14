@@ -76,7 +76,7 @@ const productsController = {
             }
 
             // 3) Guardar perfume
-            db.Producto.create(perfume)
+            Producto.create(perfume)
             return res.redirect('/')
         }
 
@@ -144,6 +144,18 @@ const productsController = {
             descripcion: req.body.descripcion,
 
         }
+
+        Producto.findByPk(req.params.id)
+        .then(data =>{
+            Producto.update(product, {
+                where:{
+                    id: data.id
+                }
+            }) // Update
+        }) // Then
+        .catch(error =>{
+            console.log(error)
+        })
         return res.send(product);
 
         // db.Producto.update(product, {
