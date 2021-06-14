@@ -27,7 +27,7 @@
 						<li> <%= resultado.comentario.length %> comentarios</li>
 					</ul>
 				</div>
-				<% if (locals.nombre== resultado.nombre && locals.apellido==resultado.apellido){ %> 
+				<% if (locals.email== resultado.email){ %> 
 					<div>
 						<form action="/users/destroy/<%= resultado.id %> " method="POST">
 							<button class= 'btn' type="submit">BORRAR USUARIO</button>
