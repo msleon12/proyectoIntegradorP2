@@ -145,7 +145,7 @@ const usersController = {
 
                     // Si tildo recordame creamos la cookie
                     if (req.body.rememberme != undefined) {
-                        res.cookie('userId', user.id, { maxAge: 1000 * 60 * 5 })
+                        res.cookie('userId', user.id, { maxAge: 1000 * 60 * 10 })
                     } // If
 
                     return res.redirect('/')
@@ -259,7 +259,7 @@ const usersController = {
                 id: req.session.user.id
             }
         }) //update
-            .then (function(id){
+            .then (function(){
                 user.id = req.session.user.id
                 req.session.user = user 
                 return res.redirect('/')
