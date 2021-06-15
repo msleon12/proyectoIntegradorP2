@@ -231,7 +231,7 @@ const usersController = {
     },
 
     storeEdit: function (req, res) {
-        //1) Obtener datos del formulario
+      
         let user = {
             nombre: req.body.nombre,
             apellido: req.body.apellido,
@@ -241,7 +241,7 @@ const usersController = {
             contrasenia: '', //Para que la contraseña aparezca encriptada
             imagen: ''
         }
-        
+
         if (req.body.contrasenia == ''){
                    user.contrasenia = req.session.user.contrasenia;
             } else {

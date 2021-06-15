@@ -136,7 +136,6 @@ const productsController = {
         let perfume = {
             nombre: req.body.nombre,
             imagen: '',
-            // fechaPublicacion: req.body.fechaPublicacion,
             marca: req.body.marca,
             ml: req.body.ml,
             anio: req.body.anio,
@@ -144,38 +143,34 @@ const productsController = {
 
         }
 
-        return res.send(perfume)
+        Producto.update(perfume, {
+            where: [
+                {id: req.params.id}
+            ] //where
+        })// update
+            .then(function(){
+                Producto.findByPk(req.params.id)
+                    .then(data =>{
+                        if(req.file == undefined){
+                            perfume.imagen = data.imagen
+                        } else{
+                            perfume.imagen = req.file.filename
+                        }
 
-        // Producto.findByPk(req.params.id)
-        //     .then(data =>{
-        //         if(req.file == undefined){
-        //             console.log(data)
-        //             // product.imagen = data.imagen
-        //         } else{
-        //             product.imagen = req.file.filename
-        //         } //Else
+                        perfume.id = data.id,
+                        perfume.idUsuario = data.idUsuario
+                        perfume.fechaPublicacion = req.body.fechaPublicacion
+                        return res.redirect('/')
 
-        //         Producto.update(product, {
-        //             where: [{id : req.params.id}] //where
-        //         }) //update
-        //             .then(function(){
-        //                 product.id = req.params.id,
-        //                 product.idUsuario = req.session.user.id
-        //                 return res.send(product)
-        
-        //                 return res.redirect('/')
-        //             }) //Then chico
-        //             .catch(error =>{
-        //                 console.log(error)
-        //             })
-
-        //     }) // Then grande
-        //     .catch(error =>{
-        //         console.log(error)
-        //     }) // Catch
-
-        
-    },
+                    }) // Then chico
+                    .catch(error =>{
+                        console.log(error)
+                    })
+            })
+            .catch(error =>{
+                console.log(error)
+            })    
+    }, //Update
     detail: function (req, res) {
         let idRuta = req.params.id
         Producto.findByPk(idRuta, {
