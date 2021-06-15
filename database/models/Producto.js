@@ -20,9 +20,9 @@ module.exports = function (sequelize,dataTypes){
         imagen: {
             type: dataTypes.STRING
         } ,
-        fechaPublicacion:{
+        createdAt:{
             type: dataTypes.DATE 
-        } ,
+        },
         updatedAt: {
             type: dataTypes.DATE
         },
@@ -31,7 +31,7 @@ module.exports = function (sequelize,dataTypes){
         },
         ml: {
             type: dataTypes.INTEGER
-        } ,
+        },
         anio: {
             type: dataTypes.INTEGER
         },

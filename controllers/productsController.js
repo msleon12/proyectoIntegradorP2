@@ -139,16 +139,12 @@ const productsController = {
         let idRuta = req.params.id
         Producto.findByPk(idRuta, {
             include: [  //relación comentario producto.
-                {
-                    association: 'comentario',
+                { association: 'comentario',
                     include: { association: 'usuario' },
-                    /* order: [
-                      ['fecha','DESC']
-                  ], */
-                },
-                // relación producto usuario                                
+                },                           
                 { association: 'usuario' }
-            ]
+            ],
+            order: [['comentario', 'createdAt', 'DESC']]
         }) // Find by pk
             .then(data => {
                 //Si no hay producto que coincida con el id, redirecciona a home.

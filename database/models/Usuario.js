@@ -29,9 +29,6 @@ module.exports = function (sequelize,dataTypes){
         },
         dni: {
             type: dataTypes.INTEGER
-        },     
-        seguidores: {
-            type: dataTypes.INTEGER
         },
         imagen: {
             type:dataTypes.STRING
