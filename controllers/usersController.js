@@ -145,7 +145,7 @@ const usersController = {
 
                     // Si tildo recordame creamos la cookie
                     if (req.body.rememberme != undefined) {
-                        res.cookie('userId', user.id, { maxAge: 1000 * 60 * 5 })
+                        res.cookie('userId', user.id, { maxAge: 1000 * 60 * 10 })
                     } // If
 
                     return res.redirect('/')
@@ -202,7 +202,6 @@ const usersController = {
                 return res.redirect(`/users/editProfile/${req.session.user.id}`)
             }
             else {
-                if (req.session.user.id = id) {
                     Usuario.findByPk(id, {
                         include: [
                             //relación comentario producto.
@@ -215,16 +214,15 @@ const usersController = {
                             if (data == null) {
                                 return res.redirect('/')
                             } else {
-                                return res.render('editProfile', { title: 'Editar mi perfil', resultado: data, usuario: Usuario })
+                                return res.render('editProfile', { title: 'Editar mi perfil', resultado: data })
                             }
 
                         }) //Then
                         .catch(error => {
                             console.log(error)
                         })
-                }
             } /* if */
-        } /* if */ else {
+        } /* if Grande */ else {
             return res.redirect('/users/login')
         }
 
@@ -232,50 +230,46 @@ const usersController = {
         /* return res.render('editProfile', {title: 'Editar mi perfil', usuario: Usuario}) */
     },
 
-
-
-
-
     storeEdit: function (req, res) {
-        //1) Obtener datos del formulario
+      
         let user = {
             nombre: req.body.nombre,
             apellido: req.body.apellido,
-            //email: req.body.email,
-            //nacimiento: req.body.nacimiento,
-            //dni: req.body.dni,
+            nacimiento: req.body.nacimiento,
+            dni: req.body.dni,
             celular: req.body.celular,
-            //contrasenia: '', //Para que la contraseña aparezca encriptada
-            //imagen: '',
-            /*
-           productos: data.productos,
-           seguidores: data.seguidores,
-           comentarios: data.comentarios */
+            contrasenia: '', //Para que la contraseña aparezca encriptada
+            imagen: ''
         }
-        //if (req.body.contrasenia == ''){
-        //            user.contrasenia = req.session.user.contrasenia;
-        //       }
-        //       else {
-        //           user.contrasenia = bcrypt.hashSync(req.body.password);
-        //       }
-        return res.send(user);
-        // if (data.imagen == undefined){
-        //     Usuario.imagen = req.session.Usuario.imagen;
-        // }
-        // else{
-        //     Usuario.imagen = req.file.filename;
-        // }
-        db.Usuario.update(user, {
+
+        if (req.body.contrasenia == ''){
+                   user.contrasenia = req.session.user.contrasenia;
+            } else {
+                  user.contrasenia = bcrypt.hashSync(req.body.contrasenia, 10);
+        }
+
+        if (req.file == undefined ){
+            user.imagen = req.session.user.imagen ;
+        } else{
+            user.imagen = req.file.filename;
+        }
+
+        Usuario.update(user, {
             where: {
                 id: req.session.user.id
             }
-        }
-            //.then ()
-            //.catch (e => {console.log (e)})
-
-        )
-    },
-
+        }) //update
+            .then (function(){
+                user.id = req.session.user.id
+                user.email = req.session.user.email
+                req.session.user = user 
+                return res.redirect('/')
+            })
+            .catch (error =>{
+                console.log(error)
+            }) // Catch
+         
+    }, // Store edit
     destroy: function (req, res) {
         let usuarioABorrar = req.params.id;
         //return res.redirect ('/');
@@ -293,7 +287,6 @@ const usersController = {
         res.clearCookie('userId')
 
         return res.redirect('/');
-
 
     },
 

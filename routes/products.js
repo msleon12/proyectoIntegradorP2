@@ -19,17 +19,17 @@ var upload = multer({ storage: storage})
 router.get('/', productsController.products)
 
 router.get('/add', productsController.addProducts)
-router.post('/add/store', upload.single('img-producto'), productsController.store)
+router.post('/add/store', upload.single('imagen'), productsController.store)
 router.post('/destroy/:id', productsController.destroy)
 
 router.get('/edit/:id', productsController.editProducts)
-router.post('/edit', productsController.update);
+router.post('/edit', upload.single('imagen'), productsController.update);
 
 router.get('/id/:id', productsController.detail)
 router.post('/id/:id/comment', productsController.comment)
 
 router.get('/results', productsController.results)
-router.get('/marcas', productsController.marcas)
+// router.get('/marcas', productsController.marcas)
 
 module.exports = router;
 

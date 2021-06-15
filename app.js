@@ -32,6 +32,16 @@ app.use(session( //Más sobre session
     saveUninitialized: true }
 ));
 
+
+app.use(function(req,res,next){
+  if(req.session.user != undefined){
+    res.locals.user = req.session.user
+    return next() //Es la clave para que el proceso siga adelante
+  }
+
+  return next() //Es la clave para que el proceso siga adelante
+}) // app.use
+
 // Gestionar la cookie
 app.use(function(req,res,next){
   let idDeLaCookie = req.cookies.userId
@@ -40,7 +50,9 @@ app.use(function(req,res,next){
     Usuario.findByPk(idDeLaCookie)
     .then(user =>{
       req.session.user = user;
-      res.locals = user;
+      res.locals.user = user;
+      console.log('tengo una cookie')
+      return next()
 
     })
     .catch(error =>{
@@ -52,18 +64,7 @@ app.use(function(req,res,next){
     return next()
   } 
   
-
 }) // app.use
-
-app.use(function(req,res,next){
-  if(req.session.user != undefined){
-    res.locals = req.session.user
-    console.log(res.locals)
-  }
-
-  return next() //Es la clave para que el proceso siga adelante
-}) // app.use
-
 
 // Importante
 app.use('/', indexRouter);
