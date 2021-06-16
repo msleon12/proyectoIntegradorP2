@@ -120,12 +120,15 @@ const productsController = {
     editProducts: function (req, res) {
         let productId = req.params.id;
 
+        // return res.sendStatus(req.session.user.id)
+
         Producto.findByPk(productId)
             .then(data=>{
+                // El condicional de abajo no anda porque el req.session.user.id no me lo toma: Solo me toma los datos que son strings, todos los datos que son números (dni, celular, id) no me los toma. En cambio, si hago req.session.user.nombre anda perfecto
                 if(req.session.user.id == data.idUsuario){
                     return res.render('editProducts', { title: "Editar producto", resultado: data })
                 } else{
-                    return res.redirect('/users/login')
+                    return res.redirect('/')
                 }
             })
             .catch(e => { console.log(e) })
@@ -133,8 +136,8 @@ const productsController = {
     },
     update: function (req, res) {
 
-
-        // return res.send('el metodo rompe porque no reconoce el req.params.id, entonces al hacer el findbyPk no te trae nada. Tiene sentido que no ande el req.params.id porque la ruta de este método no esta parametrizada, entonces no existe el req.params.id Habría que reemplazarlo por algún valor que nos permita identificar el id del producto. Quizas un req.body.id, pero para eso hay que hacer el input de id y desabilitarlo en el ejs')
+        // El método ahora anda bien, pero para hacer que ande tuve que mandar el la info del id desde el ejs en e formulario. Para que no la ouedan modificar pero aún así aparezca en el req.body le puse un display none
+        
         Producto.findByPk(req.body.id)
         
         .then(data =>{
