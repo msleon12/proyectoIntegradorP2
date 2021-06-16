@@ -132,45 +132,53 @@ const productsController = {
 
     },
     update: function (req, res) {
-        // Actualizar un producto
-        let perfume = {
-            nombre: req.body.nombre,
-            imagen: '',
-            marca: req.body.marca,
-            ml: req.body.ml,
-            anio: req.body.anio,
-            descripcion: req.body.descripcion,
 
-        }
 
-        Producto.update(perfume, {
-            where: [
-                {id: req.params.id}
-            ] //where
-        })// update
-            .then(function(){
-                Producto.findByPk(req.params.id)
-                    .then(data =>{
-                        if(req.file == undefined){
-                            perfume.imagen = data.imagen
-                        } else{
-                            perfume.imagen = req.file.filename
-                        }
+        return res.send('el metodo rompe porque no reconoce el req.params.id, entonces al hacer el findbyPk no te trae nada. Tiene sentido que no ande el req.params.id porque la ruta de este método no esta parametrizada, entonces no existe el req.params.id Habría que reemplazarlo por algún valor que nos permita identificar el id del producto. Quizas un req.body.id, pero para eso hay que hacer el input de id y desabilitarlo en el ejs')
+        Producto.findByPk(req.params.id)
+        
+        .then(data =>{
 
-                        perfume.id = data.id,
-                        perfume.idUsuario = data.idUsuario
-                        perfume.fechaPublicacion = req.body.fechaPublicacion
-                        return res.redirect('/')
+            // Actualizar un producto
+            let perfume = {
+                nombre: req.body.nombre,
+                imagen: '',
+                marca: req.body.marca,
+                ml: req.body.ml,
+                anio: req.body.anio,
+                descripcion: req.body.descripcion,
+    
+            }; // Perfume
 
-                    }) // Then chico
-                    .catch(error =>{
-                        console.log(error)
-                    })
-            })
-            .catch(error =>{
-                console.log(error)
-            })    
-    }, //Update
+            if(req.file == undefined ){
+                perfume.imagen = data.imagen
+            } else{
+                perfume.imagen = req.file.filename
+            };
+
+            perfume.id = data.id;
+            perfume.idUsuario = data.idUsuario;
+
+            Producto.update(perfume, {
+                where: [
+                    {id: req.params.id}
+                ] //where
+            })// update
+                .then(function(){
+                    return res.redirect('/')
+                })
+                .catch(error =>{
+                    console.log(error)
+                });
+
+        }) //Then grande
+
+        .catch(error =>{
+            console.log(error)
+        }); // Catch grande
+        
+
+    }, //Método
     detail: function (req, res) {
         let idRuta = req.params.id
         Producto.findByPk(idRuta, {
