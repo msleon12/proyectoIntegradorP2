@@ -38,8 +38,11 @@ module.exports = function (sequelize,dataTypes){
         },
         updatedAt: {
             type: dataTypes.DATE
+        },
+        username: {
+            type: dataTypes.STRING
         }
-    } // ID
+    }; // ID
     let config = {
         tables: 'usuarios',
         timestamps: true,

@@ -134,8 +134,8 @@ const productsController = {
     update: function (req, res) {
 
 
-        return res.send('el metodo rompe porque no reconoce el req.params.id, entonces al hacer el findbyPk no te trae nada. Tiene sentido que no ande el req.params.id porque la ruta de este método no esta parametrizada, entonces no existe el req.params.id Habría que reemplazarlo por algún valor que nos permita identificar el id del producto. Quizas un req.body.id, pero para eso hay que hacer el input de id y desabilitarlo en el ejs')
-        Producto.findByPk(req.params.id)
+        // return res.send('el metodo rompe porque no reconoce el req.params.id, entonces al hacer el findbyPk no te trae nada. Tiene sentido que no ande el req.params.id porque la ruta de este método no esta parametrizada, entonces no existe el req.params.id Habría que reemplazarlo por algún valor que nos permita identificar el id del producto. Quizas un req.body.id, pero para eso hay que hacer el input de id y desabilitarlo en el ejs')
+        Producto.findByPk(req.body.id)
         
         .then(data =>{
 
@@ -147,6 +147,7 @@ const productsController = {
                 ml: req.body.ml,
                 anio: req.body.anio,
                 descripcion: req.body.descripcion,
+                id: req.body.id
     
             }; // Perfume
 
@@ -156,12 +157,12 @@ const productsController = {
                 perfume.imagen = req.file.filename
             };
 
-            perfume.id = data.id;
+            
             perfume.idUsuario = data.idUsuario;
 
             Producto.update(perfume, {
                 where: [
-                    {id: req.params.id}
+                    {id: req.body.id}
                 ] //where
             })// update
                 .then(function(){

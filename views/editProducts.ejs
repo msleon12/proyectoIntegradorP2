@@ -8,8 +8,9 @@
         
          <form action="/products/edit/editProduct" method="POST" enctype="multipart/form-data"> 
             <div class="form-fields">
+                <input style="display: none;" type="text"  name="id" value="<%=resultado.id %>">
                 <input type="text" name="nombre" value="<%=resultado.nombre %>" placeholder="Nombre">
-                <input type="file" name="imagen" value="" placeholder="Imagen"> 
+                <input type="file" name="img-producto" value="" placeholder="Imagen"> 
                 <input type="text" name="marca" value="<%=resultado.marca %>" placeholder="Marca">
                 <input type="number" name="anio" value="<%=resultado.anio %>" placeholder="Año">
                 <input type="number" name="ml" value="<%=resultado.ml %>" placeholder="Mililitros">

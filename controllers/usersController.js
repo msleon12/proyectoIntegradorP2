@@ -80,6 +80,7 @@ const usersController = {
                             email: data.email,
                             nacimiento: data.nacimiento,
                             dni: data.dni,
+                            username: data.username,
                             celular: data.celular,
                             contrasenia: passEncriptada, //Para que la contraseña aparezca encriptada
                             imagen: req.file.filename,
@@ -235,6 +236,7 @@ const usersController = {
         let user = {
             nombre: req.body.nombre,
             apellido: req.body.apellido,
+            username: req.body.username,
             nacimiento: req.body.nacimiento,
             dni: req.body.dni,
             celular: req.body.celular,
