@@ -13,7 +13,10 @@
         <form action="/products/add/store" method="POST" enctype="multipart/form-data"> 
             <div class="form-fields">
                 <input type="text" name="nombre" value="" placeholder="Nombre del producto *">
-                <input type="file" name="img-producto" value="" placeholder="Imagen"> 
+                <div>
+                    <input type="text" disabled placeholder="Imagen del Producto *" >
+                    <input type="file" name="img-producto" value=""> 
+                 </div>
                 <input type="text" name="marca" value="" placeholder="Marca *"> 
                 <input type="number" name="anio" value="" placeholder="Año">
                 <input type="number" name="ml" value="" placeholder="Mililitros *">

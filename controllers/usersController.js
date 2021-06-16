@@ -72,26 +72,53 @@ const usersController = {
 
                         // 1.1 Hashear contraseña
                         let passEncriptada = bcrypt.hashSync(data.contrasenia, 10)
+                        if (req.file != undefined){
+                                // 2) Armar usuario
+                                let usuario = {
+                                    nombre: data.nombre,
+                                    apellido: data.apellido,
+                                    email: data.email,
+                                    nacimiento: data.nacimiento,
+                                    dni: data.dni,
+                                    username: data.username,
+                                    celular: data.celular,
+                                    contrasenia: passEncriptada, //Para que la contraseña aparezca encriptada
+                                    imagen: req.file.filename, 
+                                    seguidores: data.seguidores,
 
-                        // 2) Armar usuario
-                        let usuario = {
-                            nombre: data.nombre,
-                            apellido: data.apellido,
-                            email: data.email,
-                            nacimiento: data.nacimiento,
-                            dni: data.dni,
-                            username: data.username,
-                            celular: data.celular,
-                            contrasenia: passEncriptada, //Para que la contraseña aparezca encriptada
-                            imagen: req.file.filename,
-                            seguidores: data.seguidores,
+                                }
+                                 // USUARIO
+                                // 3) Guardar usuario
+                                Usuario.create(usuario)
+                                return res.redirect('/users/login')
+                                
+                        }
+               
+                        else {
+                             // 2) Armar usuario
+                             let usuario = {
+                                nombre: data.nombre,
+                                apellido: data.apellido,
+                                email: data.email,
+                                nacimiento: data.nacimiento,
+                                dni: data.dni,
+                                username: data.username,
+                                celular: data.celular,
+                                contrasenia: passEncriptada, //Para que la contraseña aparezca encriptada
+                                imagen: "img-perfil3.png",
+                                seguidores: data.seguidores,
 
-                        } // USUARIO
+                            }
+                             // USUARIO
+                             // 3) Guardar usuario
+                                Usuario.create(usuario)
+                                return res.redirect('/users/login')
+                        }
+                        }
+                       
 
-                        // 3) Guardar usuario
-                        Usuario.create(usuario)
-                        return res.redirect('/users/login')
-                    } //Else
+
+                         //Else
                 }) // THEN
                 .catch(error => {
                     console.log(error)
@@ -232,13 +259,10 @@ const usersController = {
     },
 
     storeEdit: function (req, res) {
-      
+        let errors = {}
         let user = {
             nombre: req.body.nombre,
             apellido: req.body.apellido,
-            username: req.body.username,
-            nacimiento: req.body.nacimiento,
-            dni: req.body.dni,
             celular: req.body.celular,
             contrasenia: '', //Para que la contraseña aparezca encriptada
             imagen: ''
@@ -255,6 +279,9 @@ const usersController = {
         } else{
             user.imagen = req.file.filename;
         }
+        
+      
+    
 
         Usuario.update(user, {
             where: {

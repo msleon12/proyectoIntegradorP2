@@ -9,12 +9,14 @@
             <div class="form-fields">
                 <input type="text" name = "nombre"placeholder="Nombre" value=<%= resultado.nombre %>>
                 <input type="text" name = "apellido" placeholder="Apellido" value=<%= resultado.apellido %>>
-                <input type="text" name="username" placeholder ="Nobre de usuario" value="<%=resultado.username%>">
-                <input type="date" name="nacimiento" placeholder="Fecha de nacimiento" value=<%= resultado.nacimiento %>>
-                <input type="number" name="dni" placeholder="DNI" value=<%= resultado.dni %>>
+                <div>
+                    <input disabled type="text" placeholder="Imagen de perfil">
+                    <input type="file" placeholder="Imagen de perfil" name="imagen" value=""> 
+                </div>
                 <input type="number" placeholder="Celular" name="celular" value=<%= resultado.celular %>>
                 <input type="password" placeholder="Contraseña" name="contrasenia" value= "">
-                <input type="file" name="imagen" value= ""> 
+           
+             
                      
             </div>
 
