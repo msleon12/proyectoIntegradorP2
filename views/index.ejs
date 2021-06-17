@@ -41,10 +41,8 @@
                 <h2 class="form-title">NOVEDADES</h2>
             </div>
                 <!-- /Novedades -->
-                <div> 
-                  <div class="owl-carousel owl-theme">
-                    <div class="item">
-                      <% for(let i=0; i<1; i++){ %>
+                    
+                      <% for(let i=0; i<8; i++){ %>
                         <div class="col-12 col-sm-6 col-lg-3">
                             <section class="slider-box product-box">
                               <a href="/products/id/<%=products[i].id%>">
@@ -62,9 +60,8 @@
                         </div>
                 
                     <% } %>
-                    </div></div>
+                    
                  
-                </div>
                     
                           
            
@@ -97,24 +94,6 @@
     <!-- Footer -->
     <%-include('./partials/footer') %>
     <!-- Footer -->
-     <!--Carousel-->
-     
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-     <script type="text/javascript">
-  //     $('.owl-carousel').owlCarousel({
-  //      loop:false,
-  //      margin:0,
-  //      nav:false,
-  //      center:true,
-  //      dots:true,
-  //      responsive:{
-  //        0:{items:1},
-  //        600:{items:3},
-  //        1200:{items:4},
-  //      }  
-       
-  //  })
-  //    </script>
+   
 </body>
 </html>
