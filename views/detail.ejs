@@ -13,15 +13,17 @@
 			<div class="d-flex align-items-center">
 				<h2 class="product-detail-title"><%= resultado.nombre%></h2>
 				<a href="/users/myprofile/<%=resultado.usuario.id%>"><h3 class="product-detail-description"> <%=resultado.usuario.nombre %> <%= resultado.usuario.apellido %></h3></a> <!-- automatizar -->
-				<% if (locals.user.id == resultado.idUsuario){ %> 
-					<div class="icono">
-						<a href="/products/edit/<%= resultado.id %>"><i class="fas fa-edit fa-2x"></i></a>
-						<form action="/products/destroy/<%= resultado.id %>" method="POST">
-							<button class="fas fa-trash fa-2x" type="submit"></button>
-						</form>
-						<a href="/products/add"><i class="fas fa-plus fa-2x"></i></a>
-					</div>
-				<% } %> 
+				<% if (locals.user){ %> 
+					<% if (locals.user.id == resultado.idUsuario){ %> 
+						<div class="icono">
+							<a href="/products/edit/<%= resultado.id %>"><i class="fas fa-edit fa-2x"></i></a>
+							<form action="/products/destroy/<%= resultado.id %>" method="POST">
+								<button class="fas fa-trash fa-2x" type="submit"></button>
+							</form>
+							<a href="/products/add"><i class="fas fa-plus fa-2x"></i></a>
+						</div>
+					<% } %>
+				<% } %>
 			</div>
 			<div class="product-detail">
 				<div class="row">

@@ -19,7 +19,7 @@ const usersController = {
 
         let errors = {}
 
-        // Chequear que email venga con datos
+        // Chequear que los campos están completos
         if (req.body.nombre == "") {
             errors.message = "El nombre es obligatorio.";
             res.locals.errors = errors;
@@ -56,7 +56,7 @@ const usersController = {
             return res.render('register', { title: 'Creá tu cuenta' })
 
         } else {
-            // Busco el usuario para hacer validaciones
+            // Busco que no exista usuario con ese email
             Usuario.findOne({
                 where: { email: req.body.email }
             })
@@ -67,67 +67,67 @@ const usersController = {
                         res.locals.errors = errors
                         return res.render('register', { title: 'Creá tu cuenta' })
                     } else {
-                        //1) Obtener datos del formulario
-                        let data = req.body;
-
-                        // 1.1 Hashear contraseña
-                        let passEncriptada = bcrypt.hashSync(data.contrasenia, 10)
-                        if (req.file != undefined){
-                                // 2) Armar usuario
-                                let usuario = {
-                                    nombre: data.nombre,
-                                    apellido: data.apellido,
-                                    email: data.email,
-                                    nacimiento: data.nacimiento,
-                                    dni: data.dni,
-                                    username: data.username,
-                                    celular: data.celular,
-                                    contrasenia: passEncriptada, //Para que la contraseña aparezca encriptada
-                                    imagen: req.file.filename, 
-                                    seguidores: data.seguidores,
-
-                                }
-                                 // USUARIO
-                                // 3) Guardar usuario
-                                Usuario.create(usuario)
-                                return res.redirect('/users/login')
+                        // Busco que no exista usuario con ese username
+                        Usuario.findOne({
+                            where: { username: req.body.username }
+                        })
+                            .then(function (user) {
+                                // Si el find encontró un usuario significa que esta en uno ese email. Entonces, devolver un error
+                                if (user != null) {
+                                    errors.message = "El username ya está registrado. Por favor, elija otro."
+                                    res.locals.errors = errors
+                                    return res.render('register', { title: 'Creá tu cuenta' })
+                                } else {
                                 
-                        }
-               
-                        else {
-                             // 2) Armar usuario
-                             let usuario = {
-                                nombre: data.nombre,
-                                apellido: data.apellido,
-                                email: data.email,
-                                nacimiento: data.nacimiento,
-                                dni: data.dni,
-                                username: data.username,
-                                celular: data.celular,
-                                contrasenia: passEncriptada, //Para que la contraseña aparezca encriptada
-                                imagen: "img-perfil3.png",
-                                seguidores: data.seguidores,
+                                    //1) Obtener datos del formulario
+                                    let data = req.body;
 
-                            }
-                             // USUARIO
-                             // 3) Guardar usuario
-                                Usuario.create(usuario)
-                                return res.redirect('/users/login')
-                        }
-                        }
-                       
+                                    // 1.1 Hashear contraseña
+                                    let passEncriptada = bcrypt.hashSync(data.contrasenia, 10)
+                                    if (req.file != undefined){
+                                            // 2) Armar usuario
+                                            let usuario = {
+                                                nombre: data.nombre,
+                                                apellido: data.apellido,
+                                                email: data.email,
+                                                nacimiento: data.nacimiento,
+                                                dni: data.dni,
+                                                username: data.username,
+                                                celular: data.celular,
+                                                contrasenia: passEncriptada, //Para que la contraseña aparezca encriptada
+                                                imagen: req.file.filename, 
+                                                seguidores: data.seguidores,
+                                            }// USUARIO
 
-
-                         //Else
+                                            // 3) Guardar usuario
+                                            Usuario.create(usuario)
+                                            return res.redirect('/users/login')  
+                                    } else {
+                                        // 2) Armar usuario
+                                        let usuario = {
+                                            nombre: data.nombre,
+                                            apellido: data.apellido,
+                                            email: data.email,
+                                            nacimiento: data.nacimiento,
+                                            dni: data.dni,
+                                            username: data.username,
+                                            celular: data.celular,
+                                            contrasenia: passEncriptada, //Para que la contraseña aparezca encriptada
+                                            imagen: "img-perfil3.png",
+                                            seguidores: data.seguidores,
+                                        } // USUARIO
+                                        // 3) Guardar usuario
+                                            Usuario.create(usuario)
+                                            return res.redirect('/users/login')
+                                    }
+                                }
+                            })
+                    } //else grande
                 }) // THEN
                 .catch(error => {
                     console.log(error)
                 })
-
-
-
         } // ELSE
-
     },
     logIn: function (req, res) {
         // Validacion
@@ -254,8 +254,6 @@ const usersController = {
             return res.redirect('/users/login')
         }
 
-
-        /* return res.render('editProfile', {title: 'Editar mi perfil', usuario: Usuario}) */
     },
 
     storeEdit: function (req, res) {
@@ -280,9 +278,6 @@ const usersController = {
             user.imagen = req.file.filename;
         }
         
-      
-    
-
         Usuario.update(user, {
             where: {
                 id: req.session.user.id
@@ -292,7 +287,7 @@ const usersController = {
                 user.id = req.session.user.id
                 user.email = req.session.user.email
                 req.session.user = user 
-                return res.redirect('/')
+                return res.redirect(`/users/myprofile/${user.id}`)
             })
             .catch (error =>{
                 console.log(error)

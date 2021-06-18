@@ -9,7 +9,8 @@ const indexController = {
             include: [
                 {association: 'usuario'}, 
                 {association:'comentario'}
-            ] //Include
+            ], //Include
+            order: [['createdAt', 'DESC']]
         })
             .then (data =>{
                 return res.render('index', {title: 'Index', products: data})

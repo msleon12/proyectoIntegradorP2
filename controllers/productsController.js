@@ -120,18 +120,20 @@ const productsController = {
     editProducts: function (req, res) {
         let productId = req.params.id;
 
-        // return res.sendStatus(req.session.user.id)
-
-        Producto.findByPk(productId)
-            .then(data=>{
-                // El condicional de abajo no anda porque el req.session.user.id no me lo toma: Solo me toma los datos que son strings, todos los datos que son números (dni, celular, id) no me los toma. En cambio, si hago req.session.user.nombre anda perfecto
-                if(req.session.user.id == data.idUsuario){
-                    return res.render('editProducts', { title: "Editar producto", resultado: data })
-                } else{
-                    return res.redirect('/')
-                }
-            })
-            .catch(e => { console.log(e) })
+        if(req.session.user){
+            Producto.findByPk(productId)
+                .then(data=>{
+                    if(req.session.user.id == data.idUsuario){
+                        return res.render('editProducts', { title: "Editar producto", resultado: data })
+                    } else {
+                        return res.redirect('/')
+                    }
+                })
+                .catch(e => { console.log(e)
+                    })
+        } else {
+            return res.redirect ('/users/login')
+        }
 
     },
     update: function (req, res) {
@@ -139,48 +141,45 @@ const productsController = {
         // El método ahora anda bien, pero para hacer que ande tuve que mandar el la info del id desde el ejs en e formulario. Para que no la ouedan modificar pero aún así aparezca en el req.body le puse un display none
         
         Producto.findByPk(req.body.id)
+            .then(data =>{
+                // Actualizar un producto
+                let perfume = {
+                    nombre: req.body.nombre,
+                    imagen: '',
+                    marca: req.body.marca,
+                    ml: req.body.ml,
+                    anio: req.body.anio,
+                    descripcion: req.body.descripcion,
+                    id: req.body.id
         
-        .then(data =>{
+                } // Perfume
 
-            // Actualizar un producto
-            let perfume = {
-                nombre: req.body.nombre,
-                imagen: '',
-                marca: req.body.marca,
-                ml: req.body.ml,
-                anio: req.body.anio,
-                descripcion: req.body.descripcion,
-                id: req.body.id
-    
-            }; // Perfume
+                if(req.file == undefined ){
+                    perfume.imagen = data.imagen
+                } else{
+                    perfume.imagen = req.file.filename
+                }
 
-            if(req.file == undefined ){
-                perfume.imagen = data.imagen
-            } else{
-                perfume.imagen = req.file.filename
-            };
+                perfume.idUsuario = data.idUsuario;
 
+                Producto.update(perfume, {
+                    where: [
+                        {id: req.body.id}
+                    ] //where
+                })// update
+                    .then(function(){
+                        return res.redirect(`/products/id/${data.id}`)
+                    })
+                    .catch(error =>{
+                        console.log(error)
+                    });
+
+            }) //Then grande
+
+            .catch(error =>{
+                console.log(error)
+            }); // Catch grande
             
-            perfume.idUsuario = data.idUsuario;
-
-            Producto.update(perfume, {
-                where: [
-                    {id: req.body.id}
-                ] //where
-            })// update
-                .then(function(){
-                    return res.redirect('/')
-                })
-                .catch(error =>{
-                    console.log(error)
-                });
-
-        }) //Then grande
-
-        .catch(error =>{
-            console.log(error)
-        }); // Catch grande
-        
 
     }, //Método
     detail: function (req, res) {
@@ -223,7 +222,7 @@ const productsController = {
 
             // 3) Guardar perfume
             Comentario.create(comentario)
-            return res.redirect('/')
+            return res.redirect(`/products/id/${req.params.id}`)
         } else {
             return res.redirect('/users/login')
         }
@@ -278,7 +277,7 @@ const productsController = {
                 .catch(error => {
                     console.log(error)
                 })
-        } else if (filtro == "marcas") {
+        } /* else if (filtro == "marcas") {
             Producto.findAll({
                 where: {
                     [Op.or]: [
@@ -299,7 +298,7 @@ const productsController = {
                 .catch(error => {
                     console.log(error)
                 })
-        } else if (filtro == "descripcion") {
+        } */ else if (filtro == "descripcion") {
             Producto.findAll({
                 where: {
                     [Op.or]: [
