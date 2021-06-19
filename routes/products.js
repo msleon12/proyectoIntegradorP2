@@ -27,6 +27,7 @@ router.post('/edit/editProduct', upload.single('img-producto'), productsControll
 
 router.get('/id/:id', productsController.detail)
 router.post('/id/:id/comment', productsController.comment)
+router.post('/destroyComentario/:id', productsController.destroyComentario)
 
 router.get('/results', productsController.results)
 // router.get('/marcas', productsController.marcas)

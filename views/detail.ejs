@@ -12,7 +12,7 @@
 		<div class="container products-wrapper">
 			<div class="d-flex align-items-center">
 				<h2 class="product-detail-title"><%= resultado.nombre%></h2>
-				<a href="/users/myprofile/<%=resultado.usuario.id%>"><h3 class="product-detail-description"> <%=resultado.usuario.nombre %> <%= resultado.usuario.apellido %></h3></a> <!-- automatizar -->
+				<a href="/users/myprofile/<%=resultado.usuario.id%>"><h3 class="product-detail-description"> <%=resultado.usuario.nombre %> <%= resultado.usuario.apellido %></h3></a>
 				<% if (locals.user){ %> 
 					<% if (locals.user.id == resultado.idUsuario){ %> 
 						<div class="icono">
@@ -30,7 +30,9 @@
 					<article class="col-12 col-lg-8 product-detail-info">
 						<img src="/images/products/<%=resultado.imagen%>" alt="<%=resultado.nombre%>" class="product-detail-img">
 						<p class="product-detail-description">
-							<%=resultado.descripcion %></p>
+							<%=resultado.descripcion %>
+						</p>
+						<p class="product-detail-description">Año: <%= resultado.anio %></p>
 					</article>
 					<div class="col-12 col-lg-4">
 						<section class="comments">
@@ -44,7 +46,16 @@
 											<p class="user">
 												<%= resultado.comentario[i].descripcion %>
 											</p>
+											
 										</div>
+										<% if(locals.user) { %>
+											<% if (locals.user.id == resultado.comentario[i].usuario.id){ %> 
+											<form action="/products/destroyComentario/<%=resultado.comentario[i].id %>" method="POST">
+												<button class="fas fa-trash fa-2x" type="submit"></button>
+											</form>
+											<% } %>
+										<% } %> 
+										
 									</article>
 							<% } %>
 						</section>

@@ -227,6 +227,19 @@ const productsController = {
             return res.redirect('/users/login')
         }
     },
+    destroyComentario: function(req,res){
+        Comentario.destroy({
+            where: [
+                {id: req.params.id}
+            ]
+        }) //destroy
+        .then(function(){
+            return res.redirect('/')
+        })
+        .catch(error =>{
+            console.log(error)
+        })
+    },
     results: function (req, res) {
         let infoABuscar = req.query.search
         let filtro = req.query.filtro
@@ -347,20 +360,6 @@ const productsController = {
                 })
         } //else if
     }, //Results
-    // marcas: function (req, res) {
-    //     Producto.findAll({
-    //         include: [
-    //             { association: 'usuario' },
-    //             { association: 'comentario' }
-    //         ] //Include
-    //     }) //Find All
-    //         .then(data => {
-    //             return res.render('marcas', { title: "Marcas", resultado: data })
-    //         })
-    //         .catch(error => {
-    //             console.log(error)
-    //         }) // Catch
-    // }, //Marcas
 } // Objeto literal
 
 module.exports = productsController;
