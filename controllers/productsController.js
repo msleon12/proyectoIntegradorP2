@@ -228,14 +228,21 @@ const productsController = {
         }
     },
     destroyComentario: function(req,res){
-        Comentario.destroy({
-            where: [
-                {id: req.params.id}
-            ]
-        }) //destroy
-        .then(function(){
-            return res.redirect('/')
-        })
+        Comentario.findByPk(req.params.id)
+        .then(data =>{
+            Comentario.destroy({
+                where: [
+                    {id: req.params.id}
+                ]
+            }) //destroy
+            .then(function(){
+                return res.redirect(`/products/id/${data.idProducto}`)
+            })
+            .catch(error =>{
+                console.log(error)
+            }) //Cathc chico
+        }) // Then grande
+        
         .catch(error =>{
             console.log(error)
         })
