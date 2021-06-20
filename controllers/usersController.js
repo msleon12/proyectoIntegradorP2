@@ -30,6 +30,11 @@ const usersController = {
             res.locals.errors = errors;
             return res.render('register', { title: 'Creá tu cuenta' })
 
+        } else if (req.body.username == "") {
+            errors.message = "El username es obligatorio.";
+            res.locals.errors = errors;
+            return res.render('register', { title: 'Creá tu cuenta' })
+
         } else if (req.file != undefined && req.file.mimetype !== 'image/png' && req.file.mimetype !== 'image/jpg' && req.file.mimetype !== 'image/jpeg') {
             errors.message = "Debe subir una imagen en formato jpg, jpeg o png.";
             res.locals.errors = errors;
@@ -113,7 +118,7 @@ const usersController = {
                                             username: data.username,
                                             celular: data.celular,
                                             contrasenia: passEncriptada, //Para que la contraseña aparezca encriptada
-                                            imagen: "img-perfil3.png",
+                                            imagen: "img-perfil-unisex.png",
                                             seguidores: data.seguidores,
                                         } // USUARIO
                                         // 3) Guardar usuario
@@ -149,7 +154,7 @@ const usersController = {
 
                 if (user == null) {
                     // Creo el mensaje de error
-                    errors.message = "El email no existe."
+                    errors.message = "No existe una cuenta registrada con este email."
 
                     // Paso el mensaje a la vista
                     res.locals.errors = errors
@@ -296,7 +301,6 @@ const usersController = {
     }, // Store edit
     destroy: function (req, res) {
         let usuarioABorrar = req.params.id;
-        //return res.redirect ('/');
 
         db.Usuario.destroy({
             where: [

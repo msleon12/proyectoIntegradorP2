@@ -14,17 +14,18 @@
                     <input type="file" placeholder="Imagen de perfil" name="imagen" value=""> 
                 </div>
                 <input type="number" placeholder="Celular" name="celular" value=<%= resultado.celular %>>
-                <input type="password" placeholder="Contraseña" name="contrasenia" value= "">
-           
-             
-                     
+                <input type="password" placeholder="Contraseña" name="contrasenia" value= "">     
             </div>
 
             <button type="submit" class="form-button">
                 Enviar
-            </button>
-            
+            </button>            
         </form>
+
+        <form class="form-delete" action="/users/destroy/<%= resultado.id %> " method="POST">
+            <button class= 'form-button btn-end' type="submit">Borrar usuario</button>
+        </form>
+
     </section>
     <%- include('./partials/footer') %>
 </body>

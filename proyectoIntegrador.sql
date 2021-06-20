@@ -18,22 +18,13 @@ CREATE TABLE usuarios (
 );
 
 ALTER TABLE usuarios 
-ADD createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ADD createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 
 ALTER TABLE usuarios
 CHANGE mail email VARCHAR(200) NOT NULL;
 
 ALTER TABLE usuarios 
 ADD updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
-
--- Insertamos valores a la tabla de usuarios
-INSERT INTO usuarios 
-VALUES 
-(DEFAULT, "Martin", "Moragues Hansen", "moragueshanse@gmail.com","Boquita", 1143568675, "2000-02-14",43657837,6,20,30,"img-perfil1.png", DEFAULT, DEFAULT),
-(DEFAULT, "Nicolas", "Vivone", "nicovivone@gmail.com","vamosboca!", 1156647234, "1995-10-10",36748956,13,40,10,"img-perfil2.png", DEFAULT, DEFAULT),
-(DEFAULT, "Agustín", "Levy", "aguslevy@hotmail.com", "elmasfacha423",1164738899,"2005-12-10", 46879090,2,5,7, "img-perfil3.png", DEFAULT, DEFAULT),
-(DEFAULT, "Matías", "Gutierrez", "matielfacha@gmail.com", "quefachaquesoy765",1154435566,"2001-07-11", 42004987,6,8,7, "img-perfil4.png", DEFAULT, DEFAULT), 
-(DEFAULT, "Milena", "Rivadavia", "milerivadavia@gmail.com", "bocamivida324", 1154637788, "2003-05-07", 46758938, 2,4,0, "img-perfil5.png", DEFAULT, DEFAULT);
 
 ALTER TABLE usuarios
 DROP productos;
@@ -44,6 +35,18 @@ DROP comentarios;
 ALTER TABLE usuarios
 DROP seguidores;
 
+ALTER TABLE usuarios 
+ADD username VARCHAR(200) NOT NULL;
+
+-- Insertamos valores a la tabla de usuarios
+INSERT INTO usuarios 
+VALUES 
+(DEFAULT, "Martin", "Moragues Hansen", "moragueshanse@gmail.com","Boquita", 1143568675, "2000-02-14",43657837,"img-perfil1.png", DEFAULT, DEFAULT, "martinmh"),
+(DEFAULT, "Nicolas", "Vivone", "nicovivone@gmail.com","vamosboca!", 1156647234, "1995-10-10",36748956,"img-perfil2.png", DEFAULT, DEFAULT, "nicovivone"),
+(DEFAULT, "Agustín", "Levy", "aguslevy@hotmail.com", "elmasfacha423",1164738899,"2005-12-10", 46879090, "img-perfil3.png", DEFAULT, DEFAULT, "aguslevy"),
+(DEFAULT, "Matías", "Gutierrez", "matielfacha@gmail.com", "quefachaquesoy765",1154435566,"2001-07-11", 42004987, "img-perfil4.png", DEFAULT, DEFAULT, "matuteguti"), 
+(DEFAULT, "Milena", "Rivadavia", "milerivadavia@gmail.com", "bocamivida324", 1154637788, "2003-05-07", 46758938, "img-perfil5.png", DEFAULT, DEFAULT, "milerivadavia");
+
 SELECT * FROM usuarios;
 
 -- Creamos tabla de productos
@@ -52,7 +55,7 @@ CREATE TABLE productos(
     idUsuario INT UNSIGNED,
 	nombre VARCHAR(200) NOT NULL,
 	imagen VARCHAR(500),
-	fechaPublicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
+	fechaPublicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	marca VARCHAR(200) NOT NULL, 
 	ml INT UNSIGNED NOT NULL,
 	anio INT UNSIGNED, 
@@ -135,11 +138,8 @@ VALUES
 (DEFAULT, 10, 5, "VAMO ARRIBAAAA, TREMENDA FRAGANCIA", "2021-03-03", DEFAULT),
 (DEFAULT, 10, 2, "Muy malo", "2019-05-03", DEFAULT);
 
-ALTER TABLE comentarios CHANGE fecha createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL;
+ALTER TABLE comentarios CHANGE fecha createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL;
 
-ALTER TABLE productos CHANGE fechaPublicacion createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL;
+ALTER TABLE productos CHANGE fechaPublicacion createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL;
 
 SELECT * FROM comentarios;
-
-ALTER TABLE usuarios 
-ADD username VARCHAR(200) NOT NULL;

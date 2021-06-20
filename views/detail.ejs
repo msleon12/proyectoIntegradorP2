@@ -32,30 +32,34 @@
 						<p class="product-detail-description">
 							<%=resultado.descripcion %>
 						</p>
-						<p class="product-detail-description">Año: <%= resultado.anio %></p>
+						<p class="product-detail-description">Mililitros: <%= resultado.ml %></p>
+						<% if(resultado.anio != 0){ %> 
+							<p class="product-detail-description">Año: <%= resultado.anio %></p>
+						<% } %>
 					</article>
 					<div class="col-12 col-lg-4">
 						<section class="comments">
 							<% for(let i=0; i<resultado.comentario.length; i++) { %>
 									<article>
-									<a href="/users/myprofile/<%=resultado.comentario[i].usuario.id%>"><img src= "/images/perfiles/<%= resultado.comentario[i].usuario.imagen %>" alt="Foto de Perfil"> </a>
+										<a href="/users/myprofile/<%=resultado.comentario[i].usuario.id%>"><img src= "/images/perfiles/<%= resultado.comentario[i].usuario.imagen %>" alt="Foto de Perfil"> </a>
 										<div class="data">
-											<p><strong>
-												<a href="/users/myprofile/<%=resultado.comentario[i].usuario.id%> "> <%=resultado.comentario[i].usuario.nombre %> <%=resultado.comentario[i].usuario.apellido %> </a> 
-											</strong></p>
-											<p class="user">
-												<%= resultado.comentario[i].descripcion %>
-											</p>
-											
+											<div>
+												<p><strong>
+													<a href="/users/myprofile/<%=resultado.comentario[i].usuario.id%> "> <%=resultado.comentario[i].usuario.nombre %> <%=resultado.comentario[i].usuario.apellido %> </a> 
+												</strong></p>
+												<p class="user">
+													<%= resultado.comentario[i].descripcion %>
+												</p>
+											</div>
+												
+											<% if(locals.user) { %>
+												<% if (locals.user.id == resultado.comentario[i].usuario.id){ %> 
+												<form action="/products/destroyComentario/<%=resultado.comentario[i].id %>" method="POST">
+													<button class="fas fa-trash fa-2x" type="submit"></button>
+												</form>
+												<% } %>
+											<% } %> 
 										</div>
-										<% if(locals.user) { %>
-											<% if (locals.user.id == resultado.comentario[i].usuario.id){ %> 
-											<form action="/products/destroyComentario/<%=resultado.comentario[i].id %>" method="POST">
-												<button class="fas fa-trash fa-2x" type="submit"></button>
-											</form>
-											<% } %>
-										<% } %> 
-										
 									</article>
 							<% } %>
 						</section>

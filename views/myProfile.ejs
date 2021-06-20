@@ -5,7 +5,7 @@
     <!-- Datos del usuario -->
 	<section class="info-usuario container products-wrapper">
 		<div class="page">
-			<p><%= resultado.nombre %> <%= resultado.apellido %>
+			<p><%= resultado.nombre %> <%= resultado.apellido %> (<%= resultado.username %>)
 				<% if (locals.user){ %>
 					<% if (locals.user.id == resultado.id){ %>
 						<a href="/users/editprofile/<%= resultado.id %> ">
@@ -14,7 +14,6 @@
 					<% } %>
 				<% } %>
 			</p>
-			<p> <%= resultado.username %></p>
 		</div>
 		<div class="row">
 			<div class="img-container offset-3 col-2">
@@ -27,15 +26,6 @@
 						<li> <%= resultado.comentario.length %> comentarios</li>
 					</ul>
 				</div>
-				<% if (locals.user){ %>
-					<% if (locals.user.email== resultado.email){ %> 
-						<div>
-							<form action="/users/destroy/<%= resultado.id %> " method="POST">
-								<button class= 'btn' type="submit">BORRAR USUARIO</button>
-							</form>
-						</div>
-					<% } %>
-				<% } %>
 			</div>
 		</div>
 		<div class="container products-wrapper">
