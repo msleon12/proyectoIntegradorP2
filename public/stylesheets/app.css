@@ -676,11 +676,21 @@ textarea.form-input {
 }
 
 .btn{
-  background-color: #1259c3;
-  padding: 10px 20px;
+  background-color: #b5b5b8;
   border-radius: 4px;
-  color: #fff;
+  color:black;
+  font-size: 1,6rem;
 }
+.btntrash{
+  background-color: #b5b5b8;
+  border-radius: 4px;
+  color:black;
+  font-size: 1.6rem;
+  border: none;
+  margin-bottom: 1px;
+  
+}
+
 
 .info-usuario{
   margin-bottom: 2em;

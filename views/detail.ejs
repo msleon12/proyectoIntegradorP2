@@ -16,9 +16,9 @@
 				<% if (locals.user){ %> 
 					<% if (locals.user.id == resultado.idUsuario){ %> 
 						<div class="icono">
-							<a href="/products/edit/<%= resultado.id %>"><i class="fas fa-edit fa-2x"></i></a>
+							<a class="fas fa-edit fa-2x" href="/products/edit/<%= resultado.id %>"> </a>
 							<form action="/products/destroy/<%= resultado.id %>" method="POST">
-								<button class="fas fa-trash fa-2x" type="submit"></button>
+								<button class="btntrash" type="submit"> <i class="fas fa-trash"></i></button>
 							</form>
 							<a href="/products/add"><i class="fas fa-plus fa-2x"></i></a>
 						</div>
