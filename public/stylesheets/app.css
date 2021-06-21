@@ -236,11 +236,14 @@ hr {
 }
 
 .slider-box {
+  display: grid;
   background-color: #ffffff;
   border-radius: 5px;
   overflow: hidden;
-  transition: 300ms;
   margin: 20px 0;
+ justify-content: center;
+ justify-items: center;
+  
 
 }
 
@@ -248,8 +251,14 @@ hr {
   display: block;
 }
 
-.product-box_image {
+.product-box_image img{
+  width:  240px;
+  height: 240px;
   border-bottom: 1px solid var(--light-gray);
+ align-items: center;
+margin-top: 7px;
+  
+
 }
 
 .product-box_data {

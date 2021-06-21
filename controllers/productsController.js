@@ -83,7 +83,8 @@ const productsController = {
     }, //Store
     destroy: function (req, res) {
         let productoABorrar = req.params.id;
-      
+        
+     
         Producto.findByPk(productoABorrar)
         .then(data =>{
             if(req.session.user.id == data.idUsuario){ 
@@ -114,7 +115,7 @@ const productsController = {
         .catch(error =>{
             console.log(error)
         })
-       
+    
 
     },
     editProducts: function (req, res) {
