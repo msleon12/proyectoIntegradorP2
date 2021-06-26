@@ -19,7 +19,7 @@ module.exports = function (sequelize,dataTypes){
             type: dataTypes.STRING
         },
         createdAt:{
-            type: dataTypes.DATE // Es un timestamp, ¿Es  "DATE" igual?
+            type: dataTypes.DATE 
         },
         updatedAt: {
             type:dataTypes.DATE
