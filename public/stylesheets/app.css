@@ -700,6 +700,9 @@ textarea.form-input {
   
 }
 
+.btntrash :hover{
+  cursor: pointer;
+}
 
 .info-usuario{
   margin-bottom: 2em;
