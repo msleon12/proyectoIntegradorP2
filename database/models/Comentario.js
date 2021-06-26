@@ -22,13 +22,13 @@ module.exports = function (sequelize,dataTypes){
             type: dataTypes.DATE 
         },
         updatedAt: {
-            type:dataTypes.DATE
+            type: dataTypes.DATE
         }
     } // ID
     let config = {
         tables: 'comentarios',
-        timestamps: false, 
-        underscored: false, // No tenemos 
+        timestamps: true, 
+        underscored: false,  
     }
 
     const Comentario = sequelize.define(alias, cols, config) // Estamos ejecutando un callback: una función dentro de otra función
