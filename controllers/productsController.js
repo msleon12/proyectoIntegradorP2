@@ -297,28 +297,7 @@ const productsController = {
                 .catch(error => {
                     console.log(error)
                 })
-        } /* else if (filtro == "marcas") {
-            Producto.findAll({
-                where: {
-                    [Op.or]: [
-                        { marca: { [Op.like]: "%" + infoABuscar + "%" } },
-                    ]
-                },
-                order: [
-                    ['nombre', 'ASC']
-                ],
-                include: [
-                    { association: 'usuario' },
-                    { association: 'comentario' }
-                ] //Include
-            })
-                .then(data => {
-                    return res.render('results', { resultado: data, title: 'Resultados' })
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-        } */ else if (filtro == "descripcion") {
+        } else if (filtro == "descripcion") {
             Producto.findAll({
                 where: {
                     [Op.or]: [
