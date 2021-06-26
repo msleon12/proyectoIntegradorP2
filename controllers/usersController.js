@@ -124,9 +124,9 @@ const usersController = {
                                         // 3) Guardar usuario
                                             Usuario.create(usuario)
                                             return res.redirect('/users/login')
-                                    }
-                                }
-                            })
+                                    } //Else más chico
+                                } // Else chico
+                            }) // Then chico
                     } //else grande
                 }) // THEN
                 .catch(error => {
