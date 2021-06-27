@@ -440,6 +440,7 @@ margin-top: 7px;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+  align-items: baseline;
   padding-left: 250px;
   gap: 40px;
 }
@@ -607,14 +608,11 @@ margin-top: 7px;
 
 .form-fields div{
   display: flex;
-  justify-content: space-between;
- 
-  
+  justify-content: space-between; 
 }
 
 .form-fields div input{
   width: 50%;
-
 }
 
 .form-button{
@@ -630,6 +628,7 @@ margin-top: 7px;
   display: inline-block;
   font-size: 1.6em;
   margin: 10px 0;
+  font-family: 'Poppins', sans-serif;
 }
 
 .form-input {
@@ -691,10 +690,10 @@ textarea.form-input {
   font-size: 1,6rem;
 }
 .btntrash{
-  background-color: #b5b5b8;
+  background-color: inherit;
   border-radius: 4px;
-  color:black;
-  font-size: 1.6rem;
+  color:#1f1f1f;
+  font-size: 2em;
   border: none;
   margin-bottom: 1px;
   

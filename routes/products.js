@@ -30,7 +30,6 @@ router.post('/id/:id/comment', productsController.comment)
 router.post('/destroyComentario/:id', productsController.destroyComentario)
 
 router.get('/results', productsController.results)
-// router.get('/marcas', productsController.marcas)
 
 module.exports = router;
 

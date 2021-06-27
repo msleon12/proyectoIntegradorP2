@@ -55,7 +55,7 @@
 											<% if(locals.user) { %>
 												<% if (locals.user.id == resultado.comentario[i].usuario.id){ %> 
 												<form action="/products/destroyComentario/<%=resultado.comentario[i].id %>" method="POST">
-													<button class="fas fa-trash fa-2x" type="submit"></button>
+													<button class="btntrash fas fa-trash fa-2x" type="submit"></button>
 												</form>
 												<% } %>
 											<% } %> 
