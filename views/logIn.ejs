@@ -1,28 +1,30 @@
 <%- include('./partials/links') %>
+
 <body>
     <%- include('./partials/header') %>
 
-    <h1 class="form-title"> Inicia Sesión </h1> 
+    <h1 class="form-title"> Inicia Sesión </h1>
 
-        <section class="form-section">
+    <section class="form-section">
 
-            <% if (locals.errors){ %>
-                <h4 class="error"><%= locals.errors.message %></h4>
-            <% } %>
-            
-            <form action="/users/login/new" method="POST">
-                <div class="form-fields">
-                    <input  name= "email" value="" type="email" placeholder="E-mail">
-                    <input  name= "password" value= "" type="password" placeholder="Contraseña">
-                    <label class="form-label"><input type="checkbox" name="rememberme" value="">  Recordame</label>
-                </div>
+        <% if (locals.errors){ %>
+        <h4 class="error"><%= locals.errors.message %></h4>
+        <% } %>
 
-                <button type="submit" class="form-button">
-                    Iniciar Sesión
-                </button>
-                
-            </form>
-        </section>
+        <form action="/users/login/new" method="POST">
+            <div class="form-fields">
+                <input name="email" value="" type="email" placeholder="E-mail">
+                <input name="password" value="" type="password" placeholder="Contraseña">
+                <label class="form-label"><input type="checkbox" name="rememberme" value=""> Recordame</label>
+            </div>
+
+            <button type="submit" class="form-button">
+                Iniciar Sesión
+            </button>
+
+        </form>
+    </section>
     <%- include('./partials/footer') %>
 </body>
+
 </html>
