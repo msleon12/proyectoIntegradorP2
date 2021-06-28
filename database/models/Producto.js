@@ -41,7 +41,7 @@ module.exports = function (sequelize,dataTypes){
     } // ID
     let config = {
         tables: 'productos',
-        timestamps: true, //Usamos timestampes, pero no las columnas createdAt y updatedAt. Entonces lo ponemos en false
+        timestamps: true, 
         underscored: false, // No tenemos 
     }
 
