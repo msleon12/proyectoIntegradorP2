@@ -18,7 +18,6 @@ var upload = multer({ storage: storage})
 
 router.get('/register', usersController.register)
 router.post('/register/store', upload.single('img-perfil'), usersController.store)
-router.post('/destroy/:id', usersController.destroy)
 
 router.get('/login', usersController.logIn)
 router.post('/login/new', usersController.logInSession)

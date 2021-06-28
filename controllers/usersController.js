@@ -203,6 +203,7 @@ const usersController = {
     myProfile: function (req, res) {
         let id = req.params.id
 
+
         Usuario.findByPk(id, {
             include: [  //relación comentario producto.
                 {
@@ -210,13 +211,16 @@ const usersController = {
                     include: { association: 'usuario' }
                 },
                 // relación producto usuario                                
-                { association: 'producto' }
+                { association: 'producto',
+                    include: {association: 'comentario'}
+                } // association 2
             ] // Include
         }) //Find by Pk
             .then(data => {
                 if (data == null) {
                     return res.redirect('/')
                 } else {
+                    // return res.send(data)
                     return res.render('myProfile', { title: 'Mi perfil', resultado: data })
                 }
 
@@ -298,25 +302,7 @@ const usersController = {
                 console.log(error)
             }) // Catch
          
-    }, // Store edit
-    destroy: function (req, res) {
-        let usuarioABorrar = req.params.id;
-
-        db.Usuario.destroy({
-            where: [
-                { id: usuarioABorrar }
-            ]
-        })
-
-        //Destruir la sessión
-        req.session.destroy()
-
-        //Si hay cookie, anularla
-        res.clearCookie('userId')
-
-        return res.redirect('/');
-
-    },
+    } // Store edit
 
 } //Users controller
 

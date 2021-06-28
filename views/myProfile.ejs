@@ -44,7 +44,7 @@
 										<article class="product-box_data">
 											<h2><%=resultado.producto[i].nombre%></h2>
 											<a href="/users/myprofile/<%= resultado.producto[i].idUsuario%>"> <%= resultado.nombre %> <%= resultado.apellido %>  </a>
-											<p class="product-box_comentarios">Comentarios: <%= resultado.producto[i].comentarios %></p>
+											<p class="product-box_comentarios">Comentarios: <%= resultado.producto[i].comentario.length %></p>
 										</article>
 									</a>
 								</section>
